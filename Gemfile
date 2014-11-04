@@ -9,6 +9,7 @@ gem 'neo4j'
 gem 'therubyracer',  platforms: :ruby
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
+gem 'minitest'
 
 group :development do
   gem "better_errors"
