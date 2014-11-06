@@ -11,12 +11,15 @@ gem 'neo4j'
 gem 'therubyracer',  platforms: :ruby
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
-gem 'minitest'
 
 group :development do
   gem "better_errors"
   gem "pry"
-  gem "spring"
+end
+
+group :test do
+  gem 'minitest-reporters', '1.0.5'
+  gem 'mini_backtrace',     '0.1.3'
 end
 
 group :doc do
