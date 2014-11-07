@@ -1,0 +1,47 @@
+[
+    { "id": 1,
+      "name": "Software Development",
+      "xOffset": 100,
+      "yOffset": 100,
+      "children": [
+          { "id": 4,
+            "name": "Agile" },
+          { "id": 5,
+            "name": "Computational Thinking" }
+      ]
+    },
+    { "id": 2,
+      "name": "Source Control",
+      "xOffset": 300,
+      "yOffset": 100
+    },
+    { "id": 3,
+      "name": "OOP",
+      "xOffset": 500,
+      "yOffset": 100
+    },
+    { "id": 6,
+      "name": "Procedural Languages",
+      "xOffset": 700,
+      "yOffset": 100,
+      "children": [
+          { "id": 7,
+            "name": "Control Flow",
+            "children": [
+              { "id": 9,
+                "name": "Agile" },
+              { "id": 10,
+                "name": "Computational Thinking" }
+            ]
+          },
+          { "id": 11,
+            "name": "Call Stack"
+          },
+          { "id": 12,
+            "name": "Functions"
+          },
+          { "id": 8,
+            "name": "Scope" }
+      ]
+    }
+]
