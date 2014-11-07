@@ -36,6 +36,8 @@ GEM
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
+    bootstrap-sass (3.3.0.1)
+      sass (~> 3.2)
     builder (3.2.2)
     coderay (1.1.0)
     coffee-rails (4.0.1)
@@ -171,6 +173,7 @@ PLATFORMS
 
 DEPENDENCIES
   better_errors
+  bootstrap-sass
   coffee-rails (~> 4.0.0)
   jbuilder (~> 2.0)
   jquery-rails
