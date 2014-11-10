@@ -38,4 +38,22 @@ Test1 // Is Root
     assert_equal t2.parent_concept.blank?, false
     assert_equal t2.parent_concept.description, "Is Root"
   end
+
+  def test_import_with_duplicate_names
+    Concept.destroy_all
+    assert_equal(false, Concept.import_nodes(%q{
+Test1 // Is Root
+Test1 // Is a Duplicate Name
+}))
+    assert_equal Concept.count, 0
+  end
+
+  def test_import_with_too_much_indentation
+    Concept.destroy_all
+    assert_equal(false, Concept.import_nodes(%q{
+Test1 // Is Root
+   Test2 // Is Too Indented
+}))
+    assert_equal Concept.count, 0
+  end
 end

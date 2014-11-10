@@ -22,19 +22,27 @@ class Concept
   end
 
   def self.import_nodes(node_text)
-    stack = []
-    node_text.each_line do |line|
-      next if line.blank?
-      depth = line[/\A */].size
-    #   raise "Indentation too rapid on '#{line}'" if depth > stack.length + 1
-    #
-    #   # TODO: do this in one line with capture groups
-      name = line.strip.split(' // ')[0]
-      description = line.strip.split(' // ')[1]
-      stack[depth] = Concept.create!(name: name, description: description)
-      if depth > 0
-        stack[depth-1].child_concepts << stack[depth]
+    return_value = true
+    begin
+      tx = Neo4j::Transaction.new
+      stack = []
+      node_text.each_line do |line|
+        next if line.blank?
+        depth = line[/\A */].size
+        
+        raise "Indentation too rapid on '#{line}'" if depth > stack.length + 1
+
+        matches = /\A(.*) \/\/ (.*)\z/.match(line.strip)
+        stack[depth] = Concept.create!(name: matches[1], description: matches[2])
+        if depth > 0
+          stack[depth-1].child_concepts << stack[depth]
+        end
       end
+    rescue
+      tx.failure
+      return_value = false
+    ensure
+      tx.close
     end
   end
 
