@@ -5,7 +5,7 @@ class Concept
   property :updated_at, type: DateTime #Automatically set
   property :created_at, type: DateTime #Automatically set
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
   index :name
 
   has_many :out, :subsequents, model_class: self, type: 'precedes'
@@ -15,10 +15,27 @@ class Concept
   has_one  :in, :theory, model_class: self, origin: :implementations
 
   has_many :out, :child_concepts, model_class: self, type: 'contains'
-  has_one  :in, :parent_concepts, model_class: self, origin: :child_concepts
+  has_one  :in, :parent_concept, model_class: self, origin: :child_concepts
 
   def references
     Reference.where(concept_uuid: uuid).where.not(concept_uuid: nil)
+  end
+
+  def self.import_nodes(node_text)
+    stack = []
+    node_text.each_line do |line|
+      next if line.blank?
+      depth = line[/\A */].size
+    #   raise "Indentation too rapid on '#{line}'" if depth > stack.length + 1
+    #
+    #   # TODO: do this in one line with capture groups
+      name = line.strip.split(' // ')[0]
+      description = line.strip.split(' // ')[1]
+      stack[depth] = Concept.create!(name: name, description: description)
+      if depth > 0
+        stack[depth-1].child_concepts << stack[depth]
+      end
+    end
   end
 
   def self.to_json
