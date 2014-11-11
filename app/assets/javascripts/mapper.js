@@ -82,9 +82,9 @@ function generateGraph(graphJSON) {
           ratio;
 
       if (target === focus) {
-        //TODO: Zoom out should go to original position, not centered on last selection.
         ratio = 1;
         focus = null;
+        target = center;
       } else {
         ratio = (height/2 - zoomMargin)/target.r;
         focus = target;
