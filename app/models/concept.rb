@@ -24,9 +24,14 @@ class Concept
   def to_hash
     {uuid: uuid,
      name: name,
-     xOffset: 100,
-     yOffset: 100,
+     precedence_depth: precedence_depth,
      children: child_concepts.map(&:to_hash)}
+  end
+
+  def precedence_depth
+    return 0 if precedents.blank?
+    depths = precedents.map(&:precedence_depth)
+    depths.max + 1
   end
 
   # TODO: Break these three out in the spirit of POODR.
@@ -59,14 +64,20 @@ class Concept
   end
 
   def self.import_precedence(precedence_text)
-    # Prereq Name -> Next Topic Name
+    precedence_text.each_line do |line|
+      next if line.blank?
+      clauses = line.strip.split(' -> ')
+      Concept.where(name: clauses[0]).first.subsequents <<
+        Concept.where(name: clauses[1]).first
+    end
   end
 
+  # TODO: Write query with Cypher
   def self.all_root_concepts
     all.select {|c| c.parent_concept.blank? && c.theory.blank? }
   end
 
-  def self.to_json
-    all_root_concepts.map(&:to_hash).to_json
+  def self.to_d3_array
+    roots = all_root_concepts.map(&:to_hash)
   end
 end

@@ -1,9 +1,12 @@
 function generateGraph(graphJSON) {
-  var height = Math.max(window.innerHeight/2, 400)
+
+  var graphData = graphJSON.data,
+      height = Math.max(window.innerHeight/2, 400),
       width = window.innerWidth,
       center = {x: width/2, y: height/2},
       meshBuffer = {x: width/2, y: height/2},
-      radius = 80,
+      graphBuffer = 10,
+      radius = Math.min(width/graphJSON.x_count, height/graphJSON.y_count)/2 - graphBuffer,
       zoomMargin = 20,
       zoomRatio = 1,
       focus = null;
@@ -34,7 +37,9 @@ function generateGraph(graphJSON) {
   /*TODO: I hate having a JS loop here... but when doubly-nesting data joins, I couldn't get access to the outer
         join's xOffset, etc.  Needed something like "function(d, parent) {return d.x + parent.xOffset;}"
   */
-  graphJSON.forEach( function (graphNode) {
+  graphData.forEach( function (graphNode) {
+    xOffset = graphNode.x_center*width - radius
+    yOffset = graphNode.y_center*height - radius
 
     var innerNodes = pack.nodes(graphNode);
 
@@ -43,8 +48,8 @@ function generateGraph(graphJSON) {
       .enter().append("circle")
         .style("fill", function(d) {return color(d.depth);})
         .attr("class", "node")
-        .attr("cx",  function(d) {return (d.x = d.x + graphNode.xOffset);}) //TODO: Overwriting d.x here hurts.
-        .attr("cy",  function(d) {return (d.y = d.y + graphNode.yOffset);})
+        .attr("cx",  function(d) {return (d.x = d.x + xOffset);}) //TODO: Overwriting d.x here hurts.
+        .attr("cy",  function(d) {return (d.y = d.y + yOffset);})
         .attr("r",   function(d) {return d.r;})
         .on("click", function(d) {zoom(d);});
 
@@ -52,6 +57,7 @@ function generateGraph(graphJSON) {
         .data(innerNodes, function(d) {return d.uuid})
       .enter().append("text")
         .attr("class", "node-label")
+        .attr("dy", ".5em")
         .style("fill-opacity", function(d) { return !d.parent ? 1 : 0; })
         .attr("x",  function(d) {return d.x;})
         .attr("y",  function(d) {return d.y;})
@@ -64,6 +70,7 @@ function generateGraph(graphJSON) {
           ratio;
 
       if (target === focus) {
+        //TODO: Zoom out should go to original position, not centered on last selection.
         ratio = 1;
         focus = null;
       } else {
