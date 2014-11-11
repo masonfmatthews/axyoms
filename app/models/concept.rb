@@ -8,6 +8,7 @@ class Concept
   validates :name, presence: true, uniqueness: true
   index :name
 
+  #TODO: Validate assumption of no loops.
   has_many :out, :subsequents, model_class: self, type: 'precedes'
   has_many :in, :precedents, model_class: self, origin: :subsequents
 
@@ -77,7 +78,17 @@ class Concept
     all.select {|c| c.parent_concept.blank? && c.theory.blank? }
   end
 
-  def self.to_d3_array
-    roots = all_root_concepts.map(&:to_hash)
+  def self.descendant_array
+    all_root_concepts.map(&:to_hash)
+  end
+
+  def self.precedent_array
+    links = []
+    all_root_concepts.each do |p|
+      links += p.subsequents.map do |s|
+        {source: p, target: s}
+      end
+    end
+    links
   end
 end

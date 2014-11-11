@@ -1,13 +1,14 @@
 function generateGraph(graphJSON) {
 
-  var graphData = graphJSON.data,
+  var graphData = graphJSON.nodes,
+      linkData = graphJSON.links,
       height = Math.max(window.innerHeight/2, 400),
       width = window.innerWidth,
       center = {x: width/2, y: height/2},
       meshBuffer = {x: width/2, y: height/2},
       graphBuffer = 10,
       radius = Math.min(width/graphJSON.x_count, height/graphJSON.y_count)/2 - graphBuffer,
-      zoomMargin = 20,
+      zoomMargin = height/10,
       zoomRatio = 1,
       focus = null;
 
@@ -33,6 +34,17 @@ function generateGraph(graphJSON) {
           .size([width+meshBuffer.x*2, height+meshBuffer.y*2])
           .radius(radius/2)
           .mesh);
+
+  link = d3.svg.diagonal()
+      .source(function(d) { return {x:d.source.y, y:d.source.x}; })
+      .target(function(d) { return {x:d.target.y, y:d.target.x}; })
+      .projection(function(d) { return [d.y*width, d.x*height]; });
+
+  svg.selectAll(".link")
+      .data(linkData, function(d) {return d.source.uuid + d.target.uuid;})
+    .enter().append("path")
+      .attr("class", "link")
+      .attr("d", link);
 
   /*TODO: I hate having a JS loop here... but when doubly-nesting data joins, I couldn't get access to the outer
         join's xOffset, etc.  Needed something like "function(d, parent) {return d.x + parent.xOffset;}"
@@ -85,6 +97,14 @@ function generateGraph(graphJSON) {
           .attr("cx", function(d) { return (d.x - target.x) * ratio + center.x; })
           .attr("cy", function(d) { return (d.y - target.y) * ratio + center.y; })
           .attr("r",  function(d) { return ratio * d.r;});
+
+      var linkX = center.x - target.x*ratio,
+          linkY = center.y - target.y*ratio;
+
+      var transition = d3.selectAll(".link").transition()
+          .duration(zoomTime)
+          .attr("transform", "translate(" + linkX + "," + linkY + "), scale(" + ratio  + ")")
+          .style("stroke-width", 1/ratio + "px");
 
       d3.selectAll(".node-label").transition()
           .duration(zoomTime)
