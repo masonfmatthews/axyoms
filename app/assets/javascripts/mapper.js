@@ -39,7 +39,7 @@ function generateGraph(graphJSON) {
     var innerNodes = pack.nodes(graphNode);
 
     svg.selectAll(".node")
-        .data(innerNodes, function(d) {return d.id;})
+        .data(innerNodes, function(d) {return d.uuid;})
       .enter().append("circle")
         .style("fill", function(d) {return color(d.depth);})
         .attr("class", "node")
@@ -49,7 +49,7 @@ function generateGraph(graphJSON) {
         .on("click", function(d) {zoom(d);});
 
     svg.selectAll(".node-label")
-        .data(innerNodes, function(d) {return d.id})
+        .data(innerNodes, function(d) {return d.uuid})
       .enter().append("text")
         .attr("class", "node-label")
         .style("fill-opacity", function(d) { return !d.parent ? 1 : 0; })

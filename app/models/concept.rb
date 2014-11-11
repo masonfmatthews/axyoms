@@ -21,79 +21,52 @@ class Concept
     Reference.where(concept_uuid: uuid).where.not(concept_uuid: nil)
   end
 
+  def to_hash
+    {uuid: uuid,
+     name: name,
+     xOffset: 100,
+     yOffset: 100,
+     children: child_concepts.map(&:to_hash)}
+  end
+
+  # TODO: Break these three out in the spirit of POODR.
   def self.import_nodes(node_text)
-    return_value = true
     begin
       tx = Neo4j::Transaction.new
       stack = []
       node_text.each_line do |line|
         next if line.blank?
         depth = line[/\A */].size
-        
+
         raise "Indentation too rapid on '#{line}'" if depth > stack.length + 1
 
-        matches = /\A(.*) \/\/ (.*)\z/.match(line.strip)
-        stack[depth] = Concept.create!(name: matches[1], description: matches[2])
+        clauses = line.strip.split(' // ')
+        stack[depth] = Concept.create!(name: clauses[0], description: clauses[1])
         if depth > 0
           stack[depth-1].child_concepts << stack[depth]
         end
       end
     rescue
       tx.failure
-      return_value = false
+      raise
     ensure
       tx.close
     end
   end
 
-  def self.to_json
-    return [
-        { "id" => 1,
-          "name" => "Software Development",
-          "xOffset" => 100,
-          "yOffset" => 100,
-          "children" => [
-              { "id" => 4,
-                "name" => "Agile" },
-              { "id" => 5,
-                "name" => "Computational Thinking" }
-          ]
-        },
-        { "id" => 2,
-          "name" => "Source Control",
-          "xOffset" => 300,
-          "yOffset" => 100
-        },
-        { "id" => 3,
-          "name" => "OOP",
-          "xOffset" => 500,
-          "yOffset" => 100
-        },
-        { "id" => 6,
-          "name" => "Procedural Languages",
-          "xOffset" => 700,
-          "yOffset" => 100,
-          "children" => [
-              { "id" => 7,
-                "name" => "Control Flow",
-                "children" => [
-                  { "id" => 9,
-                    "name" => "Agile" },
-                  { "id" => 10,
-                    "name" => "Computational Thinking" }
-                ]
-              },
-              { "id" => 11,
-                "name" => "Call Stack"
-              },
-              { "id" => 12,
-                "name" => "Functions"
-              },
-              { "id" => 8,
-                "name" => "Scope" }
-          ]
-        }
-    ].to_json
+  def self.import_implementations(implementation_text)
+    # Theory Name -> Implementation Name
+  end
 
+  def self.import_precedence(precedence_text)
+    # Prereq Name -> Next Topic Name
+  end
+
+  def self.all_root_concepts
+    all.select {|c| c.parent_concept.blank? && c.theory.blank? }
+  end
+
+  def self.to_json
+    all_root_concepts.map(&:to_hash).to_json
   end
 end

@@ -11,6 +11,12 @@ class ConceptTest < Minitest::Test
     assert_equal Concept.where(name: "Test").first.description, "Is Awesome"
   end
 
+  def test_import_with_name_only
+    Concept.destroy_all
+    Concept.import_nodes('Test')
+    assert_equal Concept.where(name: "Test").first.description, nil
+  end
+
   def test_import_with_many_roots
     Concept.destroy_all
     Concept.import_nodes(%q{
@@ -41,19 +47,23 @@ Test1 // Is Root
 
   def test_import_with_duplicate_names
     Concept.destroy_all
-    assert_equal(false, Concept.import_nodes(%q{
+    assert_raises(Neo4j::ActiveNode::Persistence::RecordInvalidError) {
+      Concept.import_nodes(%q{
 Test1 // Is Root
 Test1 // Is a Duplicate Name
-}))
+})
+    }
     assert_equal Concept.count, 0
   end
 
   def test_import_with_too_much_indentation
     Concept.destroy_all
-    assert_equal(false, Concept.import_nodes(%q{
+    assert_raises(RuntimeError) {
+      Concept.import_nodes(%q{
 Test1 // Is Root
    Test2 // Is Too Indented
-}))
+})
+    }
     assert_equal Concept.count, 0
   end
 end
