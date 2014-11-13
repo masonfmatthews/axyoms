@@ -1,5 +1,5 @@
 class MapperController < ApplicationController
   def show
-    @graph = Graph.new
+    @graph = Graph.new(Concept.all)
   end
 end

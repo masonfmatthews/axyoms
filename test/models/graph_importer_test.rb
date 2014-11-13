@@ -1,25 +1,27 @@
-class ConceptTest < Minitest::Test
+class GraphImporterTest < Minitest::Test
+  def setup
+    @graph = Graph.new(Concept.all)
+    @graph.destroy
+    @graph_importer = GraphImporter.new(@graph)
+  end
+
   def test_import_with_nothing
-    Concept.destroy_all
-    Concept.import_nodes("")
+    @graph_importer.import_new_nodes("")
     assert_equal Concept.count, 0
   end
 
   def test_import_with_one
-    Concept.destroy_all
-    Concept.import_nodes('Test // Is Awesome')
+    @graph_importer.import_new_nodes('Test // Is Awesome')
     assert_equal Concept.where(name: "Test").first.description, "Is Awesome"
   end
 
   def test_import_with_name_only
-    Concept.destroy_all
-    Concept.import_nodes('Test')
+    @graph_importer.import_new_nodes('Test')
     assert_equal Concept.where(name: "Test").first.description, nil
   end
 
   def test_import_with_many_roots
-    Concept.destroy_all
-    Concept.import_nodes(%q{
+    @graph_importer.import_new_nodes(%q{
 Test1 // Is Root
 Test2 // Is Root
 })
@@ -30,8 +32,7 @@ Test2 // Is Root
   end
 
   def test_import_with_children_and_second_root
-    Concept.destroy_all
-    Concept.import_nodes(%q{
+    @graph_importer.import_new_nodes(%q{
 Test1 // Is Root
  Test2 // Is Child
   Test3 // Is Grandchild
@@ -50,9 +51,8 @@ Test4 // Is Root
   end
 
   def test_import_with_duplicate_names
-    Concept.destroy_all
     assert_raises(Neo4j::ActiveNode::Persistence::RecordInvalidError) {
-      Concept.import_nodes(%q{
+      @graph_importer.import_new_nodes(%q{
 Test1 // Is Root
 Test1 // Is a Duplicate Name
 })
@@ -61,9 +61,8 @@ Test1 // Is a Duplicate Name
   end
 
   def test_import_with_too_much_indentation
-    Concept.destroy_all
     assert_raises(RuntimeError) {
-      Concept.import_nodes(%q{
+      @graph_importer.import_new_nodes(%q{
 Test1 // Is Root
    Test2 // Is Too Indented
 })

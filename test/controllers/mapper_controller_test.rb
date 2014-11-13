@@ -14,12 +14,13 @@ class MapperControllerTest < ActionController::TestCase
 
   test "d3 graph should display" do
     Concept.destroy_all
-    Concept.import_nodes(%q{Software Development // A
+    graph_importer = GraphImporter.new(Graph.new)
+    graph_importer.import_new_nodes(%q{Software Development // A
  Agile // A
  Computational Thinking // A
 Source Control // A
 })
-    Concept.import_precedence("Software Development -> Source Control")
+    graph_importer.import_new_relationships("Software Development -> Source Control")
     get :show
     assert_select "svg", count: 1
     #TODO: the two tests below fail, as they're rendered after the page loads.
