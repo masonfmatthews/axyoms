@@ -29,20 +29,24 @@ Test2 // Is Root
     assert t2.child_concepts.blank?
   end
 
-  def test_import_with_children
+  def test_import_with_children_and_second_root
     Concept.destroy_all
     Concept.import_nodes(%q{
 Test1 // Is Root
  Test2 // Is Child
   Test3 // Is Grandchild
+Test4 // Is Root
 })
-    assert_equal Concept.count, 3
+    assert_equal Concept.count, 4
     t2 = Concept.where(name: "Test2").first
     assert_equal t2.description, "Is Child"
     assert_equal t2.child_concepts.length, 1
     assert_equal t2.child_concepts[0].description, "Is Grandchild"
     assert_equal t2.parent_concept.blank?, false
     assert_equal t2.parent_concept.description, "Is Root"
+    t4 = Concept.where(name: "Test4").first
+    assert_equal t4.description, "Is Root"
+    assert_equal t4.parent_concept.blank?, true
   end
 
   def test_import_with_duplicate_names

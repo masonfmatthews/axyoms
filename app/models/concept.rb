@@ -35,6 +35,12 @@ class Concept
     depths.max + 1
   end
 
+  def subsequence_structure
+    subsequents.map do |s|
+      {source: self, target: s}
+    end
+  end
+
   # TODO: Break these three out in the spirit of POODR.
   def self.import_nodes(node_text)
     begin
@@ -60,35 +66,12 @@ class Concept
     end
   end
 
-  def self.import_implementations(implementation_text)
-    # Theory Name -> Implementation Name
-  end
-
-  def self.import_precedence(precedence_text)
-    precedence_text.each_line do |line|
+  def self.import_relationships(text, association_name = "subsequents")
+    text.each_line do |line|
       next if line.blank?
       clauses = line.strip.split(' -> ')
-      Concept.where(name: clauses[0]).first.subsequents <<
-        Concept.where(name: clauses[1]).first
+      where(name: clauses[0]).first.send(association_name) <<
+        where(name: clauses[1]).first
     end
-  end
-
-  # TODO: Write query with Cypher
-  def self.all_root_concepts
-    all.select {|c| c.parent_concept.blank? && c.theory.blank? }
-  end
-
-  def self.descendant_array
-    all_root_concepts.map(&:to_hash)
-  end
-
-  def self.precedent_array
-    links = []
-    all_root_concepts.each do |p|
-      links += p.subsequents.map do |s|
-        {source: p, target: s}
-      end
-    end
-    links
   end
 end

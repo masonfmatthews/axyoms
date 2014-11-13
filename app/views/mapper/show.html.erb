@@ -3,7 +3,7 @@
 <svg id="graph"></svg>
 
 <script>
-  generateGraph(<%= concept_d3_json %>);
+  generateGraph(<%= GraphPresenter.new(@graph).concept_d3_json %>);
 </script>
 
 <div class="container">
