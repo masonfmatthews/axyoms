@@ -14,6 +14,9 @@
 # Ignore Neo4J
 /db/neo4j
 
+# Ignore import files
+/db/import_files/*.txt
+
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
