@@ -17,10 +17,28 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-body, h1, h2, h3 {
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
+body, h1, h2, h3, .label {
   font-weight: 200;
 }
 
 .menu-header {
   font-size: 24px;
+}
+
+#graph {
+  display: none;
+}
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
 }

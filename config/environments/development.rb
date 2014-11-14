@@ -37,4 +37,6 @@ Rails.application.configure do
 
   config.neo4j.session_type :server_db
   config.neo4j.session_path = "http://localhost:7474"
+
+  BetterErrors::Middleware.allow_ip! "10.0.2.2" #Vagrant Host's IP
 end

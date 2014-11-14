@@ -16,7 +16,9 @@ gem 'bcrypt'
 
 group :development do
   gem "better_errors"
-  gem "pry"
+  gem 'binding_of_caller'
+  gem 'faker'
+  gem 'pry-rails'
 end
 
 group :test do

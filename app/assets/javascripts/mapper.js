@@ -25,7 +25,8 @@ function generateGraph(graphJSON) {
 
   var svg = d3.select("#graph")
       .style("height", height + "px")
-      .style("width", width + "px");
+      .style("width", width + "px")
+      .style("display", "block");
 
   svg.append("path")
       .attr("class", "mesh")
@@ -77,6 +78,28 @@ function generateGraph(graphJSON) {
   });
 
   function zoom(target) {
+      $("#concept-summary").fadeOut();
+
+      getData = function () {
+        $.ajax({
+          url: "/concepts/summary/" + target.uuid,
+
+          type: "GET",
+
+          success: function( html ) {
+              console.log("/concepts/summary/" + target.uuid);
+              $('#concept-summary').html(html);
+              $("#concept-summary").fadeIn();
+          },
+
+          error: function( xhr, status, errorThrown ) {
+              alert( "Sorry, there was a problem!" );
+              console.log( "Error: " + errorThrown );
+              console.log( "Status: " + status );
+              console.dir( xhr );
+          }
+        });
+      }
 
       var zoomTime = 1000,
           ratio;
@@ -120,5 +143,7 @@ function generateGraph(graphJSON) {
           .attr("transform", "translate(" + meshX + "," + meshY + "), scale(" + meshRatio  + ")");
 
       //TODO: Can I chain all 3 of these animations off of the same transition?
+
+      window.setTimeout(getData, zoomTime);
   }
 }
