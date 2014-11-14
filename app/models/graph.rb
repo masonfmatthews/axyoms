@@ -32,9 +32,8 @@ class Graph
   def create_relationship_by_names(source, target, association)
     source_concept = Concept.where(name: source).first
     target_concept = Concept.where(name: target).first
-    unless concepts.include?(source_concept) && concepts.include?(target_concept)
-      raise "Concepts not present in graph."
-    end
+    raise "'#{source}' not present in graph." unless concepts.include?(source_concept)
+    raise "'#{target}' not present in graph." unless concepts.include?(target_concept)
     source_concept.send(association) << target_concept
   end
 end

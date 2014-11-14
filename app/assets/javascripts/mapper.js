@@ -6,9 +6,9 @@ function generateGraph(graphJSON) {
       width = window.innerWidth,
       center = {x: width/2, y: height/2},
       meshBuffer = {x: width/2, y: height/2},
-      graphBuffer = 10,
+      graphBuffer = 2,
       radius = Math.min(width/graphJSON.x_count, height/graphJSON.y_count)/2 - graphBuffer,
-      zoomMargin = height/10,
+      zoomMargin = height/5,
       zoomRatio = 1,
       focus = null;
 
