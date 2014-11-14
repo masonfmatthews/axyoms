@@ -11,8 +11,8 @@ class GraphPresenter
     ancestry.each do |c|
       depth_counts[c[:precedence_depth]] += 1
     end
-    max_depth = depth_counts.keys.max
-    max_breadth = depth_counts.values.max
+    max_depth = depth_counts.keys.max || 0
+    max_breadth = depth_counts.values.max || 0
 
     depth_indices = Hash.new(0)
     uuid_x = Hash.new

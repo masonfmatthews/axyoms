@@ -32,6 +32,7 @@ GEM
       tzinfo (~> 1.1)
     ansi (1.4.3)
     arel (5.0.1.20140414130214)
+    bcrypt (3.1.9)
     better_errors (2.0.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -172,6 +173,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt
   better_errors
   bootstrap-sass
   coffee-rails (~> 4.0.0)
