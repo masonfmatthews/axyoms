@@ -1,0 +1,5 @@
+$('#concept-summary').html("<%= j (render 'summary') %>");
+
+d3.selectAll(".node-label")
+    .filter(function(d) {return d.uuid === "<%= @concept.uuid %>"})
+    .text("<%= @concept.name %>")

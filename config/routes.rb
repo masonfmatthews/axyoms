@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'mapper/show'
 
   get 'concepts/summary/:uuid' => 'concepts#summary', as: :concept_summary
+  patch 'concepts/update' => 'concepts#update', as: :concept
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
