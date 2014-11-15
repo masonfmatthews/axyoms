@@ -14,6 +14,7 @@ function generateGraph(graphJSON) {
 
   var color = d3.scale.linear()
       .domain([0, 10])
+      //.range(["hsl(0, 0%, 72%)", "hsl(0, 0%, 28%)"])
       .range(["hsl(221, 37%, 72%)", "hsl(221, 37%, 28%)"])
       .interpolate(d3.interpolateHcl);
 
@@ -146,4 +147,34 @@ function generateGraph(graphJSON) {
 
       window.setTimeout(getData, zoomTime);
   }
+}
+
+function changeColor() {
+
+  var color = d3.scale.linear()
+      .domain([0, 10])
+      .range(["hsl(120, 60%, 80%)", "hsl(120, 60%, 28%)"])
+      .interpolate(d3.interpolateHcl);
+
+  var greyscale = d3.scale.linear()
+      .domain([0, 10])
+      .range(["hsl(0, 0%, 90%)", "hsl(0, 0%, 28%)"])
+      .interpolate(d3.interpolateHcl);
+
+  d3.selectAll(".node")
+      .filter(function(d) {return d.name.charAt(0) == 'A';})
+      .transition()
+      .duration(500)
+      .style("fill", function(d) {return color(d.depth);});
+
+  d3.selectAll(".node")
+      .filter(function(d) {return d.name.charAt(0) !== 'A';})
+      .transition()
+      .duration(500)
+      .style("fill", function(d) {return greyscale(d.depth);});
+
+  d3.selectAll(".link")
+      .transition()
+      .duration(500)
+      .style("stroke", "hsl(0, 0%, 72%)");
 }
