@@ -21,7 +21,7 @@ class StudentsControllerTest < ActionController::TestCase
       post :create, student: { email: @student.email + "com", name: @student.name }
     end
 
-    assert_redirected_to edit_student_path(assigns(:student))
+    assert_redirected_to students_path
   end
 
   test "should get edit" do
@@ -31,7 +31,7 @@ class StudentsControllerTest < ActionController::TestCase
 
   test "should update student" do
     patch :update, id: @student, student: { email: @student.email, name: @student.name }
-    assert_redirected_to edit_student_path(assigns(:student))
+    assert_redirected_to students_path
   end
 
   test "should destroy student" do

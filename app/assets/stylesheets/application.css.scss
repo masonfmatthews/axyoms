@@ -34,7 +34,7 @@ body, th, label, .btn, .label {
 }
 
 .alert-notice {
-  @extend .alert-info;
+  @extend .alert-success;
 }
 
 #graph {
