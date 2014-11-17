@@ -23,7 +23,7 @@ class StudentsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to students_path
-    assert_not flash.nil?
+    assert_not flash.empty?
   end
 
   test "should fail to create student with duplicate email" do

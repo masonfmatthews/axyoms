@@ -6,6 +6,12 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     delete logout_path
   end
 
+  test "forwarding after login" do
+    get students_path
+    log_in_as(@user)
+    assert_redirected_to students_path
+  end
+
   test "login with valid information then logout" do
     get login_path
     post login_path, session: { email: @user.email, password: 'password' }
@@ -29,8 +35,22 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     assert_template "sessions/new"
     assert_select "a[href=?]", logout_path, count: 0
     assert_select "a[href=?]", login_path
-    assert flash[:error]
+    assert !flash.empty?
     get login_path
-    assert !flash[:error]
+    assert flash.empty?
+  end
+
+  test "pages cannot be accessed if not logged in" do
+    get students_path
+    assert_redirected_to login_path
+    assert flash[:error]
+
+    get edit_student_path(1)
+    assert_redirected_to login_path
+    assert flash[:error]
+
+    get mapper_show_path
+    assert_redirected_to login_path
+    assert flash[:error]
   end
 end
