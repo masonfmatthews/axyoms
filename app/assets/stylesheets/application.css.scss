@@ -37,6 +37,10 @@ body, th, label, .btn, .label {
   @extend .alert-success;
 }
 
+.alert-error {
+  @extend .alert-danger;
+}
+
 #graph {
   display: none;
 }
@@ -55,30 +59,16 @@ body, th, label, .btn, .label {
 }
 
 .field_with_errors {
-  padding: 2px;
-  background-color: red;
-  display: table;
+  @extend .has-error;
+  @extend .text-danger;
 }
 
 #error_explanation {
-  width: 450px;
-  border: 2px solid red;
-  padding: 7px;
-  padding-bottom: 0;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
+  @extend .alert;
+  @extend .alert-danger;
   h2 {
-    text-align: left;
-    font-weight: bold;
-    padding: 5px 5px 5px 15px;
-    font-size: 12px;
-    margin: -7px;
-    margin-bottom: 0px;
-    background-color: #c00;
-    color: #fff;
-  }
-  ul li {
-    font-size: 12px;
-    list-style: square;
+    margin: 0em;
+    font-size: 1em;
+    line-height: 1.5em;
   }
 }

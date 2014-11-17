@@ -22,6 +22,17 @@ class StudentsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to students_path
+    assert_not flash.nil?
+  end
+
+  test "should fail to create student with duplicate email" do
+    assert_no_difference('Student.count') do
+      post :create, student: { email: @student.email, name: @student.name }
+    end
+
+    assert_template "students/new"
+    assert_select "div#error_explanation"
+    assert_select "div.field_with_errors"
   end
 
   test "should get edit" do
