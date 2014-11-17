@@ -19,7 +19,7 @@ class StudentsController < ApplicationController
     @student = Student.new(student_params)
 
     if @student.save
-      redirect_to edit_student_path(@student), notice: 'Student was successfully created.'
+      redirect_to students_url, notice: 'Student was successfully created.'
     else
       render :new
     end
@@ -27,7 +27,7 @@ class StudentsController < ApplicationController
 
   def update
     if @student.update(student_params)
-      redirect_to edit_student_path(@student), notice: 'Student was successfully updated.'
+      redirect_to students_url, notice: 'Student was successfully updated.'
     else
       render :edit
     end

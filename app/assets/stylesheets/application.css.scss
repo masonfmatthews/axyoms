@@ -33,6 +33,10 @@ body, th, label, .btn, .label {
   font-size: 24px;
 }
 
+.alert-notice {
+  @extend .alert-info;
+}
+
 #graph {
   display: none;
 }
