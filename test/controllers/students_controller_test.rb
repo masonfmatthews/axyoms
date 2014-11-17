@@ -53,4 +53,13 @@ class StudentsControllerTest < ActionController::TestCase
 
     assert_redirected_to students_path
   end
+
+  test "pagination on index" do
+    get :index
+    assert_select 'div.pagination'
+    Student.paginate(page: 1).each do |student|
+      assert_select 'a[href=?]', edit_student_path(student)
+      assert_select 'td', text: student.name
+    end
+  end
 end

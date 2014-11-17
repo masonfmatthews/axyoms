@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  name: Student
   email: MyString@a.com
 
-two:
-  name: MyString
-  email: MyString@b.com
+<% 30.times do |n| %>
+student_<%= n %>:
+  name: <%= "Student #{n}" %>
+  email: <%= "student-#{n}@example.com" %>
+<% end %>
