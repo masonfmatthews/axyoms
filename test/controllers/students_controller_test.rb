@@ -1,8 +1,9 @@
 require 'test_helper'
 
 class StudentsControllerTest < ActionController::TestCase
-  setup do
-    @student = students(:one)
+  def setup
+    set_up_student
+    set_up_user
   end
 
   test "should get index" do

@@ -4,6 +4,7 @@ class MapperControllerTest < ActionController::TestCase
 
   def setup
     @base_title = "Mental Mapper"
+    set_up_user
   end
 
   test "should get show" do

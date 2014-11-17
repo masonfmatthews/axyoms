@@ -2,8 +2,8 @@ require 'test_helper'
 
 class UserLoginTest < ActionDispatch::IntegrationTest
   def setup
-    @user = User.create!(name: "Testina", email: "tes@tina.com",
-            password: "password", password_confirmation: "password")
+    set_up_user
+    delete logout_path
   end
 
   test "login with valid information then logout" do
@@ -17,7 +17,7 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     assert is_logged_in?
     delete logout_path
     assert_not is_logged_in?
-    assert_redirected_to root_url
+    assert_redirected_to login_path
     follow_redirect!
     assert_select "a[href=?]", login_path
     assert_select "a[href=?]", logout_path, count: 0
@@ -30,7 +30,7 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", logout_path, count: 0
     assert_select "a[href=?]", login_path
     assert flash[:error]
-    get root_path
+    get login_path
     assert !flash[:error]
   end
 end
