@@ -25,7 +25,7 @@ $headings-font-weight: 200;
   box-sizing:         border-box;
 }
 
-body, label, .btn, .label {
+body, th, label, .btn, .label {
   font-weight: 200;
 }
 
@@ -43,4 +43,38 @@ body, label, .btn, .label {
   width: 100%;
   margin-top: 45px;
   @include box_sizing;
+}
+
+.header-buttons {
+  float: right;
+  margin-top: 5px;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    margin-bottom: 0px;
+    background-color: #c00;
+    color: #fff;
+  }
+  ul li {
+    font-size: 12px;
+    list-style: square;
+  }
 }

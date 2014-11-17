@@ -10,7 +10,8 @@ class UserTest < ActiveSupport::TestCase
   def test_user_validations
     assert @me.valid?
     assert !@bad.valid?
-    assert_equal @bad.errors.full_messages,
-        ["Name can't be blank", "Email is invalid", "Password can't be blank"]
+    assert @bad.errors.full_messages.include? "Email is invalid"
+    assert @bad.errors.full_messages.include? "Password can't be blank"
+    assert @bad.errors.full_messages.include? "Name can't be blank"
   end
 end

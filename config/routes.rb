@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :students
+
   root 'mapper#show'
   get 'mapper/show'
 

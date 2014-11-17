@@ -1,0 +1,31 @@
+<h1>
+  <div class="header-buttons">
+    <%= link_to '<i class="glyphicon glyphicon-plus"></i> New Student'.html_safe,
+        new_student_path, class: "btn btn-default" %>
+  </div>
+  Listing students
+</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= student.name %></td>
+        <td><%= student.email %></td>
+        <td><%= link_to '<i class="glyphicon glyphicon-pencil"></i> Edit'.html_safe,
+                edit_student_path(student) %></td>
+        <td><%= link_to '<i class="glyphicon glyphicon-remove"></i> Destroy'.html_safe,
+                student, class: "text-danger", method: :delete,
+                data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
