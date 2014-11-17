@@ -1,0 +1,95 @@
+Human Learning
+ Immersion // OJT is the best
+ Alternation // Alternate Lectures and Practice
+ Depth over Breadth // Focus on fewer features for more time
+ The Three Zones // Three concentric circles: Comfort Zone, Learning Zone, Panic Zone
+ Feedback Cycles // Frequent, short feedback cycles.  Build something every night.
+
+Computational Thinking
+ Boolean Logic
+ Variables
+Agile Development // Description
+ Iterative Development
+  Kill Your Baby Ducks
+  Throw Away Code
+ Minimum Testable Product
+  YAGNI
+  Optimize for Speed Last
+ Pair Programming
+ Scrum
+ Estimation
+ Problem Research
+Source and Commands
+ Source Control
+  Files and Folders
+  History
+  Distributed SCM
+   *Git
+  Open Source
+  Networking Platforms
+   *Github
+ Unix Command Line
+  Basic Commands
+  Programming Environment
+  Running Code
+  Package Management
+Databases
+The Web
+ Clients vs. Servers
+ Internet Communication
+
+OOP
+ Behavior and Data
+ Message Passing
+ Encapsulation
+ Inheritance
+ Composition
+Procedural Languages
+ Control Flow
+  If
+  Each
+ Call Stack
+ Functions
+ Scope
+Testing
+ TDD
+ Mocking
+ Factories
+ Unit Testing
+ Controller Testing
+ Integration Testing
+ Acceptance Testing
+
+Static Content on the Web
+ HTML
+ CSS
+Debugging
+Data Structures
+ Arrays
+ Hashes
+Web Frameworks
+ MVC
+ ORMs
+JavaScript
+
+APIs
+ JSON
+ XML
+ REST
+Web App Patterns
+ Authentication
+  Basic Auth
+  OAuth
+  Single Sign-on
+ Emailing
+ File Uploads
+ Pagination
+ Tagging
+
+Final Projects
+
+Getting Hired
+ Portfolio
+ Interview Skills
+  Always ask questions
+ Resume Skills
