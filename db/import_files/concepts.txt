@@ -8,13 +8,9 @@ Human Learning
 Computational Thinking
  Boolean Logic
  Variables
-Agile Development // Description
- Iterative Development
-  Kill Your Baby Ducks
-  Throw Away Code
- Minimum Testable Product
-  YAGNI
-  Optimize for Speed Last
+Agile Development
+ Iterative Development // * Kill Your Baby Ducks. * Throw Away Code.
+ Minimum Testable Product // * YAGNI. * Optimize for Speed Last.
  Pair Programming
  Scrum
  Estimation
@@ -34,9 +30,22 @@ Source and Commands
   Running Code
   Package Management
 Databases
+  Normalization
+  Foreign Keys
+  SQL
+  Indices
 The Web
  Clients vs. Servers
  Internet Communication
+ SSL
+ Request/Response
+ Request Parameters
+ HTTP Verbs
+ Vulnerabilities
+  Man-in-the-Middle
+  XSS
+  SQL Injection
+  Mass Assignment
 
 OOP
  Behavior and Data
@@ -45,16 +54,22 @@ OOP
  Inheritance
  Composition
 Procedural Languages
+ * Ruby
  Control Flow
   If
   Each
+  Ternary
  Call Stack
  Functions
  Scope
+ Monkey Patching
+ Regular Expressions
 Testing
  TDD
+ Test Before Bug Fix
+ Red, Green, Refactor
+ Fixtures
  Mocking
- Factories
  Unit Testing
  Controller Testing
  Integration Testing
@@ -63,26 +78,72 @@ Testing
 Static Content on the Web
  HTML
  CSS
+  * Bootstrap
+ SASS
 Debugging
+ * Pry
 Data Structures
  Arrays
+ Ranges
  Hashes
 Web Frameworks
+ * Ruby on Rails
+  rails new
+  rails server
+  rails generate
  MVC
+  Models
+   Callbacks and Lifecycle
+  Views
+   Render vs Redirect
+  Controllers
+  * Rails Scaffolding
  ORMs
+  Special Models
+  Migrations
+  Validations
+  Associations
+  Scopes
+  * AREL
+ Routing
+  Root Route
+  Named Routes
+  Resource Routes
+  Nested Routes
+ Embedded Code
+  * ERB
+ Partials
+ Environments
+ Params
+ Session
+ Cookies
+ Flash
+ Seeding
 JavaScript
+ AJAX
 
+Deployment
+ * Heroku
 APIs
  JSON
  XML
  REST
 Web App Patterns
+ Friendly Redirect
+ Factories/Faker
+ Resources
  Authentication
+  Secure Passwords
+  Activate Accounts
+  Remember
   Basic Auth
   OAuth
   Single Sign-on
+  Gravatars
  Emailing
+  * SendGrid
  File Uploads
+  * CarrierWave
  Pagination
  Tagging
 

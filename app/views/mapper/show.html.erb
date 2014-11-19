@@ -1,6 +1,7 @@
 <% @browser_title = "Browse" %>
 <script>
-  generateGraph(<%= GraphPresenter.new(@graph).concept_d3_json %>);
+  graphJSON = <%= GraphPresenter.new(@graph).concept_d3_json %>;
+  generateForceGraph(graphJSON);
 </script>
 
 <div id="concept-summary"></div>

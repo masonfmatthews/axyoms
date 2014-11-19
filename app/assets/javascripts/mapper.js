@@ -1,4 +1,4 @@
-function generateGraph(graphJSON) {
+function generateNestedGraph(graphJSON) {
 
   var graphData = graphJSON.nodes,
       linkData = graphJSON.links,
@@ -89,7 +89,6 @@ function generateGraph(graphJSON) {
           type: "GET",
 
           success: function( html ) {
-              console.log("/concepts/summary/" + target.uuid);
               $('#concept-summary').html(html);
               $("#concept-summary").fadeIn();
           },
