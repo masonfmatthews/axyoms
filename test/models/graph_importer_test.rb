@@ -50,6 +50,25 @@ Test4 // Is Root
     assert_equal t4.parent_concept.blank?, true
   end
 
+  def test_import_with_implementations
+    @graph_importer.import_new_nodes(%q{
+Test1 // Is Root
+ * Test2 // Is Implementation
+})
+    assert_equal Concept.count, 2
+    t1 = Concept.where(name: "Test1").first
+    assert_equal t1.implementations.length, 1
+    assert_equal t1.implementations[0].name, "Test2"
+    assert_equal t1.implementations[0].theory.description, "Is Root"
+  end
+
+  def test_import_with_root_implementations
+    @graph_importer.import_new_nodes(%q{
+* Test1 // Is Root
+})
+    assert_equal Concept.first.name, "* Test1"
+  end
+  
   def test_import_with_duplicate_names
     assert_raises(Neo4j::ActiveNode::Persistence::RecordInvalidError) {
       @graph_importer.import_new_nodes(%q{

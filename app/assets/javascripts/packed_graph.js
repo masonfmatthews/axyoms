@@ -163,13 +163,15 @@ function changeColor() {
       .filter(function(d) {return d.name.charAt(0) == 'A';})
       .transition()
       .duration(500)
-      .style("fill", function(d) {return color(d.depth);});
+      .style("fill", function(d) {return color(d.depth);}) //TODO: Problem for implementations.
+      .style("stroke", function(d) {return color(d.depth);});
 
   d3.selectAll(".node")
       .filter(function(d) {return d.name.charAt(0) !== 'A';})
       .transition()
       .duration(500)
-      .style("fill", function(d) {return greyscale(d.depth);});
+      .style("fill", function(d) {return d.theory ? greyscale(d.depth) : "#fff";})
+      .style("stroke", function(d) {return "hsl(0, 0%, 72%)";});
 
   d3.selectAll(".link")
       .transition()

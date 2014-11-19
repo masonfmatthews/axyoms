@@ -44,7 +44,8 @@ class GraphPresenter
     nodes = []
     @graph.concepts.each_with_index do |c, i|
       indices[c.uuid] = i
-      nodes << {uuid: c.uuid, name: c.name, depth: c.parentage_depth}
+      nodes << {uuid: c.uuid, name: c.name,
+        depth: c.parentage_depth, theory: c.theory.blank?}
     end
 
     links = @graph.all_link_structure.map do |l|

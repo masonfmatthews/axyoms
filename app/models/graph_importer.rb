@@ -17,9 +17,14 @@ class GraphImporter
         raise "Indentation too rapid on '#{line}'" if depth > stack.length + 1
 
         clauses = line.strip.split(' // ')
-        stack[depth] = @graph.create_concept(name: clauses[0], description: clauses[1])
-        if depth > 0
-          stack[depth-1].child_concepts << stack[depth]
+        if depth > 0 && clauses[0].starts_with?("* ")
+          stack[depth] = @graph.create_concept(name: clauses[0][2..-1], description: clauses[1])
+          stack[depth-1].implementations << stack[depth]
+        else
+          stack[depth] = @graph.create_concept(name: clauses[0], description: clauses[1])
+          if depth > 0
+            stack[depth-1].child_concepts << stack[depth]
+          end
         end
       end
     rescue
