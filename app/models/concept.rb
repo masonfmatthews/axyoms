@@ -22,12 +22,21 @@ class Concept
     Reference.where(concept_uuid: uuid).where.not(concept_uuid: nil)
   end
 
+  def unit_coverages
+    UnitCoverage.where(concept_uuid: uuid)
+  end
+
+  def unit_ids
+    unit_coverages.map &:unit_id
+  end
+
   def to_hash
     {uuid: uuid,
      name: name,
      description: description,
      precedence_depth: precedence_depth,
-     children: child_concepts.map(&:to_hash)}
+     children: child_concepts.map(&:to_hash),
+     unit_ids: unit_ids}
   end
 
   # TODO: recursive and potentially SLOW

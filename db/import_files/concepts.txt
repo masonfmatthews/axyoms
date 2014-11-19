@@ -27,6 +27,9 @@ Source and Commands
  Unix Command Line
   Basic Commands
   Programming Environment
+   * rails new
+   * rails server
+   * rails generate
   Running Code
   Package Management
 Databases
@@ -79,6 +82,10 @@ Static Content on the Web
  HTML
  CSS
   * Bootstrap
+ Accessibility
+  Semantic Tags
+  NOT Title
+  ARIA
  SASS
 Debugging
  * Pry
@@ -88,9 +95,6 @@ Data Structures
  Hashes
 Web Frameworks
  * Ruby on Rails
-  rails new
-  rails server
-  rails generate
  MVC
   Models
    Callbacks and Lifecycle

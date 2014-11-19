@@ -171,14 +171,14 @@ function changeColor() {
       .interpolate(d3.interpolateHcl);
 
   d3.selectAll(".node")
-      .filter(function(d) {return d.name.charAt(0) == 'A';})
+      .filter(function(d) {return d.unit_ids.length > 0;})
       .transition()
       .duration(500)
       .style("fill", function(d) {return color(d.depth);}) //TODO: Problem for implementations.
       .style("stroke", function(d) {return color(d.depth);});
 
   d3.selectAll(".node")
-      .filter(function(d) {return d.name.charAt(0) !== 'A';})
+      .filter(function(d) {return d.unit_ids.length === 0;})
       .transition()
       .duration(500)
       .style("fill", function(d) {return greyscale(d.depth);})
