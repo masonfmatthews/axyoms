@@ -21,6 +21,7 @@ The Web -> Web Frameworks
 Static Content on the Web -> JavaScript
 Web Frameworks -> Web App Patterns
 Web Frameworks -> APIs
+Web Frameworks -> Deployment
 Web Frameworks -> Final Projects
 JavaScript -> Web App Patterns
 

@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   resources :students
 
-  root 'mapper#show'
-  get 'mapper/show'
+  root 'mapper#packed_graph'
+  get 'mapper/packed_graph'
+  get 'mapper/force_graph'
 
   get 'concepts/summary/:uuid' => 'concepts#summary', as: :concept_summary
   patch 'concepts/update' => 'concepts#update', as: :concept

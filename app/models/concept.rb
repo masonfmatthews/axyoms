@@ -37,8 +37,19 @@ class Concept
     depths.max + 1
   end
 
+  def parentage_depth
+    return 0 if parent_concept.blank?
+    parent_concept.parentage_depth + 1
+  end
+
   def subsequence_structure
     subsequents.map do |s|
+      {source: self, target: s}
+    end
+  end
+
+  def all_links
+    (subsequents.to_a + implementations.to_a + child_concepts.to_a).map do |s|
       {source: self, target: s}
     end
   end

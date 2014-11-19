@@ -23,6 +23,10 @@ class Graph
     root_concepts.map(&:subsequence_structure).flatten
   end
 
+  def all_link_structure
+    concepts.map(&:all_links).flatten
+  end
+
   def create_concept(attr)
     new_concept = Concept.create!(attr)
     concepts << new_concept

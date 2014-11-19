@@ -1,15 +1,19 @@
-function generateForceGraph(graphJSON) {
+function generateForceGraph(graph) {
 
-  var graphData = graphJSON.nodes,
-      linkData = graphJSON.links,
-      height = Math.max(window.innerHeight/2, 400),
-      width = window.innerWidth,
-      focus = null;
+  var height = Math.max(window.innerHeight/2, 400),
+      width = window.innerWidth;
 
   var svg = d3.select("#graph")
       .style("height", height + "px")
       .style("width", width + "px")
       .style("display", "block");
+
+  svg.append("path")
+      .attr("class", "mesh")
+      .attr("d", d3.hexbin()
+          .size([width, height])
+          .radius(40)
+          .mesh);
 
   var color = d3.scale.category20();
 
@@ -18,15 +22,11 @@ function generateForceGraph(graphJSON) {
       .linkStrength(2)
       .size([width, height]);
 
-  var svg = d3.select("body").append("svg")
-      .attr("width", width)
-      .attr("height", height);
-
-  var nodes = graphData,
+  var nodes = graph.nodes.slice(),
       links = [],
       bilinks = [];
 
-  linkData.forEach(function(link) {
+  graph.links.forEach(function(link) {
     var s = nodes[link.source],
         t = nodes[link.target],
         i = {}; // intermediate node
@@ -50,7 +50,8 @@ function generateForceGraph(graphJSON) {
     .enter().append("circle")
       .attr("class", "node")
       .attr("r", 5)
-      .style("fill", function(d) { return color(1); })
+      .style("fill", function(d) { return color(d.depth); })
+      .on("click", function(d) {select(d);})
       .call(force.drag);
 
   node.append("title")
@@ -67,4 +68,29 @@ function generateForceGraph(graphJSON) {
     });
   });
 
+  function select(target) {
+    $("#concept-summary").fadeOut();
+
+    getData = function () {
+      $.ajax({
+        url: "/concepts/summary/" + target.uuid,
+
+        type: "GET",
+
+        success: function( html ) {
+            $('#concept-summary').html(html);
+            $("#concept-summary").fadeIn();
+        },
+
+        error: function( xhr, status, errorThrown ) {
+            alert( "Sorry, there was a problem!" );
+            console.log( "Error: " + errorThrown );
+            console.log( "Status: " + status );
+            console.dir( xhr );
+        }
+      });
+    }
+
+    window.setTimeout(getData, 500);
+  }
 }

@@ -1,0 +1,7 @@
+<% @browser_title = "Browse" %>
+<script>
+  graph_json = <%= GraphPresenter.new(@graph).force_graph_json %>;
+  generateForceGraph(graph_json);
+</script>
+
+<div id="concept-summary"></div>

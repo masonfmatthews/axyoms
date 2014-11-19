@@ -5,7 +5,7 @@ class GraphPresenter
 
   #TODO: Test this
   #TODO: Ugh, it's so ugly.  Make it an object/many objects?
-  def concept_d3_json
+  def packed_graph_json
     ancestry = @graph.ancestry_structure
     depth_counts = Hash.new(0)
     ancestry.each do |c|
@@ -36,5 +36,21 @@ class GraphPresenter
 
     {nodes: ancestry, links: subsequence,
       x_count: max_depth+1, y_count: max_breadth}.to_json.html_safe
+  end
+
+
+  def force_graph_json
+    indices = {}
+    nodes = []
+    @graph.concepts.each_with_index do |c, i|
+      indices[c.uuid] = i
+      nodes << {uuid: c.uuid, name: c.name, depth: c.parentage_depth}
+    end
+
+    links = @graph.all_link_structure.map do |l|
+      {source: indices[l[:source].uuid], target: indices[l[:target].uuid]}
+    end
+
+    {nodes: nodes, links: links}.to_json.html_safe
   end
 end

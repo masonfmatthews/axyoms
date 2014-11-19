@@ -17,7 +17,7 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     post login_path, session: { email: @user.email, password: 'password' }
     assert_redirected_to root_path
     follow_redirect!
-    assert_template 'mapper/show'
+    assert_template 'mapper/packed_graph'
     assert_select "a[href=?]", login_path, count: 0
     assert_select "a[href=?]", logout_path
     assert is_logged_in?
@@ -49,7 +49,7 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_path
     assert flash[:error]
 
-    get mapper_show_path
+    get mapper_packed_graph_path
     assert_redirected_to login_path
     assert flash[:error]
   end

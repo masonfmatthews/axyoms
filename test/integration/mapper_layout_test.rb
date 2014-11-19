@@ -7,7 +7,7 @@ class MapperLayoutTest < ActionDispatch::IntegrationTest
 
   test "mapper links" do
     get root_path
-    assert_template 'mapper/show'
+    assert_template 'mapper/packed_graph'
     assert_select "a[href=?]", root_path, count: 1
   end
 end

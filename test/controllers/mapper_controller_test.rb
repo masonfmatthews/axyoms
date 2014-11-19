@@ -7,8 +7,8 @@ class MapperControllerTest < ActionController::TestCase
     set_up_user
   end
 
-  test "should get show" do
-    get :show
+  test "should get packed_graph" do
+    get :packed_graph
     assert_response :success
     assert_select "title", "#{@base_title} | Browse"
   end
@@ -22,7 +22,7 @@ class MapperControllerTest < ActionController::TestCase
 Source Control // A
 })
     graph_importer.import_new_relationships("Software Development -> Source Control")
-    get :show
+    get :packed_graph
     assert_select "svg", count: 1
     #TODO: the two tests below fail, as they're rendered after the page loads.
     # assert_select ".node", count: 4

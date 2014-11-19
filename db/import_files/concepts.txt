@@ -122,12 +122,12 @@ Web Frameworks
 JavaScript
  AJAX
 
-Deployment
- * Heroku
 APIs
  JSON
  XML
  REST
+Deployment
+ * Heroku
 Web App Patterns
  Friendly Redirect
  Factories/Faker
