@@ -154,6 +154,17 @@ function changeColor() {
       .range(["hsl(120, 60%, 80%)", "hsl(120, 60%, 28%)"])
       .interpolate(d3.interpolateHcl);
 
+  // TODO: Use ColorBrewer scale
+  // #d73027
+  // #f46d43
+  // #fdae61
+  // #fee08b
+  // #ffffbf
+  // #d9ef8b
+  // #a6d96a
+  // #66bd63
+  // #1a9850
+
   var greyscale = d3.scale.linear()
       .domain([0, 10])
       .range(["hsl(0, 0%, 90%)", "hsl(0, 0%, 28%)"])
@@ -170,7 +181,7 @@ function changeColor() {
       .filter(function(d) {return d.name.charAt(0) !== 'A';})
       .transition()
       .duration(500)
-      .style("fill", function(d) {return d.theory ? greyscale(d.depth) : "#fff";})
+      .style("fill", function(d) {return greyscale(d.depth);})
       .style("stroke", function(d) {return "hsl(0, 0%, 72%)";});
 
   d3.selectAll(".link")
