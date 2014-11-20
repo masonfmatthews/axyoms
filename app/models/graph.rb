@@ -4,6 +4,8 @@ class Graph
   def initialize(rel)
     @relation = rel
     @nodes = rel.to_a
+    @parentage_depths = {}
+    @precedence_depths = {}
   end
 
   def destroy
@@ -18,7 +20,7 @@ class Graph
   end
 
   def ancestry_structure
-    root_nodes.map(&:to_hash)
+    root_nodes.map {|r| r.to_hash(self)}
   end
 
   def subsequence_structure
@@ -27,6 +29,14 @@ class Graph
 
   def all_link_structure
     nodes.map(&:all_links).flatten
+  end
+
+  def parentage_depth(node)
+    @parentage_depths[node] ||= node.parentage_depth(self)
+  end
+
+  def precedence_depth(node)
+    @precedence_depths[node] ||= node.precedence_depth(self)
   end
 
   def create_concept(attr)

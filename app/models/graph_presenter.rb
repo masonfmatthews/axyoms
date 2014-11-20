@@ -50,7 +50,7 @@ class GraphPresenter
     @graph.nodes.each_with_index do |c, i|
       indices[c.uuid] = i
       nodes << {uuid: c.uuid, name: c.name,
-        depth: c.parentage_depth, theory: c.theory.blank?,
+        depth: @graph.parentage_depth(c), theory: c.theory.blank?,
         unit_ids: c.unit_ids}
     end
 

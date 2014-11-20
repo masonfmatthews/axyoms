@@ -34,29 +34,29 @@ class Concept
     Unit.find(unit_ids)
   end
 
-  def to_hash
+  def to_hash(graph)
     {uuid: uuid,
      name: name,
      description: description,
-     precedence_depth: precedence_depth,
-     children: child_concepts.map(&:to_hash),
+     precedence_depth: precedence_depth(graph),
+     children: child_concepts.map {|c| c.to_hash(graph)},
      unit_ids: unit_ids}
   end
 
-  # TODO: recursive and potentially SLOW
-  def precedence_depth
-    @precedence_depth ||= if precedents.blank?
+  def precedence_depth(graph)
+    if precedents.blank?
       0
     else
-      precedents.map(&:precedence_depth).max + 1
+      depths = precedents.map {|p| graph.precedence_depth(p)}
+      depths.max + 1
     end
   end
 
-  def parentage_depth
-    @parentage_depth ||= if parent_concept.blank?
+  def parentage_depth(graph)
+    if parent_concept.blank?
       0
     else
-      parent_concept.parentage_depth + 1
+      graph.parentage_depth(parent_concept) + 1
     end
   end
 

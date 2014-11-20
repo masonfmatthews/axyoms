@@ -15,7 +15,7 @@ class MapperControllerTest < ActionController::TestCase
 
   test "d3 graph should display" do
     Concept.destroy_all
-    graph_importer = GraphImporter.new(Graph.new)
+    graph_importer = GraphImporter.new(Graph.new(Concept.all))
     graph_importer.import_new_nodes(%q{Software Development // A
  Agile // A
  Computational Thinking // A
