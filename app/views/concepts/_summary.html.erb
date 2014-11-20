@@ -1,9 +1,11 @@
 <% if @concept %>
   <h3 class="header-buttons">
-    <span class="label label-primary">Unit 1</span>
-    <span class="label label-default">Unit 3</span>
+    <% @concept.units.each do |u| %>
+      <span class="label <%= u.completed? ? "label-primary" : "label-default" %>"><%= u.name %></span>
+    <% end %>
     <button type="button" class="btn btn-default btn-sm">
       <span class="glyphicon glyphicon-plus"></span>
+      <%= @concept.units.blank? ? "Add Unit" : "" %>
     </button>
   </h3>
   <h1 data-toggle="modal" data-target="#myModal"><%= @concept.name %></h1>

@@ -30,6 +30,10 @@ class Concept
     unit_coverages.map &:unit_id
   end
 
+  def units
+    Unit.find(unit_ids)
+  end
+
   def to_hash
     {uuid: uuid,
      name: name,

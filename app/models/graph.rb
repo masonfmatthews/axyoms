@@ -12,7 +12,7 @@ class Graph
 
   # TODO: Write query with Cypher
   def root_concepts
-    @concepts.select {|c| c.parent_concept.blank? && c.theory.blank? }
+    concepts.select {|c| c.parent_concept.blank? && c.theory.blank? }
   end
 
   def ancestry_structure
