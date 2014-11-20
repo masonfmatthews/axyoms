@@ -45,9 +45,11 @@ class Concept
 
   # TODO: recursive and potentially SLOW
   def precedence_depth
-    return 0 if precedents.blank?
-    depths = precedents.map(&:precedence_depth)
-    depths.max + 1
+    @precedence_depth ||= if precedents.blank?
+      0
+    else
+      precedents.map(&:precedence_depth).max + 1
+    end
   end
 
   def parentage_depth
