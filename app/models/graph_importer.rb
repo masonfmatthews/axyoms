@@ -1,7 +1,7 @@
 class GraphImporter
   attr_accessor :graph
 
-  def initialize(graph_object = Graph.new)
+  def initialize(graph_object = Graph.new(Concept.all))
     @graph = graph_object
   end
 

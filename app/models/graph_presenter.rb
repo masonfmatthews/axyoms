@@ -47,7 +47,7 @@ class GraphPresenter
   def force_graph_json
     indices = {}
     nodes = []
-    @graph.concepts.each_with_index do |c, i|
+    @graph.nodes.each_with_index do |c, i|
       indices[c.uuid] = i
       nodes << {uuid: c.uuid, name: c.name,
         depth: c.parentage_depth, theory: c.theory.blank?,

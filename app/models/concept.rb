@@ -1,6 +1,6 @@
 class Concept
   include Neo4j::ActiveNode
-  property :name, type: String
+  property :name, type: String, index: :exact
   property :description, type: String
   property :updated_at, type: DateTime #Automatically set
   property :created_at, type: DateTime #Automatically set
@@ -53,8 +53,11 @@ class Concept
   end
 
   def parentage_depth
-    return 0 if parent_concept.blank?
-    parent_concept.parentage_depth + 1
+    @parentage_depth ||= if parent_concept.blank?
+      0
+    else
+      parent_concept.parentage_depth + 1
+    end
   end
 
   def subsequence_structure

@@ -1,43 +1,45 @@
 class Graph
-  attr_accessor :concepts
+  attr_accessor :relation, :nodes
 
-  def initialize(concept_array = [])
-    @concepts = concept_array.to_a
+  def initialize(rel)
+    @relation = rel
+    @nodes = rel.to_a
   end
 
   def destroy
-    concepts.each &:destroy
-    concepts = []
+    nodes.each &:destroy
+    nodes = relation.to_a
+    @roots = nil
   end
 
   # TODO: Write query with Cypher
-  def root_concepts
-    concepts.select {|c| c.parent_concept.blank? && c.theory.blank? }
+  def root_nodes
+    @roots ||= nodes.select {|c| c.parent_concept.blank? && c.theory.blank? }
   end
 
   def ancestry_structure
-    root_concepts.map(&:to_hash)
+    root_nodes.map(&:to_hash)
   end
 
   def subsequence_structure
-    root_concepts.map(&:subsequence_structure).flatten
+    root_nodes.map(&:subsequence_structure).flatten
   end
 
   def all_link_structure
-    concepts.map(&:all_links).flatten
+    nodes.map(&:all_links).flatten
   end
 
   def create_concept(attr)
     new_concept = Concept.create!(attr)
-    concepts << new_concept
+    nodes << new_concept
     new_concept
   end
 
   def create_relationship_by_names(source, target, association)
-    source_concept = Concept.where(name: source).first
-    target_concept = Concept.where(name: target).first
-    raise "'#{source}' not present in graph." unless concepts.include?(source_concept)
-    raise "'#{target}' not present in graph." unless concepts.include?(target_concept)
+    source_concept = relation.where(name: source).first
+    target_concept = relation.where(name: target).first
+    raise "'#{source}' not present in graph." unless source_concept
+    raise "'#{target}' not present in graph." unless target_concept
     source_concept.send(association) << target_concept
   end
 end
