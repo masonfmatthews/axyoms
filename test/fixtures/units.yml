@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  order_number: 1
-  completed: false
+  name: Unit 1
+  delivered_at: <%= Time.now - 1.day %>
 
 two:
-  name: MyString
-  order_number: 2
-  completed: false
+  name: Unit 2
+  delivered_at: <%= Time.now %>
+
+three:
+  name: Unit 3
+  delivered_at: <%= Time.now + 1.day %>

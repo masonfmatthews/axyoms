@@ -1,11 +1,15 @@
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
-require "minitest/reporters"
+require 'minitest/reporters'
 Minitest::Reporters.use!
+
+require 'concept_fixtures'
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
+  include ConceptFixtures
+  run_concept_fixtures
   fixtures :all
 
   def is_logged_in?
