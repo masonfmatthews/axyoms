@@ -18,6 +18,14 @@ class Concept
   has_many :out, :child_concepts, model_class: self, type: 'contains'
   has_one  :in, :parent_concept, model_class: self, origin: :child_concepts
 
+  def create_relationship_with(other_node, association="subsequents")
+    send(association) << other_node
+  end
+
+  def root_ancestor?
+    parent_concept.blank? && theory.blank?
+  end
+
   def references
     Reference.where(concept_uuid: uuid).where.not(concept_uuid: nil)
   end

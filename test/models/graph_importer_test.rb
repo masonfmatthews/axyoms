@@ -63,17 +63,18 @@ TestI // Is Root
 
   def test_import_with_root_implementations
     @graph_importer.import_new_nodes(%q{
-* Test // Is Root
+* TestK // Is Root
 })
-    assert_nil concepts(:"* Test1")
+    #Don't treat a * as an implementation if it's at the root.  Use it in name.
+    assert_not_nil concepts(:"* TestK")
   end
 
   def test_import_with_duplicate_names
     assert_difference('Concept.count', 0) do
       assert_raises(Neo4j::ActiveNode::Persistence::RecordInvalidError) {
         @graph_importer.import_new_nodes(%q{
-Test1 // Is Root
-Test1 // Is a Duplicate Name
+TestL // Is Root
+TestL // Is a Duplicate Name
 })
       }
     end
@@ -83,10 +84,36 @@ Test1 // Is a Duplicate Name
     assert_difference('Concept.count', 0) do
       assert_raises(RuntimeError) {
         @graph_importer.import_new_nodes(%q{
-Test1 // Is Root
-   Test2 // Is Too Indented
+TestM // Is Root
+   TestN // Is Too Indented
 })
       }
     end
+  end
+
+  def test_relationship_import
+    assert_difference('Concept.count', 3) do
+      @graph_importer.import_new_nodes(%q{
+TestO // Is Root
+TestP // Is Also Root
+TestQ // Is Yet Another Root
+})
+    end
+
+    @graph_importer.import_new_relationships("TestO -> TestP")
+    assert concepts(:TestO).subsequents.include?(concepts(:TestP))
+    assert !concepts(:TestO).subsequents.include?(concepts(:TestQ))
+    assert_raises(RuntimeError) {
+      @graph_importer.import_new_relationships("TestO -> DFLJDFiuhwf")
+    }
+    assert_raises(RuntimeError) {
+      @graph_importer.import_new_relationships("TestP")
+    }
+    assert_raises(RuntimeError) {
+      @graph_importer.import_new_relationships("TestP -> ")
+    }
+    assert_raises(RuntimeError) {
+      @graph_importer.import_new_relationships(" -> TestP")
+    }
   end
 end

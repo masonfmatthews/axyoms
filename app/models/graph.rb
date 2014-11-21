@@ -14,17 +14,17 @@ class Graph
     @roots = nil
   end
 
-  # TODO: Write query with Cypher
-  def root_parent_nodes
-    @roots ||= nodes.select {|c| c.parent_concept.blank? && c.theory.blank? }
+  # TODO: Write query with Cypher?
+  def root_ancestor_nodes
+    @roots ||= nodes.select {|c| c.root_ancestor? }
   end
 
   def parentage_structure
-    root_parent_nodes.map {|r| r.children_hash}
+    root_ancestor_nodes.map {|r| r.children_hash}
   end
 
   def precedence_links
-    root_parent_nodes.map(&:precedence_links).flatten
+    root_ancestor_nodes.map(&:precedence_links).flatten
   end
 
   def all_links
@@ -39,17 +39,16 @@ class Graph
     @precedence_depths[node] ||= node.precedence_depth(self)
   end
 
-  def create_concept(attr)
-    new_concept = Concept.create!(attr)
-    nodes << new_concept
-    new_concept
+  def create_node(attr)
+    #TODO: I don't like the dependence on the name Concept
+    new_node = Concept.create!(attr)
+    nodes << new_node
+    new_node
   end
 
-  def create_relationship_by_names(source, target, association)
-    source_concept = relation.where(name: source).first
-    target_concept = relation.where(name: target).first
-    raise "'#{source}' not present in graph." unless source_concept
-    raise "'#{target}' not present in graph." unless target_concept
-    source_concept.send(association) << target_concept
+  def create_relationship_by_names(source, target)
+    raise "'#{source}' not present in graph." unless source_node = relation.where(name: source).first
+    raise "'#{target}' not present in graph." unless target_node = relation.where(name: target).first
+    source_node.create_relationship_with(target_node)
   end
 end

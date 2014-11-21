@@ -6,7 +6,6 @@ namespace :db do
     Concept.destroy_all
     importer = GraphImporter.new()
     importer.import_new_nodes(File.open(path + "concepts.txt", "rb").read)
-    importer.import_new_relationships(File.open(path + "subsequents.txt", "rb").read, "subsequents")
-    importer.import_new_relationships(File.open(path + "implementations.txt", "rb").read, "implementations")
+    importer.import_new_relationships(File.open(path + "subsequents.txt", "rb").read)
   end
 end
