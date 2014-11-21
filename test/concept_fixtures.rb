@@ -12,6 +12,7 @@ one // Is Root
   three // Is Grandchild
 four // Is Root
 })
+      @graph_importer.import_new_relationships("one -> four")
     end
   end
 

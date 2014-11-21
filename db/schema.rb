@@ -17,9 +17,9 @@ ActiveRecord::Schema.define(version: 20141121140345) do
   enable_extension "plpgsql"
 
   create_table "graph_caches", force: true do |t|
-    t.text     "parentage_depths"
-    t.text     "subsequence_depths"
     t.text     "unit_ids"
+    t.text     "parentage_depths"
+    t.text     "precedence_depths"
     t.text     "parentage_structure"
     t.datetime "created_at"
     t.datetime "updated_at"
