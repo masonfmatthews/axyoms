@@ -1,4 +1,5 @@
 class GraphImporter
+  include Neo4jTransaction
   attr_accessor :graph
 
   def initialize(graph_object = Graph.new(Concept.all))
@@ -12,8 +13,7 @@ class GraphImporter
   #   that the node is an implementation of the most recent line with
   #   one less space of indentation.
   def import_new_nodes(node_text)
-    begin
-      tx = Neo4j::Transaction.new
+    neo4j_transaction do
       stack = []
       node_text.each_line do |line|
         next if line.blank?
@@ -32,28 +32,17 @@ class GraphImporter
           end
         end
       end
-    rescue
-      tx.failure
-      raise
-    ensure
-      tx.close
     end
   end
 
 
   def import_new_relationships(text)
-    begin
-      tx = Neo4j::Transaction.new
+    neo4j_transaction do
       text.each_line do |line|
         next if line.blank? || line.strip.blank?
         clauses = line.strip.split(' -> ')
         graph.create_relationship_by_names(clauses[0], clauses[1])
       end
-    rescue
-      tx.failure
-      raise
-    ensure
-      tx.close
     end
   end
 end
