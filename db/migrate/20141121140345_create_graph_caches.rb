@@ -5,6 +5,8 @@ class CreateGraphCaches < ActiveRecord::Migration
       t.text :parentage_depths
       t.text :precedence_depths
       t.text :parentage_structure
+      t.text :precedence_links
+      t.text :all_links
 
       t.timestamps
     end

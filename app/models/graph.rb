@@ -15,19 +15,19 @@ class Graph
   end
 
   # TODO: Write query with Cypher
-  def root_nodes
+  def root_parent_nodes
     @roots ||= nodes.select {|c| c.parent_concept.blank? && c.theory.blank? }
   end
 
-  def ancestry_structure
-    root_nodes.map {|r| r.to_hash(self)}
+  def parentage_structure
+    root_parent_nodes.map {|r| r.children_hash}
   end
 
-  def subsequence_structure
-    root_nodes.map(&:subsequence_structure).flatten
+  def precedence_links
+    root_parent_nodes.map(&:precedence_links).flatten
   end
 
-  def all_link_structure
+  def all_links
     nodes.map(&:all_links).flatten
   end
 

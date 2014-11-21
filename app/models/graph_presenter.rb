@@ -7,7 +7,7 @@ class GraphPresenter
   #TODO: Ugh, it's so ugly.  Make it an object/many objects?
   def packed_graph_json
     # 5 sec
-    ancestry = @graph.ancestry_structure
+    ancestry = @graph.parentage_structure
     depth_counts = Hash.new(0)
     ancestry.each do |c|
       depth_counts[c[:precedence_depth]] += 1
@@ -28,13 +28,13 @@ class GraphPresenter
     end
 
     # 1 sec
-    subsequence = @graph.subsequence_structure.map do |l|
-      {source: {uuid: l[:source].uuid,
-                x: uuid_x[l[:source].uuid],
-                y: uuid_y[l[:source].uuid]},
-       target: {uuid: l[:target].uuid,
-                x: uuid_x[l[:target].uuid],
-                y: uuid_y[l[:target].uuid]}
+    subsequence = @graph.precedence_links.map do |l|
+      {source: {uuid: l[:source],
+                x: uuid_x[l[:source]],
+                y: uuid_y[l[:source]]},
+       target: {uuid: l[:target],
+                x: uuid_x[l[:target]],
+                y: uuid_y[l[:target]]}
       }
     end
 

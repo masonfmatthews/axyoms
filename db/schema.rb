@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20141121140345) do
     t.text     "parentage_depths"
     t.text     "precedence_depths"
     t.text     "parentage_structure"
+    t.text     "precedence_links"
+    t.text     "all_links"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

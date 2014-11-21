@@ -34,13 +34,11 @@ class Concept
     Unit.find(unit_ids)
   end
 
-  def to_hash(graph)
+  def children_hash
     {uuid: uuid,
      name: name,
      description: description,
-     precedence_depth: precedence_depth(graph),
-     children: child_concepts.map {|c| c.to_hash(graph)},
-     unit_ids: unit_ids}
+     children: child_concepts.map {|c| c.children_hash}}
   end
 
   def precedence_depth(graph)
@@ -53,22 +51,26 @@ class Concept
   end
 
   def parentage_depth(graph)
-    if parent_concept.blank?
-      0
-    else
-      graph.parentage_depth(parent_concept) + 1
-    end
+    parent_concept.blank? ? 0 : graph.parentage_depth(parent_concept) + 1
   end
 
-  def subsequence_structure
-    subsequents.map do |s|
-      {source: self, target: s}
-    end
+  def link_hash(other_concept)
+    {source: self.uuid, target: other_concept.uuid}
+  end
+
+  def precedence_links
+    subsequents.map {|s| link_hash(s)}
+  end
+
+  def parentage_links
+    child_concepts.map {|s| link_hash(s)}
+  end
+
+  def implementation_links
+    implementations.map {|s| link_hash(s)}
   end
 
   def all_links
-    (subsequents.to_a + implementations.to_a + child_concepts.to_a).map do |s|
-      {source: self, target: s}
-    end
+    precedence_links + parentage_links + implementation_links
   end
 end
