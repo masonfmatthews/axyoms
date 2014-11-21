@@ -20,10 +20,10 @@ Source and Commands
   Files and Folders
   History
   Distributed SCM
-   *Git
+   * Git
   Open Source
   Networking Platforms
-   *Github
+   * Github
  Unix Command Line
   Basic Commands
   Programming Environment

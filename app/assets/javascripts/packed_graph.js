@@ -174,7 +174,7 @@ function changeColor() {
       .filter(function(d) {return d.unit_ids.length > 0;})
       .transition()
       .duration(500)
-      .style("fill", function(d) {return color(d.depth);}) //TODO: Problem for implementations.
+      .style("fill", function(d) {return color(d.depth);})
       .style("stroke", function(d) {return color(d.depth);});
 
   d3.selectAll(".node")

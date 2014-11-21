@@ -50,8 +50,8 @@ function generateForceGraph(graph) {
     .enter().append("circle")
       .attr("class", "node")
       .attr("r", 5)
-      .style("fill", function(d) { return d.theory ? color(d.depth) : "#fff"; })
-      .style("stroke-width", function(d) { return d.theory ? "0px" : "1px"; })
+      .style("fill", function(d) { return color(d.depth); })
+      .style("stroke-width", function(d) { return "0px"; })
       .on("click", function(d) {select(d);})
       .call(force.drag);
 

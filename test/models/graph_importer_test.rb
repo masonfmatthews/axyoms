@@ -56,17 +56,15 @@ TestI // Is Root
  * TestJ // Is Implementation
 })
     end
-    assert_equal concepts(:TestI).implementations.length, 1
-    assert_equal concepts(:TestI).implementations[0].name, "TestJ"
-    assert_equal concepts(:TestI).implementations[0].theory.description, "Is Root"
+    assert_not concepts(:TestI).implementation?
+    assert concepts(:TestJ).implementation?
   end
 
   def test_import_with_root_implementations
     @graph_importer.import_new_nodes(%q{
 * TestK // Is Root
 })
-    #Don't treat a * as an implementation if it's at the root.  Use it in name.
-    assert_not_nil concepts(:"* TestK")
+    assert concepts(:TestJ).implementation?
   end
 
   def test_import_with_duplicate_names

@@ -2,6 +2,7 @@ class Concept
   include Neo4j::ActiveNode
   property :name, type: String, index: :exact
   property :description, type: String
+  property :is_implementation, type: Boolean
   property :updated_at, type: DateTime #Automatically set
   property :created_at, type: DateTime #Automatically set
 
@@ -12,9 +13,6 @@ class Concept
   has_many :out, :subsequents, model_class: self, type: 'precedes'
   has_many :in, :precedents, model_class: self, origin: :subsequents
 
-  has_many :out, :implementations, model_class: self, type: 'implements'
-  has_one  :in, :theory, model_class: self, origin: :implementations
-
   has_many :out, :child_concepts, model_class: self, type: 'contains'
   has_one  :in, :parent_concept, model_class: self, origin: :child_concepts
 
@@ -23,7 +21,11 @@ class Concept
   end
 
   def root_ancestor?
-    parent_concept.blank? && theory.blank?
+    parent_concept.blank?
+  end
+
+  def implementation?
+    is_implementation
   end
 
   def references
@@ -74,11 +76,7 @@ class Concept
     child_concepts.map {|s| link_hash(s)}
   end
 
-  def implementation_links
-    implementations.map {|s| link_hash(s)}
-  end
-
   def all_links
-    precedence_links + parentage_links + implementation_links
+    precedence_links + parentage_links
   end
 end
