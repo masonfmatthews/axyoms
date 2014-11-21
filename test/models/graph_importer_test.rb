@@ -12,12 +12,12 @@ class GraphImporterTest < ActiveSupport::TestCase
 
   def test_import_with_one
     @graph_importer.import_new_nodes('TestA // Is Awesome')
-    assert_equal Concept.where(name: "TestA").first.description, "Is Awesome"
+    assert_equal concepts(:TestA).description, "Is Awesome"
   end
 
   def test_import_with_name_only
     @graph_importer.import_new_nodes('TestB')
-    assert_equal Concept.where(name: "TestB").first.description, nil
+    assert_equal concepts(:TestB).description, nil
   end
 
   def test_import_with_many_roots
@@ -27,9 +27,8 @@ TestC // Is Root
 TestD // Is Root
 })
     end
-    t2 = Concept.where(name: "TestD").first
-    assert_equal t2.description, "Is Root"
-    assert t2.child_concepts.blank?
+    assert_equal concepts(:TestD).description, "Is Root"
+    assert concepts(:TestD).child_concepts.blank?
   end
 
   def test_import_with_children_and_second_root
@@ -41,15 +40,13 @@ TestE // Is Root
 TestH // Is Root
 })
     end
-    t2 = Concept.where(name: "TestF").first
-    assert_equal t2.description, "Is Child"
-    assert_equal t2.child_concepts.length, 1
-    assert_equal t2.child_concepts[0].description, "Is Grandchild"
-    assert_equal t2.parent_concept.blank?, false
-    assert_equal t2.parent_concept.description, "Is Root"
-    t4 = Concept.where(name: "TestH").first
-    assert_equal t4.description, "Is Root"
-    assert_equal t4.parent_concept.blank?, true
+    assert_equal concepts(:TestF).description, "Is Child"
+    assert_equal concepts(:TestF).child_concepts.length, 1
+    assert_equal concepts(:TestF).child_concepts[0].description, "Is Grandchild"
+    assert_equal concepts(:TestF).parent_concept.blank?, false
+    assert_equal concepts(:TestF).parent_concept.description, "Is Root"
+    assert_equal concepts(:TestH).description, "Is Root"
+    assert_equal concepts(:TestH).parent_concept.blank?, true
   end
 
   def test_import_with_implementations
@@ -59,17 +56,16 @@ TestI // Is Root
  * TestJ // Is Implementation
 })
     end
-    t1 = Concept.where(name: "TestI").first
-    assert_equal t1.implementations.length, 1
-    assert_equal t1.implementations[0].name, "TestJ"
-    assert_equal t1.implementations[0].theory.description, "Is Root"
+    assert_equal concepts(:TestI).implementations.length, 1
+    assert_equal concepts(:TestI).implementations[0].name, "TestJ"
+    assert_equal concepts(:TestI).implementations[0].theory.description, "Is Root"
   end
 
   def test_import_with_root_implementations
     @graph_importer.import_new_nodes(%q{
 * Test // Is Root
 })
-    assert_equal Concept.where(name: "* Test1").length, 0
+    assert_nil concepts(:"* Test1")
   end
 
   def test_import_with_duplicate_names
