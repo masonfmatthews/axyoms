@@ -2,7 +2,7 @@ class GraphPresenter
   attr_accessor :graph, :graph_cache
   def initialize(g)
     @graph = g
-    @graph_cache = GraphCache.get_cache
+    @graph_cache = GraphCache.get_cache(g)
   end
 
   #TODO: Test this

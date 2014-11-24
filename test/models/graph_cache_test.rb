@@ -3,7 +3,7 @@ require 'test_helper'
 class GraphCacheTest < ActiveSupport::TestCase
   def setup
     units(:one).add_concept(concepts(:one))
-    @graph_cache = GraphCache.get_cache
+    @graph_cache = GraphCache.get_cache(@graph)
     @graph_cache.cache_everything
   end
 

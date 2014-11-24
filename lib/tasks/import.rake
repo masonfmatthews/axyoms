@@ -3,10 +3,11 @@ namespace :db do
   task :import_concepts => :environment do
     path = "db/import_files/"
 
-    Concept.destroy_all
-    importer = GraphImporter.new()
+    graph = Graph.new(Concept.all)
+    graph.destroy
+    importer = GraphImporter.new(graph)
     importer.import_new_nodes(File.open(path + "concepts.txt", "rb").read)
     importer.import_new_relationships(File.open(path + "subsequents.txt", "rb").read)
-    GraphCache.get_cache.cache_everything
+    GraphCache.get_cache(graph).cache_everything
   end
 end

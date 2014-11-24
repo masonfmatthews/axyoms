@@ -58,7 +58,7 @@ class GraphCache < ActiveRecord::Base
     save!
   end
 
-  def self.get_cache
+  def self.get_cache(g)
     GraphCache.first || GraphCache.create!
   end
 end
