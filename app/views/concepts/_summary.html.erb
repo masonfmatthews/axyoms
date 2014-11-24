@@ -1,7 +1,8 @@
 <% if @concept %>
   <h3 class="header-buttons">
     <% @concept.units.each do |u| %>
-      <span class="label <%= u.completed? ? "label-primary" : "label-default" %>"><%= u.name %></span>
+      <%= link_to u.name, edit_unit_path(u),
+        class: "label #{u.completed? ? "label-primary" : "label-default"}"%></span>
     <% end %>
     <%= link_to add_link_text("Unit", @concept.units.blank?),
       new_unit_path(concept_uuid: @concept.uuid),

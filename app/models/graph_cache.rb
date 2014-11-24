@@ -1,61 +1,92 @@
 class GraphCache < ActiveRecord::Base
-  serialize :unit_ids
-  serialize :parentage_depths
-  serialize :precedence_depths
-  serialize :parentage_structure
-  serialize :precedence_links
-  serialize :all_links
+  serialize :unit_id_cache
+  serialize :parentage_depth_cache
+  serialize :precedence_depth_cache
+  serialize :parentage_structure_cache
+  serialize :precedence_link_cache
+  serialize :all_link_cache
 
   def graph
     @graph ||= Graph.new(Concept.all)
   end
 
-  def cache_everything
-    cache_unit_ids
-    cache_parentage_depths
-    cache_precedence_depths
-    cache_parentage_structure
-    cache_precedence_links
-    cache_all_links
+  def cache_everything!
+    cache_unit_ids!
+    cache_parentage_depths!
+    cache_precedence_depths!
+    cache_parentage_structure!
+    cache_precedence_links!
+    cache_all_links!
+    true
   end
 
-  def cache_unit_ids
-    self.unit_ids = Hash.new([])
+  def unit_ids
+    unit_id_cache || cache_unit_ids!
+  end
+
+  def cache_unit_ids!
+    self.unit_id_cache = Hash.new([])
     graph.nodes.each do |c|
-      self.unit_ids[c.uuid] = c.unit_ids
+      self.unit_id_cache[c.uuid] = c.unit_ids
     end
     save!
+    unit_id_cache
   end
 
-  def cache_parentage_depths
-    self.parentage_depths = Hash.new()
+  def parentage_depths
+    parentage_depth_cache || cache_parentage_depths!
+  end
+
+  def cache_parentage_depths!
+    self.parentage_depth_cache = Hash.new()
     graph.nodes.each do |c|
-      self.parentage_depths[c.uuid] = graph.parentage_depth(c)
+      self.parentage_depth_cache[c.uuid] = graph.parentage_depth(c)
     end
     save!
+    parentage_depth_cache
   end
 
-  def cache_precedence_depths
-    self.precedence_depths = Hash.new()
+  def precedence_depths
+    precedence_depth_cache || cache_precedence_depths!
+  end
+
+  def cache_precedence_depths!
+    self.precedence_depth_cache = Hash.new()
     graph.nodes.each do |c|
-      self.precedence_depths[c.uuid] = graph.precedence_depth(c)
+      self.precedence_depth_cache[c.uuid] = graph.precedence_depth(c)
     end
     save!
+    precedence_depth_cache
   end
 
-  def cache_parentage_structure
-    self.parentage_structure = graph.parentage_structure
-    save!
+  def parentage_structure
+    parentage_structure_cache || cache_parentage_structure!
   end
 
-  def cache_precedence_links
-    self.precedence_links = graph.precedence_links
+  def cache_parentage_structure!
+    self.parentage_structure_cache = graph.parentage_structure
     save!
+    parentage_structure_cache
   end
 
-  def cache_all_links
-    self.all_links = graph.all_links
+  def precedence_links
+    precedence_link_cache || cache_precedence_links!
+  end
+
+  def cache_precedence_links!
+    self.precedence_link_cache = graph.precedence_links
     save!
+    precedence_link_cache
+  end
+
+  def all_links
+    all_link_cache || cache_all_links!
+  end
+
+  def cache_all_links!
+    self.all_link_cache = graph.all_links
+    save!
+    all_link_cache
   end
 
   def self.get_cache(g)

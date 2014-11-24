@@ -4,7 +4,7 @@ class GraphCacheTest < ActiveSupport::TestCase
   def setup
     units(:one).add_concept(concepts(:one))
     @graph_cache = GraphCache.get_cache(@graph)
-    @graph_cache.cache_everything
+    @graph_cache.cache_everything!
   end
 
   def test_cache_unit_ids
