@@ -1,0 +1,9 @@
+<div class="checkbox-tree-node">
+  <%= check_box_tag "coverage[#{node[:uuid]}]", true,
+    params[:concept_uuid]==node[:uuid] ||
+    (params[:coverage] && params[:coverage][node[:uuid]]) %>
+  <%= label_tag "coverage[#{node[:uuid]}]", node[:name] %>
+  <% node[:children].each do |c| %>
+    <%= render partial: "concepts/checkbox_tree", locals: {node: c} %>
+  <% end %>
+</div>

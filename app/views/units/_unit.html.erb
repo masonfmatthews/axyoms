@@ -1,0 +1,10 @@
+<tr>
+  <td><%= unit.name %></td>
+  <td><%= unit.delivered_at.to_date %></td>
+  <td><%= unit.concept_count %></td>
+  <td><%= link_to '<i class="glyphicon glyphicon-pencil"></i> Edit'.html_safe,
+          edit_unit_path(unit) %></td>
+  <td><%= link_to '<i class="glyphicon glyphicon-remove"></i> Destroy'.html_safe,
+          unit, class: "text-danger", method: :delete,
+          data: { confirm: 'Are you sure?' } %></td>
+</tr>

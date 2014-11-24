@@ -32,6 +32,7 @@ class Concept
     Reference.where(concept_uuid: uuid).where.not(concept_uuid: nil)
   end
 
+  # TODO: Need dependent destroy on relationships like this
   def unit_coverages
     UnitCoverage.where(concept_uuid: uuid)
   end

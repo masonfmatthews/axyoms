@@ -1,0 +1,9 @@
+<div class="input-group date" id="datetimepicker_<%= field %>">
+  <%= f.text_field field, class: "form-control", "data-date-format" => "YYYY-MM-DD HH:mm" %>
+  <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+  <script type="text/javascript">
+    $(function () {
+        $('#datetimepicker_<%= field %>').datetimepicker();
+    });
+  </script>
+</div>

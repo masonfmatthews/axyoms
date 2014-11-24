@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :students
+  resources :units
 
   root 'mapper#packed_graph'
   get 'mapper/packed_graph'

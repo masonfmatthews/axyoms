@@ -1,0 +1,36 @@
+<%= form_for(@unit) do |f| %>
+  <% if @unit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@unit.errors.count, "error") %> prohibited this unit from being saved:</h2>
+
+      <ul>
+      <% @unit.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Concepts Covered</h3>
+      <% @graph_cache.parentage_structure.each do |n| %>
+        <%= render partial: "concepts/checkbox_tree", locals: {node: n} %>
+      <% end %>
+    </div>
+    <div class="col-md-4">
+      <h3>Unit Details</h3>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :delivered_at, "Date and Time" %>
+        <%= datetimepicker f, :delivered_at %>
+      </div>
+      <div class="actions">
+        <%= f.submit class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+<% end %>

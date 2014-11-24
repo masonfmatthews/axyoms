@@ -14,5 +14,7 @@
 //= require jquery_ujs
 //= require d3.v3.min
 //= require d3.hexbin.v0.min
+//= require moment
 //= require bootstrap
+//= require bootstrap-datetimepicker
 //= require_tree .

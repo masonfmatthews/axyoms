@@ -15,6 +15,8 @@ gem 'bootstrap-sass'
 gem 'bcrypt'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+gem 'momentjs-rails'
+gem 'bootstrap3-datetimepicker-rails'
 
 group :development do
   gem "better_errors"

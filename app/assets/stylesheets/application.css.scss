@@ -18,6 +18,7 @@ $headings-font-weight: 200;
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import 'bootstrap-datetimepicker';
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
