@@ -4,6 +4,12 @@ class Unit < ActiveRecord::Base
   validates :name, presence: true
   validates :delivered_at, presence: true
 
+  after_save :reset_cache
+
+  def reset_cache
+    GraphCache.get_cache(nil).cache_unit_ids!
+  end
+
   def completed?
     delivered_at < Time.now
   end

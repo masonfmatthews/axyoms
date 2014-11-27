@@ -52,10 +52,24 @@ The Web
 
 OOP
  Behavior and Data
+ Dependencies // Depend on things that change less often than you do.
+  Name of class
+  Name of message
+  Message arguments
+  Argument order
  Message Passing
  Encapsulation
  Inheritance
+ Modules
+  Polymorphism
+  Duck Typing
+  * include vs extend
  Composition
+ Public, Protected, Private
+ Patterns
+  Hook Method Pattern
+  Template Method Pattern
+  Defaults Hash Pattern?
 Procedural Languages
  * Ruby
  Control Flow
@@ -67,6 +81,7 @@ Procedural Languages
  Scope
  Monkey Patching
  Regular Expressions
+ Static vs Dynamic Typing
 Testing
  TDD
  Test Before Bug Fix
@@ -93,6 +108,7 @@ Data Structures
  Arrays
  Ranges
  Hashes
+ Sets
 Web Frameworks
  * Ruby on Rails
  MVC
