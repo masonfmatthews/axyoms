@@ -1,31 +1,18 @@
-Human Learning -> Computational Thinking
-Human Learning -> Agile Development
-Human Learning -> Source and Commands
-Human Learning -> The Web
-Human Learning -> Databases
+Procedural Programming -> Web Technologies
+Procedural Programming -> Ruby
+Object Oriented Programming -> Ruby
+Databases -> Rails
 
-Computational Thinking -> OOP
-Computational Thinking -> Procedural Languages
-Agile Development -> Testing
+Web Technologies -> APIs
+Web Technologies -> Rails
+Ruby -> Testing
+Ruby -> Rails
 
-Procedural Languages -> Debugging
-Procedural Languages -> Data Structures
-Procedural Languages -> JavaScript
-Procedural Languages -> Web Frameworks
-Testing -> Web Frameworks
+Rails -> Models
+Rails -> Views
+Rails -> JavaScript
+Rails -> Efficiency
 
-Databases -> Web Frameworks
-The Web -> Static Content on the Web
-The Web -> Web Frameworks
-
-Static Content on the Web -> JavaScript
-Web Frameworks -> Web App Patterns
-Web Frameworks -> APIs
-Web Frameworks -> Deployment
-Web Frameworks -> Final Projects
+Models -> Web App Patterns
+Views -> Web App Patterns
 JavaScript -> Web App Patterns
-
-Web App Patterns -> Final Projects
-APIs -> Final Projects
-
-Final Projects -> Getting Hired
