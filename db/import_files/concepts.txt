@@ -1,11 +1,6 @@
 Object Oriented Programming
  Inheritance
  Composition
- 
-Databases
- DB Design
- SQL
- Indices
 
 Procedural Programming
  Control Flow
@@ -14,6 +9,19 @@ Procedural Programming
  Arrays
  Hashes
 
+
+Ruby
+ Enumerable
+ Exceptions
+ Blocks
+ Modules
+ Gems
+ Regular Expressions
+
+Databases
+ DB Design
+ SQL
+ Indices
 
 Web Technologies
  HTML
@@ -24,29 +32,6 @@ Web Technologies
  HTML Forms
  REST
 
-Ruby
- Enumerable
- Exceptions
- Blocks
- Modules
- Gems
- Regular Expressions
-
-
-APIs
- Consuming // HTTParty and Nokogiri
- Producing // ActiveModel Serializers
- Token Security
- OAuth
-
-Rails
- MVC Architecture
- The Router
- Scaffold
- Environments
- Deployment // Heroku
- Asset Pipeline
- Session
 
 Testing
  Unit Testing
@@ -55,6 +40,20 @@ Testing
  Controller Testing
  Integration Testing
 
+Rails
+ MVC
+ The Router
+ Scaffold
+ Environments
+ Deployment // Heroku
+ Asset Pipeline
+ Session
+
+APIs
+ Consuming // HTTParty and Nokogiri
+ Producing // ActiveModel Serializers
+ Token Security
+ OAuth
 
 Models
  Migrations

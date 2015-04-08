@@ -1,10 +1,11 @@
 Procedural Programming -> Web Technologies
+Procedural Programming -> Databases
 Procedural Programming -> Ruby
 Object Oriented Programming -> Ruby
-Databases -> Rails
 
 Web Technologies -> APIs
 Web Technologies -> Rails
+Databases -> Rails
 Ruby -> Testing
 Ruby -> Rails
 
