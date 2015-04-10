@@ -4,7 +4,42 @@ User.create!(name: "Mason",
              password_confirmation: "password")
 
 unit_hash = {"Wk1: Mon" => ["Control Flow", "Variables"],
-  "Wk2: Tue" => ["Methods", "Arrays"]}
+  "Wk1: Tue" => ["Methods", "Arrays"],
+  "Wk1: Wed" => ["Arrays", "Hashes"],
+  "Wk1: Thu" => ["Classes"],
+  "Wk2: Mon" => ["Exceptions", "Testing"],
+  "Wk2: Tue" => ["Methods", "Arrays"],
+  "Wk2: Wed" => [],
+  "Wk2: Thu" => [],
+  "Wk3: Mon" => [],
+  "Wk3: Tue" => [],
+  "Wk3: Wed" => [],
+  "Wk3: Thu" => [],
+  "Wk4: Mon" => [],
+  "Wk4: Tue" => [],
+  "Wk4: Wed" => [],
+  "Wk4: Thu" => [],
+  "Wk5: Mon" => [],
+  "Wk5: Tue" => [],
+  "Wk5: Wed" => [],
+  "Wk5: Thu" => [],
+  "Wk6: Mon" => [],
+  "Wk6: Tue" => [],
+  "Wk6: Wed" => [],
+  "Wk6: Thu" => [],
+  "Wk7: Mon" => [],
+  "Wk7: Tue" => [],
+  "Wk7: Wed" => [],
+  "Wk7: Thu" => [],
+  "Wk8: Mon" => [],
+  "Wk8: Tue" => [],
+  "Wk8: Wed" => [],
+  "Wk8: Thu" => [],
+  "Wk9: Mon" => [],
+  "Wk9: Tue" => [],
+  "Wk9: Wed" => [],
+  "Wk9: Thu" => []
+}
 
 first_day = "2015-04-04".to_date
 first_week = (0..3).to_a.map {|i| first_day + i.days}
@@ -20,8 +55,8 @@ unit_hash.each do |k, v|
   u.save!
 end
 
-student_names = ["John", "Peter", "Scott", "Anna", "Danai", "Daisy", "Zack",
-    "Aaron", "JohnB", "Cruz", "Turner", "Tamika", "Nathaniel"]
+student_names = ["JohnB", "Peter", "Scott", "Anna", "Danai", "Daisy", "Zack",
+    "Aaron", "JohnG", "Cruz", "Turner", "Tamika", "Nathaniel"]
 
 student_names.each do |n|
   Student.create!(name: n, email: "#{n}@#{n}.com")

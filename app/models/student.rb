@@ -5,4 +5,6 @@ class Student < ActiveRecord::Base
     uniqueness: { case_sensitive: false }
 
   before_save { self.email = email.downcase }
+
+  default_scope { order(:name) }
 end

@@ -9,50 +9,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-default navbar-static-top" role="navigation">
-  <div class="container">
-    <a class="navbar-brand menu-header" href="/">Exomemex</a>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <%= link_to graph_packed_graph_path do %>
-            <span class="glyphicon glyphicon-record"></span>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to graph_force_graph_path do %>
-            <span class="glyphicon glyphicon-th"></span>
-          <% end %>
-        </li>
-        <% if current_user %>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <% if @graph %>
-                <li><a href="#">Units Taught</a></li>
-                <li><a href="#" onclick="changeColor();">Class Comprehension</a></li>
-                <li class="divider"></li>
-                <% @students.each do |s| %>
-                  <li><a href="#" onclick="changeColor();"><%= s.name %></a></li>
-                <% end %>
-                <li class="divider"></li>
-              <% end %>
-              <li><%= link_to "Edit Students", students_path %></li>
-              <li><%= link_to "Edit Units", students_path %></li>
-            </ul>
-          </li>
-        <% end %>
-        <li>
-          <% if logged_in? %>
-            <%= link_to "Log Out", logout_path, method: :delete %>
-          <% else %>
-            <%= link_to "Log In", login_path %>
-          <% end %>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<%= render "layouts/menu" %>
 
 <svg id="graph"></svg>
 
