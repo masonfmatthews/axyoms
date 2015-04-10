@@ -1,7 +1,7 @@
-# User.create!(name: "Mason",
-#              email: "mason@example.com",
-#              password: "password",
-#              password_confirmation: "password")
+User.create!(name: "Mason",
+             email: "mason@example.com",
+             password: "password",
+             password_confirmation: "password")
 
 unit_hash = {"Programming Languages" => ["Control Flow", "Variables"]}
 
