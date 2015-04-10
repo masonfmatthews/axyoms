@@ -1,3 +1,9 @@
+function data_field(field) {
+  return function(d) {return d[field];}
+};
+
+function one() {return 1;};
+
 function generatePackedGraph(graphJSON) {
 
   var graphData = graphJSON.nodes,
@@ -20,8 +26,7 @@ function generatePackedGraph(graphJSON) {
   var pack = d3.layout.pack()
       .padding(2)
       .size([radius * 2, radius * 2])
-      .value(function(d) { return 1; });
-      //TODO: There must be a better way to make all the leaf nodes the same size.
+      .value(one);
 
   var svg = d3.select("#graph")
       .style("height", height + "px")
@@ -37,8 +42,8 @@ function generatePackedGraph(graphJSON) {
           .mesh);
 
   link = d3.svg.diagonal()
-      .source(function(d) { return {x:d.source.y, y:d.source.x}; })
-      .target(function(d) { return {x:d.target.y, y:d.target.x}; })
+      .source(function(d) { return {x: d.source.y, y: d.source.x}; })
+      .target(function(d) { return {x: d.target.y, y: d.target.x}; })
       .projection(function(d) { return [d.y*width, d.x*height]; });
 
   svg.selectAll(".link")
@@ -47,35 +52,31 @@ function generatePackedGraph(graphJSON) {
       .attr("class", "link")
       .attr("d", link);
 
-  /*TODO: I hate having a JS loop here... but when doubly-nesting data joins, I couldn't get access to the outer
-        join's xOffset, etc.  Needed something like "function(d, parent) {return d.x + parent.xOffset;}"
-  */
-  graphData.forEach( function (graphNode) {
-    xOffset = graphNode.x_center*width - radius
-    yOffset = graphNode.y_center*height - radius
+  enter = svg.selectAll(".node")
+      .data(graphData)
+    .enter().append("g").selectAll("circle")
+      .data(function(d) {return pack.nodes(d);}, data_field("uuid"))
+    .enter()
 
-    var innerNodes = pack.nodes(graphNode);
+  // Creating circles has a side-effect: d.x and d.y are changed for each circle
+  //   to take into account offsets given by the outer nodes.  I regret this,
+  //   but I need it since the labels and the zoom effect rely on modified
+  //   values, and since d3.pack() does not seem to take offset parameters.
+  enter.append("circle")
+      .style("fill", function(d) {return color(d.depth);})
+      .attr("class", "node")
+      .attr("cx",  function(d, i, j) {return (d.x = d.x + graphData[j].x_center*width - radius);})
+      .attr("cy",  function(d, i, j) {return (d.y = d.y + graphData[j].y_center*height - radius);})
+      .attr("r", data_field("r"))
+      .on("click", zoom);
 
-    svg.selectAll(".node")
-        .data(innerNodes, function(d) {return d.uuid;})
-      .enter().append("circle")
-        .style("fill", function(d) {return color(d.depth);})
-        .attr("class", "node")
-        .attr("cx",  function(d) {return (d.x = d.x + xOffset);}) //TODO: Overwriting d.x here hurts.
-        .attr("cy",  function(d) {return (d.y = d.y + yOffset);})
-        .attr("r",   function(d) {return d.r;})
-        .on("click", function(d) {zoom(d);});
-
-    svg.selectAll(".node-label")
-        .data(innerNodes, function(d) {return d.uuid})
-      .enter().append("text")
-        .attr("class", "node-label")
-        .attr("dy", ".5em")
-        .style("fill-opacity", function(d) { return !d.parent ? 1 : 0; })
-        .attr("x",  function(d) {return d.x;})
-        .attr("y",  function(d) {return d.y;})
-        .text(function(d) { return d.name; });
-  });
+  enter.append("text")
+      .attr("class", "node-label")
+      .attr("dy", ".5em")
+      .style("fill-opacity", function(d) { return !d.parent ? 1 : 0; })
+      .attr("x", data_field("x"))
+      .attr("y", data_field("y"))
+      .text(data_field("name"));
 
   function zoom(target) {
       $("#concept-summary").fadeOut();
@@ -140,8 +141,6 @@ function generatePackedGraph(graphJSON) {
       d3.select(".mesh").transition()
           .duration(zoomTime)
           .attr("transform", "translate(" + meshX + "," + meshY + "), scale(" + meshRatio  + ")");
-
-      //TODO: Can I chain all 3 of these animations off of the same transition?
 
       window.setTimeout(getData, zoomTime);
   }
