@@ -1,9 +1,3 @@
-function data_field(field) {
-  return function(d) {return d[field];}
-};
-
-function one() {return 1;};
-
 function generatePackedGraph(graphJSON) {
 
   var graphData = graphJSON.nodes,
@@ -79,112 +73,69 @@ function generatePackedGraph(graphJSON) {
       .text(data_field("name"));
 
   function zoom(target) {
-      $("#concept-summary").fadeOut();
+    $("#concept-summary").fadeOut();
 
-      getData = function () {
-        $.ajax({
-          url: "/concepts/summary/" + target.uuid,
+    getData = function () {
+      $.ajax({
+        url: "/concepts/summary/" + target.uuid,
 
-          type: "GET",
+        type: "GET",
 
-          success: function( html ) {
-              $('#concept-summary').html(html);
-              $("#concept-summary").fadeIn();
-          },
+        success: function( html ) {
+            $('#concept-summary').html(html);
+            $("#concept-summary").fadeIn();
+        },
 
-          error: function( xhr, status, errorThrown ) {
-              alert( "Sorry, there was a problem!" );
-              console.log( "Error: " + errorThrown );
-              console.log( "Status: " + status );
-              console.dir( xhr );
-          }
-        });
-      }
+        error: function( xhr, status, errorThrown ) {
+            alert( "Sorry, there was a problem!" );
+            console.log( "Error: " + errorThrown );
+            console.log( "Status: " + status );
+            console.dir( xhr );
+        }
+      });
+    }
 
-      var zoomTime = 1000,
-          ratio;
+    var zoomTime = 1000,
+        ratio;
 
-      if (target === focus) {
-        ratio = 1;
-        focus = null;
-        target = center;
-      } else {
-        ratio = (height/2 - zoomMargin)/target.r;
-        focus = target;
-      }
+    if (target === focus) {
+      ratio = 1;
+      focus = null;
+      target = center;
+    } else {
+      ratio = (height/2 - zoomMargin)/target.r;
+      focus = target;
+    }
 
-      var meshRatio = Math.sqrt(ratio);
+    var meshRatio = Math.sqrt(ratio);
 
-      var transition = d3.selectAll(".node").transition()
-          .duration(zoomTime)
-          .attr("cx", function(d) { return (d.x - target.x) * ratio + center.x; })
-          .attr("cy", function(d) { return (d.y - target.y) * ratio + center.y; })
-          .attr("r",  function(d) { return ratio * d.r;});
+    var transition = d3.selectAll(".node").transition()
+        .duration(zoomTime)
+        .attr("cx", function(d) { return (d.x - target.x) * ratio + center.x; })
+        .attr("cy", function(d) { return (d.y - target.y) * ratio + center.y; })
+        .attr("r",  function(d) { return ratio * d.r;});
 
-      var linkX = center.x - target.x*ratio,
-          linkY = center.y - target.y*ratio;
+    var linkX = center.x - target.x*ratio,
+        linkY = center.y - target.y*ratio;
 
-      var transition = d3.selectAll(".link").transition()
-          .duration(zoomTime)
-          .attr("transform", "translate(" + linkX + "," + linkY + "), scale(" + ratio  + ")")
-          .style("stroke-width", 1/ratio + "px");
+    var transition = d3.selectAll(".link").transition()
+        .duration(zoomTime)
+        .attr("transform", "translate(" + linkX + "," + linkY + "), scale(" + ratio  + ")")
+        .style("stroke-width", 1/ratio + "px");
 
-      d3.selectAll(".node-label").transition()
-          .duration(zoomTime)
-          .style("fill-opacity", function(d) { return (d.parent == focus || (d === focus && !d.children)) ? 1 : 0; }) // == allows two nulls to be equal
-          .attr("x", function(d) { return (d.x - target.x) * ratio + center.x; })
-          .attr("y", function(d) { return (d.y - target.y) * ratio + center.y; });
+    d3.selectAll(".node-label").transition()
+        .duration(zoomTime)
+        .style("fill-opacity", function(d) { return (d.parent == focus || (d === focus && !d.children)) ? 1 : 0; }) // == allows two nulls to be equal
+        .attr("x", function(d) { return (d.x - target.x) * ratio + center.x; })
+        .attr("y", function(d) { return (d.y - target.y) * ratio + center.y; });
 
-      var meshX = center.x - (meshBuffer.x + target.x)*meshRatio,
-          meshY = center.y - (meshBuffer.y + target.y)*meshRatio;
+    var meshX = center.x - (meshBuffer.x + target.x)*meshRatio,
+        meshY = center.y - (meshBuffer.y + target.y)*meshRatio;
 
-      d3.select(".mesh").transition()
-          .duration(zoomTime)
-          .attr("transform", "translate(" + meshX + "," + meshY + "), scale(" + meshRatio  + ")");
+    d3.select(".mesh").transition()
+        .duration(zoomTime)
+        .attr("transform", "translate(" + meshX + "," + meshY + "), scale(" + meshRatio  + ")");
 
-      window.setTimeout(getData, zoomTime);
+    window.setTimeout(getData, zoomTime);
   }
-}
-
-function changeColor() {
-
-  var color = d3.scale.linear()
-      .domain([0, 10])
-      .range(["hsl(120, 60%, 80%)", "hsl(120, 60%, 28%)"])
-      .interpolate(d3.interpolateHcl);
-
-  // TODO: Use ColorBrewer scale for good/bad selections
-  // #d73027
-  // #f46d43
-  // #fdae61
-  // #fee08b
-  // #ffffbf
-  // #d9ef8b
-  // #a6d96a
-  // #66bd63
-  // #1a9850
-
-  var greyscale = d3.scale.linear()
-      .domain([0, 10])
-      .range(["hsl(0, 0%, 90%)", "hsl(0, 0%, 28%)"])
-      .interpolate(d3.interpolateHcl);
-
-  d3.selectAll(".node")
-      .filter(function(d) {return d.unit_ids.length > 0;})
-      .transition()
-      .duration(500)
-      .style("fill", function(d) {return color(d.depth);})
-      .style("stroke", function(d) {return color(d.depth);});
-
-  d3.selectAll(".node")
-      .filter(function(d) {return d.unit_ids.length === 0;})
-      .transition()
-      .duration(500)
-      .style("fill", function(d) {return greyscale(d.depth);})
-      .style("stroke", function(d) {return "hsl(0, 0%, 72%)";});
-
-  d3.selectAll(".link")
-      .transition()
-      .duration(500)
-      .style("stroke", "hsl(0, 0%, 72%)");
 }

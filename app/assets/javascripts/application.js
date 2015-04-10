@@ -18,3 +18,9 @@
 //= require bootstrap
 //= require bootstrap-datetimepicker
 //= require_tree .
+
+function data_field(field) {
+  return function(d) {return d[field];}
+};
+
+function one() {return 1;};
