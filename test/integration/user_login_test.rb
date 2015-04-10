@@ -17,7 +17,7 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     post login_path, session: { email: @user.email, password: 'password' }
     assert_redirected_to root_path
     follow_redirect!
-    assert_template 'mapper/packed_graph'
+    assert_template 'graph/packed_graph'
     assert_select "a[href=?]", login_path, count: 0
     assert_select "a[href=?]", logout_path
     assert is_logged_in?
@@ -40,7 +40,7 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     assert flash.empty?
   end
 
-  test "pages cannot be accessed if not logged in" do
+  test "some pages cannot be accessed if not logged in" do
     get students_path
     assert_redirected_to login_path
     assert flash[:error]
@@ -49,8 +49,7 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_path
     assert flash[:error]
 
-    get mapper_packed_graph_path
-    assert_redirected_to login_path
-    assert flash[:error]
+    get graph_packed_graph_path
+    assert_template 'graph/packed_graph'
   end
 end

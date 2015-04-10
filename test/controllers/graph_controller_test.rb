@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MapperControllerTest < ActionController::TestCase
+class GraphControllerTest < ActionController::TestCase
 
   def setup
     @base_title = "Mental Mapper"

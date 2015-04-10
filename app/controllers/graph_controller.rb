@@ -1,5 +1,4 @@
-class MapperController < ApplicationController
-  before_action :logged_in_user
+class GraphController < ApplicationController
   before_action :set_graph
 
   def packed_graph
