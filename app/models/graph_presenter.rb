@@ -27,7 +27,6 @@ class GraphPresenter
       depth_indices[depth] += 1
     end
 
-    # 1 sec
     subsequence = graph_cache.precedence_links.map do |l|
       {source: {uuid: l[:source],
                 x: uuid_x[l[:source]],
@@ -38,7 +37,6 @@ class GraphPresenter
       }
     end
 
-    # No time
     {nodes: ancestry, links: subsequence,
       x_count: max_depth+1, y_count: max_breadth}.to_json.html_safe
   end

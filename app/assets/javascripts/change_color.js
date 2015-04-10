@@ -22,7 +22,9 @@ function changeColor() {
       .interpolate(d3.interpolateHcl);
 
   d3.selectAll(".node")
-      .filter(function(d) {return d.unit_ids.length > 0;})
+      .filter(function(d) {
+        return d.unit_ids.length > 0;
+      })
       .transition()
       .duration(500)
       .style("fill", function(d) {return color(d.depth);})
