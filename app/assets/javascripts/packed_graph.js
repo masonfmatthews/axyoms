@@ -12,11 +12,6 @@ function generatePackedGraph(graphJSON) {
       zoomRatio = 1,
       focus = null;
 
-  var color = d3.scale.linear()
-      .domain([0, 10])
-      .range(["hsl(208, 58%, 72%)", "hsl(208, 58%, 28%)"])
-      .interpolate(d3.interpolateHcl);
-
   var pack = d3.layout.pack()
       .padding(2)
       .size([radius * 2, radius * 2])
@@ -44,7 +39,8 @@ function generatePackedGraph(graphJSON) {
       .data(linkData, function(d) {return d.source.uuid + d.target.uuid;})
     .enter().append("path")
       .attr("class", "link")
-      .attr("d", link);
+      .attr("d", link)
+      .style("stroke", blueColor(0));
 
   enter = svg.selectAll(".node")
       .data(graphData)
@@ -57,7 +53,7 @@ function generatePackedGraph(graphJSON) {
   //   but I need it since the labels and the zoom effect rely on modified
   //   values, and since d3.pack() does not seem to take offset parameters.
   enter.append("circle")
-      .style("fill", function(d) {return color(d.depth);})
+      .style("fill", function(d) {return blueColor(d.depth);})
       .attr("class", "node")
       .attr("cx",  function(d, i, j) {return (d.x = d.x + graphData[j].x_center*width - radius);})
       .attr("cy",  function(d, i, j) {return (d.y = d.y + graphData[j].y_center*height - radius);})

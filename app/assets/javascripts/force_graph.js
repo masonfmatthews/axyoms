@@ -43,7 +43,8 @@ function generateForceGraph(graph) {
   var link = svg.selectAll(".link")
       .data(bilinks)
     .enter().append("path")
-      .attr("class", "link");
+      .attr("class", "link")
+      .style("stroke", blueColor(0));
 
   var node = svg.selectAll(".node")
       .data(graph.nodes)
