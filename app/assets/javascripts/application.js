@@ -19,8 +19,20 @@
 //= require bootstrap-datetimepicker
 //= require_tree .
 
+
+// Convenience function to reduce the number of super-simple functions written in d3 code
 function data_field(field) {
   return function(d) {return d[field];}
 };
 
+
+// Convenience function to set the size of packed graph circles.
 function one() {return 1;};
+
+
+// Close bootstrap dropdown menus on click
+$(function() {
+  $(".dropdown-menu a").click(function() {
+    $(this).closest(".dropdown-menu").prev().dropdown("toggle");
+  });
+});
