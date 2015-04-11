@@ -13,4 +13,15 @@ class ConceptsController < ApplicationController
     @concept.description = params[:concept][:description]
     @concept.save!
   end
+
+  def color_by_time
+    @active_uuids = []
+    GraphCache.last.unit_id_cache.each do |k, v|
+      @active_uuids << k if v.length > 0
+    end
+  end
+
+  def color_by_comprehension
+
+  end
 end

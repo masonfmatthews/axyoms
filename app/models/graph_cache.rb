@@ -90,6 +90,6 @@ class GraphCache < ActiveRecord::Base
   end
 
   def self.get_cache(g)
-    GraphCache.first || GraphCache.create!
+    GraphCache.last || GraphCache.create!
   end
 end

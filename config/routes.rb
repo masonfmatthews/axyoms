@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   get 'concepts/summary/:uuid' => 'concepts#summary', as: :concept_summary
   patch 'concepts/update' => 'concepts#update', as: :concept
+  get 'concepts/color_by_time'
+  get 'concepts/color_by_comprehension'
 
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'

@@ -20,9 +20,9 @@
             </a>
             <ul class="dropdown-menu" role="menu">
               <% if @graph %>
-                <li><a href="#" onclick="changeColor();">
+                <li><%= link_to concepts_color_by_time_path, remote: true do %>
                   <i class="glyphicon glyphicon-time"></i> Units Taught
-                </a></li>
+                <% end %></li>
                 <li><a href="#">
                   <i class="glyphicon glyphicon-dashboard"></i> Class Comprehension</a>
                 </li>

@@ -1,0 +1,34 @@
+var active_uuids = ["<%= @active_uuids.join('", "').html_safe %>"]
+
+var color = d3.scale.linear()
+    .domain([0, 10])
+    .range(["hsl(120, 60%, 80%)", "hsl(120, 60%, 28%)"])
+    .interpolate(d3.interpolateHcl);
+
+var greyscale = d3.scale.linear()
+    .domain([0, 10])
+    .range(["hsl(0, 0%, 90%)", "hsl(0, 0%, 28%)"])
+    .interpolate(d3.interpolateHcl);
+
+var all_circles = d3.selectAll(".node")
+
+// I would have preferred to do these with a data join and then transitioned the
+//   update and exit selections, but the update selection loses all its
+//   pre-existing data from creation time, so zooming, etc will break after
+//   coloring.
+all_circles.filter(function(d) {return $.inArray(d.uuid, active_uuids) > -1;})
+    .transition()
+    .duration(500)
+    .style("fill", function(d) {return color(d.depth);})
+    .style("stroke", function(d) {return color(d.depth);});
+
+all_circles.filter(function(d) {return $.inArray(d.uuid, active_uuids) == -1;})
+    .transition()
+    .duration(500)
+    .style("fill", function(d) {return greyscale(d.depth);})
+    .style("stroke", function(d) {return "hsl(0, 0%, 72%)";});
+
+d3.selectAll(".link")
+    .transition()
+    .duration(500)
+    .style("stroke", "hsl(0, 0%, 72%)");
