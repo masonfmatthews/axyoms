@@ -5,17 +5,6 @@ function changeColor() {
       .range(["hsl(120, 60%, 80%)", "hsl(120, 60%, 28%)"])
       .interpolate(d3.interpolateHcl);
 
-  // TODO: Use ColorBrewer scale for good/bad selections
-  // #d73027
-  // #f46d43
-  // #fdae61
-  // #fee08b
-  // #ffffbf
-  // #d9ef8b
-  // #a6d96a
-  // #66bd63
-  // #1a9850
-
   var greyscale = d3.scale.linear()
       .domain([0, 10])
       .range(["hsl(0, 0%, 90%)", "hsl(0, 0%, 28%)"])

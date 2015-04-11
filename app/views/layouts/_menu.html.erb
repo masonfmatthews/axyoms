@@ -23,9 +23,9 @@
                 <li><%= link_to concepts_color_by_time_path, remote: true do %>
                   <i class="glyphicon glyphicon-time"></i> Units Taught
                 <% end %></li>
-                <li><a href="#">
-                  <i class="glyphicon glyphicon-dashboard"></i> Class Comprehension</a>
-                </li>
+                <li><%= link_to concepts_color_by_comprehension_path, remote: true do %>
+                  <i class="glyphicon glyphicon-dashboard"></i> Class Comprehension
+                <% end %></li>
                 <li class="divider"></li>
                 <% @students.each do |s| %>
                   <li><a href="#" onclick="changeColor();">

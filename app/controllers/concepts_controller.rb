@@ -22,6 +22,9 @@ class ConceptsController < ApplicationController
   end
 
   def color_by_comprehension
-
+    @color_hash = {}
+    GraphCache.last.unit_id_cache.each do |k, v|
+      @color_hash[k] = rand(6) if v.length > 0
+    end
   end
 end

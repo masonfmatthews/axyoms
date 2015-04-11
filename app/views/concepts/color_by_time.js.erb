@@ -1,4 +1,4 @@
-var activeUUIDs = ["<%= @active_uuids.join('", "').html_safe %>"]
+var activeUUIDs = <%= @active_uuids.to_json.html_safe %>
 
 var all_circles = d3.selectAll(".node")
 
