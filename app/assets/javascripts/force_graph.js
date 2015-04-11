@@ -15,8 +15,6 @@ function generateForceGraph(graph) {
           .radius(40)
           .mesh);
 
-  var color = d3.scale.category20();
-
   var force = d3.layout.force()
       .linkDistance(10)
       .linkStrength(2)
@@ -51,7 +49,7 @@ function generateForceGraph(graph) {
     .enter().append("circle")
       .attr("class", "node")
       .attr("r", 5)
-      .style("fill", function(d) { return color(d.depth); })
+      .style("fill", function(d) { return blueColor(d.depth); })
       .style("stroke-width", function(d) { return "0px"; })
       .on("click", function(d) {select(d);})
       .call(force.drag);
