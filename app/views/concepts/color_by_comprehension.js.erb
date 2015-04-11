@@ -5,7 +5,7 @@ var all_circles = d3.selectAll(".node")
 all_circles.filter(function(d) {return actives.hasOwnProperty(d.uuid);})
     .transition()
     .duration(500)
-    .style("fill", function(d) {return redToGreen[actives[d.uuid]];});
+    .style("fill", function(d) {return redToGreen(actives[d.uuid]);});
 
 all_circles.filter(function(d) {return !(actives.hasOwnProperty(d.uuid));})
     .transition()
