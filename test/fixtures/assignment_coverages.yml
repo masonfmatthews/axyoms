@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  assignment_id: 
+  concept_uuid: 
+
+two:
+  assignment_id: 
+  concept_uuid: 

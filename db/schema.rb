@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141121140345) do
+ActiveRecord::Schema.define(version: 20150411181715) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "assignment_coverages", force: true do |t|
+    t.integer  "assignment_id"
+    t.uuid     "concept_uuid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "assignment_coverages", ["assignment_id"], name: "index_assignment_coverages_on_assignment_id", using: :btree
+
+  create_table "assignments", force: true do |t|
+    t.string   "name"
+    t.string   "uri"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "graph_caches", force: true do |t|
     t.text     "unit_id_cache"
