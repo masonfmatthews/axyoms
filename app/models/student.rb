@@ -1,4 +1,6 @@
 class Student < ActiveRecord::Base
+  has_many :scores, dependent: :destroy
+
   validates :name, presence: true
   validates :email, presence: true,
     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },

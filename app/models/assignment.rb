@@ -1,5 +1,6 @@
 class Assignment < ActiveRecord::Base
   has_many :assignment_coverages, dependent: :destroy
+  has_many :scores, dependent: :restrict_with_error
 
   validates :name, presence: true
 
