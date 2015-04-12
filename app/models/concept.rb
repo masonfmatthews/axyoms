@@ -59,6 +59,18 @@ class Concept
     Unit.find(unit_ids)
   end
 
+  def assignment_coverages
+    AssignmentCoverage.where(concept_uuid: uuid)
+  end
+
+  def assignment_ids
+    assignment_coverages.map &:assignment_id
+  end
+
+  def assignments
+    Assignment.find(assignment_ids)
+  end
+
   def children_hash
     {uuid: uuid,
      name: name,

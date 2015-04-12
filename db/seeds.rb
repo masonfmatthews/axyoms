@@ -55,6 +55,8 @@ unit_hash.each do |k, v|
   u.save!
 end
 
+Reference.create!(description: "Google", uri: "http://google.com", concept_uuid: Concept.where(name: "Classes").first.uuid)
+
 assignment_hashes = [
   { name: "Number Guessing Game",
     uri: "github.com",
