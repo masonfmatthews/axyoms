@@ -32,6 +32,20 @@ class Concept
     Reference.where(concept_uuid: uuid).where.not(concept_uuid: nil)
   end
 
+  def scores
+    Score.where(concept_uuid: uuid)
+  end
+
+  def average_score
+    score_variable = scores
+    score_variable.reduce(0.0) {|sum, s| sum + s.score} / score_variable.count
+  end
+
+  def average_score_for_student(student)
+    score_variable = scores.where(student: student)
+    score_variable.reduce(0.0) {|sum, s| sum + s.score} / score_variable.count
+  end
+
   # TODO: Need dependent destroy on relationships like this
   def unit_coverages
     UnitCoverage.where(concept_uuid: uuid)

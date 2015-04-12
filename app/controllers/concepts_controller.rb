@@ -23,8 +23,8 @@ class ConceptsController < ApplicationController
 
   def color_by_comprehension
     @color_hash = {}
-    GraphCache.last.unit_id_cache.each do |k, v|
-      @color_hash[k] = rand(6) if v.length > 0
+    Concept.all.each do |c|
+      @color_hash[c.uuid] = c.average_score_for_student(Student.first) if c.scores.length > 0
     end
   end
 end
