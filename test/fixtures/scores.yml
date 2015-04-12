@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  student_id: 
+  assignment_id: 
+  concept_uuid: 
+  score: 1
+
+two:
+  student_id: 
+  assignment_id: 
+  concept_uuid: 
+  score: 1

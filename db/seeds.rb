@@ -55,9 +55,30 @@ unit_hash.each do |k, v|
   u.save!
 end
 
+assignment_hashes = [
+  { name: "Number Guessing Game",
+    uri: "github.com",
+    concepts: ["Methods", "Arrays"]},
+  { name: "Battleship",
+    uri: "github.com",
+    concepts: ["Classes", "Testing", "Enumerable", "Inheritance"]}
+]
+
+assignment_hashes.each do |hash|
+  a = Assignment.new(name: hash[:name],
+             uri: hash[:uri])
+  hash[:concepts].each do |concept_name|
+    a.assignment_coverages << AssignmentCoverage.new(concept_uuid: Concept.where(name: concept_name).first.uuid)
+  end
+  a.save!
+end
+
 student_names = ["JohnB", "Peter", "Scott", "Anna", "Danai", "Daisy", "Zack",
     "Aaron", "JohnG", "Cruz", "Turner", "Tamika", "Nathaniel"]
 
 student_names.each do |n|
-  Student.create!(name: n, email: "#{n}@#{n}.com")
+  s = Student.create!(name: n, email: "#{n}@#{n}.com")
+  AssignmentCoverage.all.each do |ac|
+    Score.create!(student: s, assignment: ac.assignment, concept_uuid: ac.concept_uuid, score: (s.id % 3)+rand(3))
+  end
 end
