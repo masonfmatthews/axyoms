@@ -46,7 +46,7 @@
           <tbody>
             <% @concept.assignments.each do |a| %>
               <tr>
-                <td><span class="badge">n/a</span></td>
+                <td><span class="badge"><%= number_with_precision(a.average_score_for_concept_uuid(@concept.uuid), precision: 1) %></span></td>
                 <td><%= link_to a.name, a.uri, target: "_blank" %></td>
                 <% if current_user %>
                   <td><%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe,
