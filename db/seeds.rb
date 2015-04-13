@@ -50,7 +50,7 @@ unit_hash.each do |k, v|
   u = Unit.new(name: k,
              delivered_at: all_days.shift)
   v.each do |concept_name|
-    u.unit_coverages << UnitCoverage.new(concept_uuid: Concept.where(name: concept_name).first.uuid)
+    u.coverages << UnitCoverage.new(concept_uuid: Concept.where(name: concept_name).first.uuid)
   end
   u.save!
 end
