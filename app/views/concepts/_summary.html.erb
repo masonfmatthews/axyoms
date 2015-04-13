@@ -49,12 +49,8 @@
                 <td><span class="badge">n/a</span></td>
                 <td><%= a.name %></td>
                 <% if current_user %>
-                  <td>
-                    <%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe,
-                        edit_assignment_path(a) %>
-                    <%= link_to '<i class="glyphicon glyphicon-remove"></i>'.html_safe,
-                        a, method: :delete, data: { confirm: 'Are you sure?' } %>
-                  </td>
+                  <td><%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe,
+                        edit_assignment_path(a), class: "colorless" %></td>
                 <% end %>
               </tr>
             <% end %>
@@ -72,11 +68,19 @@
       <% if @concept.references.blank? %>
         <p class="text-muted">None found.</p>
       <% else %>
-        <ul>
-          <% @concept.references.each do |r| %>
-            <li><%= link_to r.description, r.uri, target: "_blank" %></li>
-          <% end %>
-        </ul>
+        <table class="concept-assignments">
+          <tbody>
+            <% @concept.references.each do |r| %>
+              <tr>
+                <td><%= link_to r.description, r.uri, target: "_blank" %></td>
+                <% if current_user %>
+                  <td><%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe,
+                        edit_reference_path(r), class: "colorless" %></td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
       <% end %>
 
       <% if current_user %>
