@@ -1,0 +1,36 @@
+<%= form_for(@assignment) do |f| %>
+  <% if @assignment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@assignment.errors.count, "error") %> prohibited this assignment from being saved:</h2>
+
+      <ul>
+      <% @assignment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Concepts Covered</h3>
+      <% @graph_cache.parentage_structure.each do |n| %>
+        <%= render partial: "concepts/checkbox_tree", locals: {node: n, subject: @assignment} %>
+      <% end %>
+    </div>
+    <div class="col-md-4">
+      <h3>Assignment Details</h3>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :uri, "Web Address" %>
+        <%= f.text_field :uri, class: "form-control" %>
+      </div>
+      <div class="actions">
+        <%= f.submit class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -59,10 +59,10 @@ Reference.create!(description: "Google", uri: "http://google.com", concept_uuid:
 
 assignment_hashes = [
   { name: "Number Guessing Game",
-    uri: "github.com",
+    uri: "http://github.com",
     concepts: ["Methods", "Arrays"]},
   { name: "Battleship",
-    uri: "github.com",
+    uri: "http://github.com",
     concepts: ["Classes", "Testing", "Enumerable", "Inheritance"]}
 ]
 

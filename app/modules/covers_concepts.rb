@@ -13,6 +13,7 @@ module CoversConcepts
   end
 
   def set_coverage(uuids)
+    self.coverages = []
     unless uuids.blank?
       uuids.each do |uuid|
         coverages.build(concept_uuid: uuid)

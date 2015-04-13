@@ -36,7 +36,9 @@
     </div>
 
     <div class="col-md-6">
-      <h3>Assignments</h3>
+      <h3>
+        Assignments
+      </h3>
       <% if @concept.assignments.blank? %>
         <p class="text-muted">None found.</p>
       <% else %>
@@ -46,16 +48,23 @@
               <tr>
                 <td><span class="badge">n/a</span></td>
                 <td><%= a.name %></td>
-                <td>
-                  <%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe,
-                      edit_assignment_path(a) %>
-                  <%= link_to '<i class="glyphicon glyphicon-remove"></i>'.html_safe,
-                      a, method: :delete, data: { confirm: 'Are you sure?' } %>
-                </td>
+                <% if current_user %>
+                  <td>
+                    <%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe,
+                        edit_assignment_path(a) %>
+                    <%= link_to '<i class="glyphicon glyphicon-remove"></i>'.html_safe,
+                        a, method: :delete, data: { confirm: 'Are you sure?' } %>
+                  </td>
+                <% end %>
               </tr>
             <% end %>
           </tbody>
         </table>
+      <% end %>
+
+      <% if current_user %>
+        <%= link_to add_link_text("Assignment"), new_assignment_path(concept_uuid: @concept.uuid),
+          class: "btn btn-default btn-xs" %>
       <% end %>
 
       <h3>References</h3>
@@ -68,6 +77,11 @@
             <li><%= link_to r.description, r.uri, target: "_blank" %></li>
           <% end %>
         </ul>
+      <% end %>
+
+      <% if current_user %>
+        <%= link_to add_link_text("Reference"), new_reference_path(concept_uuid: @concept.uuid),
+          class: "btn btn-default btn-xs" %>
       <% end %>
     </div>
 

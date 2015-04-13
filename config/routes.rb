@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :students
   resources :units
   resources :assignments
+  resources :references
 
   root 'graph#packed_graph'
   get 'graph/packed_graph'

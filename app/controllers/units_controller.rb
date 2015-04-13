@@ -56,7 +56,7 @@ class UnitsController < ApplicationController
     end
 
     def set_graph_cache
-      @graph_cache = GraphCache.last
+      @graph_cache = GraphCache.get
     end
 
     def unit_params
