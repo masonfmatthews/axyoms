@@ -1,9 +1,6 @@
 <tr>
   <td><%= student.name %></td>
   <td><%= student.email %></td>
-  <td><%= link_to '<i class="glyphicon glyphicon-pencil"></i> Edit'.html_safe,
+  <td class="icons"><%= link_to '<i class="glyphicon glyphicon-pencil"></i> Edit'.html_safe,
           edit_student_path(student) %></td>
-  <td><%= link_to '<i class="glyphicon glyphicon-remove"></i> Destroy'.html_safe,
-          student, class: "text-danger", method: :delete,
-          data: { confirm: 'Are you sure?' } %></td>
 </tr>
