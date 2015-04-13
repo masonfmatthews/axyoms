@@ -31,10 +31,12 @@
       <div class="actions">
         <%= f.submit class: "btn btn-primary" %>
       </div>
-      <div class="actions">
-        <%= link_to "Delete Assignment", @assignment, method: :delete, class: "btn btn-danger",
-              confirm: "Are you sure you want to delete this assignment?" %>
-      </div>
+      <% if @unit.persisted? %>
+        <div class="actions">
+          <%= link_to "Delete Assignment", @assignment, method: :delete, class: "btn btn-danger",
+                confirm: "Are you sure you want to delete this assignment?" %>
+        </div>
+      <% end %>
     </div>
   </div>
 <% end %>
