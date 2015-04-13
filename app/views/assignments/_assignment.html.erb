@@ -2,9 +2,6 @@
   <td><%= assignment.name %></td>
   <td><%= link_to assignment.uri, assignment.uri, target: "_blank" %></td>
   <td><%= assignment.concept_count %></td>
-  <td><%= link_to '<i class="glyphicon glyphicon-pencil"></i> Edit'.html_safe,
+  <td class="icons"><%= link_to '<i class="glyphicon glyphicon-pencil"></i> Edit'.html_safe,
           edit_assignment_path(assignment) %></td>
-  <td><%= link_to '<i class="glyphicon glyphicon-remove"></i> Destroy'.html_safe,
-          assignment, class: "text-danger", method: :delete,
-          data: { confirm: 'Are you sure?' } %></td>
 </tr>

@@ -46,8 +46,12 @@ class AssignmentsController < ApplicationController
   end
 
   def destroy
-    @assignment.destroy
-    redirect_to assignments_url, notice: 'Assignment was successfully destroyed.'
+    if @assignment.destroy
+      redirect_to assignments_url, notice: 'Assignment was successfully destroyed.'
+    else
+      flash[:error] = "Assignment could not be deleted."
+      redirect_to edit_assignment_url(@assignment)
+    end
   end
 
   private

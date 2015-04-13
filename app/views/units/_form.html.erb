@@ -31,6 +31,10 @@
       <div class="actions">
         <%= f.submit class: "btn btn-primary" %>
       </div>
+      <div class="actions">
+        <%= link_to "Delete Unit", @unit, method: :delete, class: "btn btn-danger",
+              confirm: "Are you sure you want to delete this unit?" %>
+      </div>
     </div>
   </div>
 <% end %>
