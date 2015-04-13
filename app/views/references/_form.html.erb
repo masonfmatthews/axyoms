@@ -1,0 +1,36 @@
+<%= form_for(@reference) do |f| %>
+  <% if @reference.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reference.errors.count, "error") %> prohibited this reference from being saved:</h2>
+
+      <ul>
+      <% @reference.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-4">
+      <%= f.hidden_field :concept_uuid %>
+      <div class="form-group">
+        <%= f.label :description %>
+        <%= f.text_field :description, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :uri, "Web Address" %>
+        <%= f.text_field :uri, class: "form-control" %>
+      </div>
+      <div class="actions">
+        <%= f.submit class: "btn btn-primary" %>
+      </div>
+      <% if @reference.persisted? %>
+        <div class="actions">
+          <%= link_to "Delete Reference", @reference, method: :delete, class: "btn btn-danger",
+                confirm: "Are you sure you want to delete this reference?" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

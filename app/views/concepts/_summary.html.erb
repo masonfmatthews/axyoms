@@ -47,7 +47,7 @@
             <% @concept.assignments.each do |a| %>
               <tr>
                 <td><span class="badge">n/a</span></td>
-                <td><%= a.name %></td>
+                <td><%= link_to a.name, a.uri, target: "_blank" %></td>
                 <% if current_user %>
                   <td><%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe,
                         edit_assignment_path(a), class: "colorless" %></td>

@@ -5,4 +5,5 @@ class Assignment < ActiveRecord::Base
   has_many :scores, dependent: :restrict_with_error
 
   validates :name, presence: true
+  validates :uri, presence: true, format: {with: /\Ahttps?:\/\//, message: "must start with http:// or https://"}
 end
