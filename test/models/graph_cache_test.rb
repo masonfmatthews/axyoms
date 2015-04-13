@@ -2,7 +2,8 @@ require 'test_helper'
 
 class GraphCacheTest < ActiveSupport::TestCase
   def setup
-    units(:one).add_concept(concepts(:one))
+    units(:one).set_coverage([concepts(:one).uuid])
+    units(:one).save!
     @graph_cache = GraphCache.get
     @graph_cache.cache_everything!
   end

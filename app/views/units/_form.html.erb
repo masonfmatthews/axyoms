@@ -15,7 +15,7 @@
     <div class="col-md-6">
       <h3>Concepts Covered</h3>
       <% @graph_cache.parentage_structure.each do |n| %>
-        <%= render partial: "concepts/checkbox_tree", locals: {node: n} %>
+        <%= render partial: "concepts/checkbox_tree", locals: {node: n, subject: @unit} %>
       <% end %>
     </div>
     <div class="col-md-4">

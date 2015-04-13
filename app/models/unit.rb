@@ -5,6 +5,8 @@ class Unit < ActiveRecord::Base
   validates :name, presence: true
   validates :delivered_at, presence: true
 
+  default_scope { order(:delivered_at) }
+
   def completed?
     delivered_at < Time.now
   end
