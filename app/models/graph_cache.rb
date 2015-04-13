@@ -1,5 +1,4 @@
 class GraphCache < ActiveRecord::Base
-  serialize :unit_id_cache
   serialize :parentage_depth_cache
   serialize :precedence_depth_cache
   serialize :parentage_structure_cache
@@ -15,26 +14,12 @@ class GraphCache < ActiveRecord::Base
   end
 
   def cache_everything!
-    cache_unit_ids!
     cache_parentage_depths!
     cache_precedence_depths!
     cache_parentage_structure!
     cache_precedence_links!
     cache_all_links!
     true
-  end
-
-  def unit_ids
-    unit_id_cache || cache_unit_ids!
-  end
-
-  def cache_unit_ids!
-    self.unit_id_cache = Hash.new([])
-    graph.nodes.each do |c|
-      self.unit_id_cache[c.uuid] = c.unit_ids
-    end
-    save!
-    unit_id_cache
   end
 
   def parentage_depths

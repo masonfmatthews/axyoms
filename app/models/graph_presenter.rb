@@ -49,8 +49,7 @@ class GraphPresenter
       indices[c.uuid] = i
       nodes << {uuid: c.uuid,
         name: c.name,
-        depth: graph_cache.parentage_depths[c.uuid],
-        unit_ids: graph_cache.unit_ids[c.uuid]}
+        depth: graph_cache.parentage_depths[c.uuid]}
     end
 
     links = graph_cache.all_links.map do |l|

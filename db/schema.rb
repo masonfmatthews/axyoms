@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(version: 20150412022639) do
   end
 
   create_table "graph_caches", force: true do |t|
-    t.text     "unit_id_cache"
     t.text     "parentage_depth_cache"
     t.text     "precedence_depth_cache"
     t.text     "parentage_structure_cache"

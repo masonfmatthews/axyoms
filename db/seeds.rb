@@ -47,10 +47,10 @@ all_days = (0..8).to_a.map {|j| first_week.map {|day| day + j.weeks}}
 all_days.flatten!
 
 unit_hash.each do |k, v|
-  u = Unit.new(name: k,
+  u = Unit.create!(name: k,
              delivered_at: all_days.shift)
   v.each do |concept_name|
-    u.coverages << UnitCoverage.new(concept_uuid: Concept.where(name: concept_name).first.uuid)
+    u.coverages.build(concept_uuid: Concept.where(name: concept_name).first.uuid)
   end
   u.save!
 end
@@ -67,10 +67,10 @@ assignment_hashes = [
 ]
 
 assignment_hashes.each do |hash|
-  a = Assignment.new(name: hash[:name],
+  a = Assignment.create!(name: hash[:name],
              uri: hash[:uri])
   hash[:concepts].each do |concept_name|
-    a.assignment_coverages << AssignmentCoverage.new(concept_uuid: Concept.where(name: concept_name).first.uuid)
+    a.coverages.build(concept_uuid: Concept.where(name: concept_name).first.uuid)
   end
   a.save!
 end

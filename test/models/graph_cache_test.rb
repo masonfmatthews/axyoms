@@ -7,11 +7,6 @@ class GraphCacheTest < ActiveSupport::TestCase
     @graph_cache.cache_everything!
   end
 
-  def test_cache_unit_ids
-    assert_equal @graph_cache.unit_ids[concepts(:one).uuid], [units(:one).id]
-    assert_equal @graph_cache.unit_ids[concepts(:two).uuid], []
-  end
-
   def test_cache_parentage_depths
     assert_equal @graph_cache.parentage_depths[concepts(:one).uuid], 0
     assert_equal @graph_cache.parentage_depths[concepts(:three).uuid], 2

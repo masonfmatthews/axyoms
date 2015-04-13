@@ -15,10 +15,7 @@ class ConceptsController < ApplicationController
   end
 
   def color_by_time
-    @active_uuids = []
-    GraphCache.last.unit_id_cache.each do |k, v|
-      @active_uuids << k if v.length > 0
-    end
+    @active_uuids = UnitCoverage.completed_uuids
   end
 
   def color_by_comprehension
