@@ -7,7 +7,7 @@ class Unit < ActiveRecord::Base
   after_save :reset_cache
 
   def reset_cache
-    GraphCache.get_cache(nil).cache_unit_ids!
+    GraphCache.get.cache_unit_ids!
   end
 
   def completed?

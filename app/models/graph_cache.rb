@@ -6,6 +6,10 @@ class GraphCache < ActiveRecord::Base
   serialize :precedence_link_cache
   serialize :all_link_cache
 
+  def self.get
+    last || create!
+  end
+
   def graph
     @graph ||= Graph.new(Concept.all)
   end
@@ -87,9 +91,5 @@ class GraphCache < ActiveRecord::Base
     self.all_link_cache = graph.all_links
     save!
     all_link_cache
-  end
-
-  def self.get_cache(g)
-    GraphCache.last || GraphCache.create!
   end
 end
