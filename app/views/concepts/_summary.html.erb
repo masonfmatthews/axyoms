@@ -40,11 +40,22 @@
       <% if @concept.assignments.blank? %>
         <p class="text-muted">None found.</p>
       <% else %>
-        <ul>
-          <% @concept.assignments.each do |a| %>
-            <li><%= a.name %></li>
-          <% end %>
-        </ul>
+        <table class="concept-assignments">
+          <tbody>
+            <% @concept.assignments.each do |a| %>
+              <tr>
+                <td><span class="badge">n/a</span></td>
+                <td><%= a.name %></td>
+                <td>
+                  <%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe,
+                      edit_assignment_path(a) %>
+                  <%= link_to '<i class="glyphicon glyphicon-remove"></i>'.html_safe,
+                      a, method: :delete, data: { confirm: 'Are you sure?' } %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
       <% end %>
 
       <h3>References</h3>
