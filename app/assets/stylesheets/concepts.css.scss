@@ -10,3 +10,29 @@
     padding-left: 10px;
   }
 }
+
+.score-badge {
+  width: 35px;
+
+  &.score-0 {
+    background-color: #aaaaaa;
+  }
+  &.score-1 {
+    background-color: #fcae93;
+  }
+  &.score-2 {
+    background-color: #f9be86;
+  }
+  &.score-3 {
+    background-color: #ebd081;
+  }
+  &.score-4 {
+    background-color: #d3e38a;
+  }
+  &.score-5 {
+    background-color: #b1f5a3;
+  }
+  &.score-6 {
+    background-color: #83ffca;
+  }
+}

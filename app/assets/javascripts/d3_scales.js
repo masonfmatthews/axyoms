@@ -9,6 +9,6 @@ var greyscale = d3.scale.linear()
     .interpolate(d3.interpolateHcl);
 
 var redToGreen = d3.scale.linear()
-    .domain([0, 5])
+    .domain([1, 6])
     .range(["hsl(0, 80%, 80%)", "hsl(110, 80%, 80%)"])
     .interpolate(d3.interpolateHcl);

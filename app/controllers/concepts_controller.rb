@@ -21,7 +21,7 @@ class ConceptsController < ApplicationController
   def color_by_comprehension
     @color_hash = {}
     Concept.all.each do |c|
-      @color_hash[c.uuid] = c.average_score_for_student(Student.first) if c.scores.length > 0
+      @color_hash[c.uuid] = c.average_score if c.scores.length > 0
     end
   end
 end
