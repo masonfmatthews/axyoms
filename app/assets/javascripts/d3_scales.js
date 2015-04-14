@@ -13,9 +13,17 @@ var redToGreen = d3.scale.linear()
     .range(["hsl(20, 100%, 90%)", "hsl(140, 100%, 90%)"])
     .interpolate(d3.interpolateHcl);
 
+var darkRedToGreen = d3.scale.linear()
+    .domain([1, 6])
+    .range(["hsl(20, 70%, 50%)", "hsl(140, 70%, 50%)"])
+    .interpolate(d3.interpolateHcl);
+
 function colorBadges() {
-  var badges = $(".score-badge");
+  var badges = $(".score-badge-color");
   badges.css("background-color", function() {
     return redToGreen(parseFloat($(this).data("score")));
+  });
+  badges.css("color", function() {
+    return darkRedToGreen(parseFloat($(this).data("score")));
   });
 }
