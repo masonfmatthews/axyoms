@@ -57,13 +57,18 @@ end
 
 Reference.create!(description: "Google", uri: "http://google.com", concept_uuid: Concept.where(name: "Classes").first.uuid)
 
+test_concepts = ["Procedural Programming", "Hashes", "Control Flow", "Variables", "Arrays", "Methods"]
+
 assignment_hashes = [
   { name: "Number Guessing Game",
     uri: "http://github.com",
     concepts: ["Methods", "Arrays"]},
   { name: "Battleship",
     uri: "http://github.com",
-    concepts: ["Classes", "Testing", "Enumerable", "Inheritance"]}
+    concepts: ["Classes", "Testing", "Enumerable", "Inheritance"]},
+  { name: "Test",
+    uri: "http://github.com",
+    concepts: test_concepts}
 ]
 
 assignment_hashes.each do |hash|
@@ -80,7 +85,8 @@ student_names = ["JohnB", "Peter", "Scott", "Anna", "Danai", "Daisy", "Zack",
 
 student_names.each do |n|
   s = Student.create!(name: n, email: "#{n}@#{n}.com")
-  AssignmentCoverage.all.each do |ac|
-    Score.create!(student: s, assignment: ac.assignment, concept_uuid: ac.concept_uuid, score: (s.id % 3)+rand(3))
-  end
+end
+
+test_concepts.each_with_index do |t, i|
+  Score.create!(student: Student.first, assignment: Assignment.last, concept_uuid: Concept.where(name: t).first.uuid, score: i+1)
 end
