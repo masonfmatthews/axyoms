@@ -2,6 +2,7 @@ class AssignmentsController < ApplicationController
   before_action :logged_in_user
   before_action :set_assignment, only: [:show, :edit, :update, :destroy]
   before_action :set_graph_cache, only: [:new, :create, :edit, :update]
+  before_action :set_badge_scores, only: [:edit, :update]
 
   def index
     @assignments = Assignment.paginate(page: params[:page])
@@ -61,6 +62,19 @@ class AssignmentsController < ApplicationController
 
     def set_graph_cache
       @graph_cache = GraphCache.get
+    end
+
+    def set_badge_scores
+      @concept_scores = {}
+      @assignment.concepts.each do |c|
+        @concept_scores[c.name] = c.average_score(assignment_id: @assignment.id)
+      end
+      @concept_scores = @concept_scores.sort_by{|k,v| -v}
+
+      @student_scores = {}
+      Student.all.each do |s|
+        @student_scores[s.name] = s.average_score(assignment_id: @assignment.id)
+      end
     end
 
     def assignment_params

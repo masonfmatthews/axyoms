@@ -1,7 +1,7 @@
 class StudentsController < ApplicationController
   before_action :logged_in_user
   before_action :set_student, only: [:show, :edit, :update, :destroy]
-  before_action :set_assignment_scores, only: [:edit, :update]
+  before_action :set_badge_scores, only: [:edit, :update]
 
   def index
     @students = Student.paginate(page: params[:page])
@@ -46,7 +46,7 @@ class StudentsController < ApplicationController
       @student = Student.find(params[:id])
     end
 
-    def set_assignment_scores
+    def set_badge_scores
       @assignment_scores = {}
       Assignment.all.each do |a|
         @assignment_scores[a.name] = a.average_score(student_id: @student.id)

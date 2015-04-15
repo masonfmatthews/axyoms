@@ -12,7 +12,8 @@
   <% end %>
 
   <div class="row">
-    <div class="col-md-6">
+
+    <div class="col-md-4">
       <h3>Concepts Covered</h3>
       <% @graph_cache.parentage_structure.each do |n| %>
         <%= render partial: "concepts/checkbox_tree", locals: {node: n, subject: @assignment} %>
@@ -38,5 +39,26 @@
         </div>
       <% end %>
     </div>
+
+    <% if @assignment.persisted? %>
+      <div class="col-md-1"></div>
+      <div class="col-md-3">
+        <h3>Concept Scores</h3>
+        <% @concept_scores.each do |name, score| %>
+          <div>
+            <%= render partial: "scores/badge", locals: {score: score} %> <%= name %>
+          </div>
+        <% end %>
+
+        <h3>Student Scores</h3>
+        <% @student_scores.each do |name, score| %>
+          <div>
+            <%= render partial: "scores/badge", locals: {score: score} %> <%= name %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
   </div>
+
 <% end %>
