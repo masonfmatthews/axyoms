@@ -39,7 +39,7 @@
         Assignments
       </h3>
       <% if @concept.assignments.blank? %>
-        <p class="text-muted">None found.</p>
+        <p class="text-muted none-found">None found.</p>
       <% else %>
         <table class="concept-assignments">
           <tbody>
@@ -70,7 +70,7 @@
       <h3>References</h3>
 
       <% if @concept.references.blank? %>
-        <p class="text-muted">None found.</p>
+        <p class="text-muted none-found">None found.</p>
       <% else %>
         <table class="concept-assignments">
           <tbody>
