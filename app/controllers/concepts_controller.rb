@@ -30,6 +30,6 @@ class ConceptsController < ApplicationController
   private
 
     def filter_params
-      params.require(:filters).permit! if params[:filter]
+      params.require(:filters).permit! if params[:filters]
     end
 end
