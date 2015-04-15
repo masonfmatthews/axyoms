@@ -57,18 +57,13 @@ end
 
 Reference.create!(description: "Google", uri: "http://google.com", concept_uuid: Concept.where(name: "Classes").first.uuid)
 
-test_concepts = ["Procedural Programming", "Hashes", "Control Flow", "Variables", "Arrays", "Methods"]
-
 assignment_hashes = [
   { name: "Number Guessing Game",
     uri: "http://github.com",
     concepts: ["Methods", "Arrays"]},
   { name: "Battleship",
     uri: "http://github.com",
-    concepts: ["Classes", "Testing", "Enumerable", "Inheritance"]},
-  { name: "Test",
-    uri: "http://github.com",
-    concepts: test_concepts}
+    concepts: ["Classes", "Testing", "Enumerable", "Inheritance"]}
 ]
 
 assignment_hashes.each do |hash|
@@ -82,11 +77,17 @@ end
 
 student_names = ["JohnB", "Peter", "Scott", "Anna", "Danai", "Daisy", "Zack",
     "Aaron", "JohnG", "Cruz", "Turner", "Tamika", "Nathaniel"]
+student_names.sort!
 
+coverage_count = AssignmentCoverage.count
+student_count = student_names.length
 student_names.each do |n|
   s = Student.create!(name: n, email: "#{n}@#{n}.com")
-end
-
-test_concepts.each_with_index do |t, i|
-  Score.create!(student: Student.first, assignment: Assignment.last, concept_uuid: Concept.where(name: t).first.uuid, score: i+1)
+  AssignmentCoverage.all.each do |ac|
+    score = 1 + 3*(s.id.to_f/student_count) + 2*(ac.id.to_f/coverage_count)
+    Score.create!(student: s,
+        assignment_id: ac.assignment_id,
+        concept_uuid: ac.concept_uuid,
+        score: score)
+  end
 end
