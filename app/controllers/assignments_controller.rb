@@ -23,6 +23,9 @@ class AssignmentsController < ApplicationController
               concept_uuid: concept_uuid, assignment: @assignment)
           score.score = score_value.to_i
           score.save!
+        else
+          Score.where(student_id: student_id,
+              concept_uuid: concept_uuid, assignment: @assignment).destroy_all
         end
       end
     end
