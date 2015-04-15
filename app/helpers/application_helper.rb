@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def browser_title
-    "Mental Mapper" + (@browser_title ? " | #{@browser_title}" : "")
+    "Exomemex" + (@browser_title ? " | #{@browser_title}" : "")
   end
 
   def datetimepicker(form, field_symbol)
