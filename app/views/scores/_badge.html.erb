@@ -1,0 +1,3 @@
+<span class="badge score-badge <%= score ? "score-badge-color" : "" %>" data-score="<%= score %>">
+  <%= score ? number_with_precision(score, precision: 1) : "n/a" %>
+</span>

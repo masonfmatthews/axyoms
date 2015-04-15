@@ -1,6 +1,7 @@
 <tr>
   <td><%= student.name %></td>
   <td><%= student.email %></td>
+  <td><%= render partial: "scores/badge", locals: {score: student.average_score} %></td>
   <td class="icons"><%= link_to '<i class="glyphicon glyphicon-pencil"></i> Edit'.html_safe,
           edit_student_path(student) %></td>
 </tr>

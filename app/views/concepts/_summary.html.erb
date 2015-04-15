@@ -47,10 +47,8 @@
             <% @concept.assignments.each do |a| %>
               <tr>
                 <% if current_user %>
-                  <% score = a.average_score(concept_uuid: @concept.uuid) %>
-                  <td><span class="badge score-badge <%= score ? "score-badge-color" : "" %>" data-score="<%= score %>">
-                    <%= score ? number_with_precision(score, precision: 1) : "n/a" %>
-                  </span></td>
+                  <td><%= render partial: "scores/badge",
+                      locals: {score: a.average_score(concept_uuid: @concept.uuid)} %></td>
                 <% end %>
                 <td><%= link_to a.name, a.uri, target: "_blank" %></td>
                 <% if current_user %>

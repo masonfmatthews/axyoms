@@ -27,3 +27,5 @@ function colorBadges() {
     return darkRedToGreen(parseFloat($(this).data("score")));
   });
 }
+
+$(colorBadges);
