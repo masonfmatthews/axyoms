@@ -16,6 +16,11 @@ class Concept
   has_many :out, :child_concepts, model_class: self, type: 'contains'
   has_one  :in, :parent_concept, model_class: self, origin: :child_concepts
 
+  include IsScored
+  def scores
+    Score.where(concept_uuid: uuid)
+  end
+
   def create_relationship_with(other_node, association="subsequents")
     send(association) << other_node
   end
@@ -30,20 +35,6 @@ class Concept
 
   def references
     Reference.where(concept_uuid: uuid).where.not(concept_uuid: nil)
-  end
-
-  def scores
-    Score.where(concept_uuid: uuid)
-  end
-
-  def average_score
-    score_variable = scores
-    score_variable.reduce(0.0) {|sum, s| sum + s.score} / score_variable.count
-  end
-
-  def average_score_for_student(student)
-    score_variable = scores.where(student: student)
-    score_variable.reduce(0.0) {|sum, s| sum + s.score} / score_variable.count
   end
 
   # TODO: Need dependent destroy on relationships like this

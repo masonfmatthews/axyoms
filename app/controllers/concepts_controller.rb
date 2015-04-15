@@ -21,7 +21,15 @@ class ConceptsController < ApplicationController
   def color_by_comprehension
     @color_hash = {}
     Concept.all.each do |c|
-      @color_hash[c.uuid] = c.average_score if c.scores.length > 0
+      if score = c.average_score(filter_params)
+        @color_hash[c.uuid] = score
+      end
     end
   end
+
+  private
+
+    def filter_params
+      params.require(:filters).permit! if params[:filter]
+    end
 end

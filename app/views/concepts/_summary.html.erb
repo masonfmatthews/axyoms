@@ -47,7 +47,7 @@
             <% @concept.assignments.each do |a| %>
               <tr>
                 <% if current_user %>
-                  <% score = a.average_score_for_concept_uuid(@concept.uuid) %>
+                  <% score = a.average_score(concept_uuid: @concept.uuid) %>
                   <td><span class="badge score-badge <%= score ? "score-badge-color" : "" %>" data-score="<%= score %>">
                     <%= score ? number_with_precision(score, precision: 1) : "n/a" %>
                   </span></td>
