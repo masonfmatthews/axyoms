@@ -1,0 +1,30 @@
+<%= link_to '<< Back to Assignment List'.html_safe, assignments_path %>
+
+<h1>Grade Assignment: <%= @assignment.name %></h1>
+<%= form_tag update_scores_assignment_path(@assignment) do %>
+  <%= hidden_field_tag :id, @assignment.id %>
+  <table class="table edit-scores">
+    <thead>
+      <tr>
+        <th></th>
+        <% @assignment.concepts.each do |c| %>
+          <th><%= c.name %></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @score_hash.each do |student, sub_hash| %>
+        <tr>
+          <td><%= student.name %></td>
+          <% @assignment.concepts.each do |concept| %>
+            <% score = sub_hash[concept] %>
+            <td><%= text_field_tag "scores[#{student.id}][#{concept.uuid}]",
+                  score && score.score, class: "form-control" %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= submit_tag "Save Scores", class: "btn btn-primary" %>
+<% end %>

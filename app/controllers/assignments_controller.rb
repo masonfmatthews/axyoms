@@ -1,8 +1,33 @@
 class AssignmentsController < ApplicationController
   before_action :logged_in_user
-  before_action :set_assignment, only: [:show, :edit, :update, :destroy]
+  before_action :set_assignment, only: [:show, :edit, :update, :destroy, :edit_scores, :update_scores]
   before_action :set_graph_cache, only: [:new, :create, :edit, :update]
   before_action :set_badge_scores, only: [:edit, :update]
+
+  def edit_scores
+    @score_hash = {}
+    Student.all.each do |s|
+      @score_hash[s] = {}
+      @assignment.concepts.each do |c|
+        @score_hash[s][c] = Score.where(student: s,
+            concept_uuid: c.uuid, assignment: @assignment).first
+      end
+    end
+  end
+
+  def update_scores
+    params[:scores].each do |student_id, concepts_hash|
+      concepts_hash.each do |concept_uuid, score_value|
+        if score_value.to_i > 0
+          score = Score.find_or_create_by(student_id: student_id,
+              concept_uuid: concept_uuid, assignment: @assignment)
+          score.score = score_value.to_i
+          score.save!
+        end
+      end
+    end
+    redirect_to assignments_url, notice: 'Scores were successfully saved.'
+  end
 
   def index
     @assignments = Assignment.paginate(page: params[:page])
