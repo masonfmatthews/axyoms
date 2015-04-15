@@ -1,4 +1,5 @@
 class Student < ActiveRecord::Base
+  include IsScored
   has_many :scores, dependent: :destroy
 
   validates :name, presence: true
