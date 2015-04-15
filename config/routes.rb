@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
   resources :students
-  resources :units
-  resources :assignments
   resources :references
+  resources :units
+  resources :assignments do
+    member do
+      get 'edit_scores'
+      post 'update_scores'
+    end
+  end
 
   root 'graph#packed_graph'
   get 'graph/packed_graph'
