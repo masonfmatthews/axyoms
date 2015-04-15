@@ -13,6 +13,7 @@
 
   <div class="row">
     <div class="col-md-4">
+      <h3>Student Details</h3>
       <div class="form-group">
         <%= f.label :name %>
         <%= f.text_field :name, class: "form-control" %>
@@ -31,5 +32,16 @@
         </div>
       <% end %>
     </div>
+    <% if @student.persisted? %>
+      <div class="col-md-2"></div>
+      <div class="col-md-4">
+        <h3>Assignment Scores</h3>
+        <% @assignment_scores.each do |name, score| %>
+          <div>
+            <%= render partial: "scores/badge", locals: {score: score} %> <%= name %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 <% end %>
