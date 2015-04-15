@@ -10,9 +10,8 @@
         class: "btn btn-default btn-sm" %>
     <% else %>
       <% @concept.units.each do |u| %>
-        <span class="label <%= u.completed? ? "label-primary" : "label-default" %>">
-          <%= u.name %>
-        </span>
+        <%= link_to u.name, "javaScript:void(0);",
+          class: "label #{u.completed? ? "label-primary" : "label-default"}"%></span>
       <% end %>
     <% end %>
   </h3>

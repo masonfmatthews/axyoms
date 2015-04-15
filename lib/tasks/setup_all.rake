@@ -8,3 +8,9 @@ namespace :db do
     Rake::Task["db:seed"].invoke
   end
 end
+
+# On Heroku, this cannot run.  Instead, run:
+# 1. heroku pg:reset DATABASE
+# 2. heroku run rake db:migrate
+# 3. heroku run rake db:import_concepts
+# 4. heroku run rake db:seed
