@@ -69,6 +69,7 @@ Views
  Partials
  SCSS/Bootstrap
 
+
 JavaScript
  JS Basics
  jQuery

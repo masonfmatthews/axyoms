@@ -76,7 +76,8 @@ assignment_hashes.each do |hash|
 end
 
 student_names = ["JohnB", "Peter", "Scott", "Anna", "Danai", "Daisy", "Zack",
-    "Aaron", "JohnG", "Cruz", "Turner", "Tamika", "Nathaniel"]
+    "Aaron", "JohnG", "Cruz", "Turner", "Tamika", "Nathaniel", "Jennifer", "Joe"]
+
 student_names.sort!
 
 coverage_count = AssignmentCoverage.count
