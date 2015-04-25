@@ -1,7 +1,7 @@
 Object Oriented Programming
  Classes
  Inheritance
- Composition
+ Composition // As an alternative to Inheritance, Composition is a way to wrap other objects and encapsulate their behavior.  Review examples which we've already done in class, and attempt to build a set of objects with simple composition based on a test suite.
 
 Procedural Programming
  Control Flow
@@ -18,7 +18,7 @@ Git
  Forking
 
 Ruby
- Enumerable
+ Enumerable // Explore the enumerable methods such as `.each`, `.map`, `.reduce`, `.any`, and `.select`.  Discuss what blocks are and how they work, then attempt to write a `.map` method using `.each`.
  Exceptions
  Blocks
  Modules
