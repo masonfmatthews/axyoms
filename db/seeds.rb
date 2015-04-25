@@ -4,13 +4,13 @@ User.create!(name: "Mason",
              password_confirmation: "password")
 
 unit_hash = {"Week 1: M" => ["Procedural Programming", "Control Flow", "Variables"],
-  "Week 1: T" => ["Procedural Programming", "Methods", "Arrays"],
+  "Week 1: T" => ["Procedural Programming", "Methods", "Arrays", "Git", "Add and Commit", "Push", "Commit Messages"],
   "Week 1: W" => ["Procedural Programming", "Arrays", "Hashes"],
   "Week 1: Th" => ["Object Oriented Programming", "Classes"],
-  "Week 2: M" => ["Ruby", "Exceptions", "Testing"],
-  "Week 2: T" => [],
-  "Week 2: W" => [],
-  "Week 2: Th" => [],
+  "Week 2: M" => ["Ruby", "Exceptions", "Testing", "Assertions", "Object Oriented Programming", "Inheritance", "Git", "Clone", "Forking"],
+  "Week 2: T" => ["Ruby", "Modules", "Testing", "Assertions", "Inheritance", "Object Oriented Programming", "Composition"],
+  "Week 2: W" => ["Ruby", "Regex", "Blocks", "Enumerable", "Testing", "Assertions"],
+  "Week 2: Th" => ["Ruby", "Gems", "Testing", "TDD"],
   "Week 3: M" => [],
   "Week 3: T" => [],
   "Week 3: W" => [],
@@ -58,12 +58,30 @@ end
 Reference.create!(description: "Google", uri: "http://google.com", concept_uuid: Concept.where(name: "Classes").first.uuid)
 
 assignment_hashes = [
+  { name: "User Input Statistics",
+    uri: "https://github.com/tiyd-rails-2015-05/input_statistics",
+    concepts: ["Control Flow", "Variables"]},
   { name: "Number Guessing Game",
-    uri: "http://github.com",
+    uri: "https://github.com/tiyd-rails-2015-05/number_guessing",
     concepts: ["Methods", "Arrays"]},
-  { name: "Battleship",
-    uri: "http://github.com",
-    concepts: ["Classes", "Testing", "Enumerable", "Inheritance"]}
+  { name: "Blackjack Advisor",
+    uri: "https://github.com/tiyd-rails-2015-05/blackjack_advisor",
+    concepts: ["Methods", "Arrays"]},
+  { name: "Currency Converter",
+    uri: "https://github.com/tiyd-rails-2015-05/currency_converter_project",
+    concepts: ["Methods", "Arrays"]},
+  { name: "Battleship Day 1",
+    uri: "https://github.com/tiyd-rails-2015-05/battleship",
+    concepts: ["Classes", "Assertions", "Inheritance"]},
+  { name: "Battleship Day 2",
+    uri: "https://github.com/tiyd-rails-2015-05/battleship",
+    concepts: ["Classes", "Assertions", "Composition"]},
+  { name: "Battleship Day 3",
+    uri: "https://github.com/tiyd-rails-2015-05/battleship",
+    concepts: ["Classes", "Assertions", "Enumerable", "Regex"]},
+  { name: "Employee Reviews",
+    uri: "https://github.com/tiyd-rails-2015-05/employee_reviews_project",
+    concepts: ["Composition", "TDD", "Enumerable", "Regex", "Blocks"]}
 ]
 
 assignment_hashes.each do |hash|

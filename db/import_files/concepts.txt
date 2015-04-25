@@ -10,6 +10,12 @@ Procedural Programming
  Arrays
  Hashes
 
+Git
+ Add and Commit
+ Push
+ Commit Messages
+ Clone
+ Forking
 
 Ruby
  Enumerable
@@ -17,7 +23,7 @@ Ruby
  Blocks
  Modules
  Gems
- Regular Expressions
+ Regex
 
 Databases
  DB Design
@@ -35,6 +41,7 @@ Web Technologies
 
 
 Testing
+ Assertions
  Unit Testing
  Fixtures
  TDD
