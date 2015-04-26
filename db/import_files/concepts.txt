@@ -27,6 +27,7 @@ Ruby
 
 Databases
  DB Design
+ Migrations
  SQL
  Indices
 

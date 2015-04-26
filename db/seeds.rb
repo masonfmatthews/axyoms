@@ -11,7 +11,7 @@ unit_hash = {"Week 1: M" => ["Procedural Programming", "Control Flow", "Variable
   "Week 2: T" => ["Ruby", "Modules", "Testing", "Assertions", "Inheritance", "Object Oriented Programming", "Composition"],
   "Week 2: W" => ["Ruby", "Regex", "Blocks", "Enumerable", "Testing", "Assertions"],
   "Week 2: Th" => ["Ruby", "Gems", "Testing", "TDD"],
-  "Week 3: M" => [],
+  "Week 3: M" => ["Databases", "DB Design", "Migrations"],
   "Week 3: T" => [],
   "Week 3: W" => [],
   "Week 3: Th" => [],
@@ -82,7 +82,10 @@ assignment_hashes = [
     concepts: ["Classes", "Assertions", "Enumerable", "Regex"]},
   { name: "Employee Reviews",
     uri: "https://github.com/tiyd-rails-2015-05/employee_reviews_project",
-    concepts: ["Composition", "TDD", "Enumerable", "Regex", "Blocks"]}
+    concepts: ["Composition", "TDD", "Enumerable", "Regex", "Blocks"]},
+  { name: "Time Entry Data Structure",
+    uri: "https://github.com/tiyd-rails-2015-05/time_entry_data_structure",
+    concepts: ["Databases", "DB Design", "Migrations"]}
 ]
 
 assignment_hashes.each do |hash|
