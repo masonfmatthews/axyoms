@@ -27,10 +27,10 @@ unit_hash = {"Week 1: M" => ["Procedural Programming", "Control Flow", "Variable
   "Week 6: T" => ["Rails", "Session", "Web App Patterns", "Authentication"],
   "Week 6: W" => ["Rails", "Session", "Models", "Scope", "Web App Patterns", "Authentication"],
   "Week 6: Th" => ["Models", "Nested Attributes"],
-  "Week 7: M" => [],
-  "Week 7: T" => [],
-  "Week 7: W" => [],
-  "Week 7: Th" => [],
+  "Week 7: T" => ["JavaScript", "JS Basics"],
+  "Week 7: W" => ["JavaScript", "jQuery"],
+  "Week 7: Th" => ["JavaScript", "AJAX"],
+  "Week 7: F" => ["JavaScript"],
   "Week 8: M" => [],
   "Week 8: T" => [],
   "Week 8: W" => [],
@@ -124,7 +124,19 @@ assignment_hashes = [
     concepts: ["Session", "Authorization", "Scope"]},
   { name: "Survey Opossum",
     uri: "https://github.com/tiyd-rails-2015-05/survey_opossum",
-    concepts: ["ERB", "Nested Attributes", "Authentication", "REST", "Deployment", "Testing"]}
+    concepts: ["ERB", "Nested Attributes", "Authentication", "REST", "Deployment", "Testing"]},
+  { name: "Add JavaScript",
+    uri: "https://github.com/tiyd-rails-2015-05/add_javascript",
+    concepts: ["JS Basics"]},
+  { name: "Add jQuery",
+    uri: "https://github.com/tiyd-rails-2015-05/add_jquery",
+    concepts: ["JS Basics", "jQuery"]},
+  { name: "Auction Site",
+    uri: "https://github.com/tiyd-rails-2015-05/auction_ajax",
+    concepts: ["JS Basics", "jQuery", "AJAX"]},
+  { name: "Todo List",
+    uri: "https://github.com/tiyd-rails-2015-05/todo_app",
+    concepts: ["JS Basics", "jQuery", "AJAX", "Asset Pipeline"]}
 ]
 
 assignment_hashes.each do |hash|
