@@ -18,14 +18,14 @@ unit_hash = {"Week 1: M" => ["Procedural Programming", "Control Flow", "Variable
   "Week 4: T" => ["Producing APIs", "HTTP Verbs", "Rails", "MVC"],
   "Week 4: W" => ["Controllers", "The Router", "Testing", "Controller Testing", "HTTP Verbs"],
   "Week 4: Th" => ["APIs", "Models", "Seeds", "Fixtures"],
-  "Week 4: F" => ["Environments", "Deployment"],
+  "Week 4: F" => ["Environments", "Deployment", "Gitflow"],
   "Week 5: M" => ["Web Technologies", "HTML", "CSS"],
   "Week 5: T" => ["Views", "ERB", "HTML Forms", "Git", "reset", "filter-branch"],
   "Week 5: W" => ["REST", "Rails", "Scaffold", "Testing", "Integration Testing"],
   "Week 5: Th" => ["Views", "Helpers", "Partials"],
   "Week 6: M" => ["Rails", "Asset Pipeline", "Views", "SCSS/Bootstrap"],
   "Week 6: T" => ["Session", "Web App Patterns", "Authentication"],
-  "Week 6: W" => ["Session", "Models", "Scope", "Authentication"],
+  "Week 6: W" => ["Session", "Models", "Scope", "Authorization"],
   "Week 6: Th" => ["Nested Attributes"],
   "Week 7: T" => ["JavaScript", "JS Basics"],
   "Week 7: W" => ["jQuery"],
@@ -55,8 +55,8 @@ unit_hash.each do |k, v|
   u.save!
 end
 
-Reference.create!(description: "Enumerable on APIdock", uri: "http://apidock.com/ruby/Enumerable", concept_uuid: Concept.where(name: "Enumerable").first.uuid)
-Reference.create!(description: 'Composition in "Ruby the Hard Way"', uri: "http://learnrubythehardway.org/book/ex44.html", concept_uuid: Concept.where(name: "Composition").first.uuid)
+# Reference.create!(description: "Enumerable on APIdock", uri: "http://apidock.com/ruby/Enumerable", concept_uuid: Concept.where(name: "Enumerable").first.uuid)
+# Reference.create!(description: 'Composition in "Ruby the Hard Way"', uri: "http://learnrubythehardway.org/book/ex44.html", concept_uuid: Concept.where(name: "Composition").first.uuid)
 
 assignment_hashes = [
   { name: "User Input Statistics",
@@ -67,10 +67,10 @@ assignment_hashes = [
     concepts: ["Methods", "Arrays", "add, commit, push"]},
   { name: "Blackjack Advisor",
     uri: "https://github.com/tiyd-rails-2015-05/blackjack_advisor",
-    concepts: ["Methods", "Arrays"]},
+    concepts: ["Methods", "Arrays", "Hashes"]},
   { name: "Currency Converter",
     uri: "https://github.com/tiyd-rails-2015-05/currency_converter_project",
-    concepts: ["Methods", "Arrays"]},
+    concepts: ["Methods", "Arrays", "Hashes", "Exceptions"]},
   { name: "Battleship Day 1",
     uri: "https://github.com/tiyd-rails-2015-05/battleship",
     concepts: ["Classes", "Assertions", "Inheritance"]},
@@ -112,7 +112,7 @@ assignment_hashes = [
     concepts: ["REST", "Scaffold", "Integration Testing"]},
   { name: "Health Tracker",
     uri: "https://github.com/tiyd-rails-2015-05/health_tracker",
-    concepts: ["MVC", "REST", "The Router", "ERB", "Testing", "HTML", "CSS"]},
+    concepts: ["MVC", "REST", "The Router", "ERB", "Testing", "HTML", "CSS", "Helpers", "Partials"]},
   { name: "Restaurant Menu",
     uri: "https://github.com/tiyd-rails-2015-05/restaurant_menu",
     concepts: ["Asset Pipeline", "Deployment", "SCSS/Bootstrap"]},
@@ -169,12 +169,12 @@ student_names.sort!
 coverage_count = AssignmentCoverage.count
 student_count = student_names.length
 student_names.each do |n|
-  s = Student.create!(name: n, email: "#{n}@#{n}.com")
-  AssignmentCoverage.all.each do |ac|
-    score = 1 + 3*(s.id.to_f/student_count) + 2*(ac.id.to_f/coverage_count)
-    Score.create!(student: s,
-        assignment_id: ac.assignment_id,
-        concept_uuid: ac.concept_uuid,
-        score: score)
-  end
+  s = Student.create!(name: n, email: "#{n.downcase}@#{n.downcase}.com")
+  # AssignmentCoverage.all.each do |ac|
+  #   score = 1 + 3*(s.id.to_f/student_count) + 2*(ac.id.to_f/coverage_count)
+  #   Score.create!(student: s,
+  #       assignment_id: ac.assignment_id,
+  #       concept_uuid: ac.concept_uuid,
+  #       score: score)
+  # end
 end
