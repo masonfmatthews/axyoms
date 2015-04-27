@@ -29,8 +29,6 @@ Ruby
 
 Databases
  DB Design
- Validations
- Associations
  SQL
  Indices
 
@@ -75,7 +73,6 @@ Models
  Validations
  Seeds
  Scope
- Nested Attributes
  AREL
 
 Views

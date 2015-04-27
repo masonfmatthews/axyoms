@@ -4,44 +4,44 @@ User.create!(name: "Mason",
              password_confirmation: "password")
 
 unit_hash = {"Week 1: M" => ["Procedural Programming", "Control Flow", "Variables"],
-  "Week 1: T" => ["Procedural Programming", "Methods", "Arrays", "Git", "add, commit, push", "Commit Messages"],
-  "Week 1: W" => ["Procedural Programming", "Arrays", "Hashes"],
+  "Week 1: T" => ["Methods", "Arrays", "Git", "add, commit, push", "Commit Messages"],
+  "Week 1: W" => ["Arrays", "Hashes"],
   "Week 1: Th" => ["Object Oriented Programming", "Classes"],
-  "Week 2: M" => ["Ruby", "Exceptions", "Testing", "Assertions", "Object Oriented Programming", "Inheritance", "Git"],
-  "Week 2: T" => ["Ruby", "Modules", "Testing", "Assertions", "Inheritance", "Object Oriented Programming", "Composition"],
-  "Week 2: W" => ["Ruby", "Regex", "Blocks", "Enumerable", "Testing", "Assertions"],
-  "Week 2: Th" => ["Ruby", "Gems", "Testing", "TDD"],
+  "Week 2: M" => ["Ruby", "Exceptions", "Testing", "Assertions", "Inheritance", "Git"],
+  "Week 2: T" => ["Modules", "Assertions", "Inheritance", "Composition"],
+  "Week 2: W" => ["Regex", "Blocks", "Enumerable", "Assertions"],
+  "Week 2: Th" => ["Gems", "TDD"],
   "Week 3: M" => ["Databases", "DB Design", "Migrations"],
-  "Week 3: T" => ["Databases", "Migrations", "Unit Testing", "ActiveRecord"],
-  "Week 3: W" => ["Databases", "Associations", "Validations", "Git", "branch", "merge"],
+  "Week 3: T" => ["Migrations", "Unit Testing", "ActiveRecord"],
+  "Week 3: W" => ["Associations", "Validations", "Git", "branch", "merge"],
   "Week 3: Th" => ["APIs", "Consuming APIs", "Token Security", "Web Technologies", "HTTP", "JSON"],
-  "Week 4: T" => ["APIs", "Producing APIs", "Web Technologies", "HTTP Verbs", "Rails", "MVC"],
-  "Week 4: W" => ["Rails", "Controllers", "The Router", "Testing", "Controller Testing", "HTTP Verbs"],
-  "Week 4: Th" => ["APIs", "Models", "Seeds", "Testing", "Fixtures"],
-  "Week 4: F" => ["Rails", "Environments", "Deployment"],
+  "Week 4: T" => ["Producing APIs", "HTTP Verbs", "Rails", "MVC"],
+  "Week 4: W" => ["Controllers", "The Router", "Testing", "Controller Testing", "HTTP Verbs"],
+  "Week 4: Th" => ["APIs", "Models", "Seeds", "Fixtures"],
+  "Week 4: F" => ["Environments", "Deployment"],
   "Week 5: M" => ["Web Technologies", "HTML", "CSS"],
-  "Week 5: T" => ["Views", "ERB", "Web Technologies", "HTML Forms", "Git", "reset", "filter-branch"],
-  "Week 5: W" => ["Web Technologies", "REST", "Rails", "Scaffold", "Testing", "Integration Testing"],
+  "Week 5: T" => ["Views", "ERB", "HTML Forms", "Git", "reset", "filter-branch"],
+  "Week 5: W" => ["REST", "Rails", "Scaffold", "Testing", "Integration Testing"],
   "Week 5: Th" => ["Views", "Helpers", "Partials"],
   "Week 6: M" => ["Rails", "Asset Pipeline", "Views", "SCSS/Bootstrap"],
-  "Week 6: T" => ["Rails", "Session", "Web App Patterns", "Authentication"],
-  "Week 6: W" => ["Rails", "Session", "Models", "Scope", "Web App Patterns", "Authentication"],
-  "Week 6: Th" => ["Models", "Nested Attributes"],
+  "Week 6: T" => ["Session", "Web App Patterns", "Authentication"],
+  "Week 6: W" => ["Session", "Models", "Scope", "Authentication"],
+  "Week 6: Th" => ["Nested Attributes"],
   "Week 7: T" => ["JavaScript", "JS Basics"],
-  "Week 7: W" => ["JavaScript", "jQuery"],
-  "Week 7: Th" => ["JavaScript", "AJAX"],
-  "Week 7: F" => ["JavaScript"],
+  "Week 7: W" => ["jQuery"],
+  "Week 7: Th" => ["AJAX"],
+  "Week 7: F" => [],
   "Week 8: M" => ["Databases", "SQL", "Indices", "Models", "AREL", "Efficiency", "Runtime"],
   "Week 8: T" => ["Web App Patterns", "Mailers", "Background Processing"],
-  "Week 8: W" => ["Web App Patterns", "File Uploads"],
+  "Week 8: W" => ["File Uploads"],
   "Week 8: Th" => ["APIs", "oAuth"],
   "Week 9: M" => ["Efficiency", "Runtime"],
-  "Week 9: T" => ["Efficiency", "Memory"],
+  "Week 9: T" => ["Memory"],
   "Week 9: W" => [],
   "Week 9: Th" => []
 }
 
-first_day = "2015-04-04".to_date
+first_day = "2015-03-04".to_date
 first_week = (0..3).to_a.map {|i| first_day + i.days}
 all_days = (0..8).to_a.map {|j| first_week.map {|day| day + j.weeks}}
 all_days.flatten!
@@ -115,7 +115,7 @@ assignment_hashes = [
     concepts: ["MVC", "REST", "The Router", "ERB", "Testing", "HTML", "CSS"]},
   { name: "Restaurant Menu",
     uri: "https://github.com/tiyd-rails-2015-05/restaurant_menu",
-    concepts: ["Asset Pipeline", "Deployments", "SCSS/Bootstrap"]},
+    concepts: ["Asset Pipeline", "Deployment", "SCSS/Bootstrap"]},
   { name: "Teacherbook",
     uri: "https://github.com/tiyd-rails-2015-05/teacherbook",
     concepts: ["Authentication", "Session"]},
@@ -155,6 +155,7 @@ assignment_hashes.each do |hash|
   a = Assignment.create!(name: hash[:name],
              uri: hash[:uri])
   hash[:concepts].each do |concept_name|
+    puts concept_name
     a.coverages.build(concept_uuid: Concept.where(name: concept_name).first.uuid)
   end
   a.save!

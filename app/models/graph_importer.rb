@@ -27,7 +27,7 @@ class GraphImporter
           clauses[0] = clauses[0][2..-1]
           implementation = true
         end
-
+        
         stack[depth] = @graph.create_node(name: clauses[0],
           description: clauses[1], is_implementation: implementation)
         if depth > 0
