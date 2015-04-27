@@ -41,7 +41,7 @@ unit_hash = {"Week 1: M" => ["Procedural Programming", "Control Flow", "Variable
   "Week 9: Th" => []
 }
 
-first_day = "2015-03-04".to_date
+first_day = "2015-05-04".to_date
 first_week = (0..3).to_a.map {|i| first_day + i.days}
 all_days = (0..8).to_a.map {|j| first_week.map {|day| day + j.weeks}}
 all_days.flatten!
