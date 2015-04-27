@@ -31,12 +31,12 @@ unit_hash = {"Week 1: M" => ["Procedural Programming", "Control Flow", "Variable
   "Week 7: W" => ["JavaScript", "jQuery"],
   "Week 7: Th" => ["JavaScript", "AJAX"],
   "Week 7: F" => ["JavaScript"],
-  "Week 8: M" => [],
-  "Week 8: T" => [],
-  "Week 8: W" => [],
-  "Week 8: Th" => [],
-  "Week 9: M" => [],
-  "Week 9: T" => [],
+  "Week 8: M" => ["Databases", "SQL", "Indices", "Models", "AREL", "Efficiency", "Runtime"],
+  "Week 8: T" => ["Web App Patterns", "Mailers", "Background Processing"],
+  "Week 8: W" => ["Web App Patterns", "File Uploads"],
+  "Week 8: Th" => ["APIs", "oAuth"],
+  "Week 9: M" => ["Efficiency", "Runtime"],
+  "Week 9: T" => ["Efficiency", "Memory"],
   "Week 9: W" => [],
   "Week 9: Th" => []
 }
@@ -136,7 +136,19 @@ assignment_hashes = [
     concepts: ["JS Basics", "jQuery", "AJAX"]},
   { name: "Todo List",
     uri: "https://github.com/tiyd-rails-2015-05/todo_app",
-    concepts: ["JS Basics", "jQuery", "AJAX", "Asset Pipeline"]}
+    concepts: ["JS Basics", "jQuery", "AJAX", "Asset Pipeline"]},
+  { name: "Survey Opossum Plus SQL",
+    uri: "https://github.com/tiyd-rails-2015-05/survey_opossum_plus_sql",
+    concepts: ["SQL", "Indices", "AREL"]},
+  { name: "Delayed Mailer",
+    uri: "https://github.com/tiyd-rails-2015-05/delayed_mailer",
+    concepts: ["Mailers", "Background Processing"]},
+  { name: "Reports on S3",
+    uri: "https://github.com/tiyd-rails-2015-05/reports_on_s3",
+    concepts: ["File Uploads"]},
+  { name: "Take a Ticket",
+    uri: "https://github.com/tiyd-rails-2015-05/take_a_ticket",
+    concepts: ["Rails", "Web App Patterns"]}
 ]
 
 assignment_hashes.each do |hash|
