@@ -4,7 +4,7 @@ User.create!(name: "Mason",
              password_confirmation: "password")
 
 unit_hash = {"Week 1: M" => ["Procedural Programming", "Control Flow", "Variables"],
-  "Week 1: T" => ["Procedural Programming", "Methods", "Arrays", "Git", "Add and Commit", "Push", "Commit Messages"],
+  "Week 1: T" => ["Procedural Programming", "Methods", "Arrays", "Git", "Add, Commit, Push", "Commit Messages"],
   "Week 1: W" => ["Procedural Programming", "Arrays", "Hashes"],
   "Week 1: Th" => ["Object Oriented Programming", "Classes"],
   "Week 2: M" => ["Ruby", "Exceptions", "Testing", "Assertions", "Object Oriented Programming", "Inheritance", "Git", "Clone", "Forking"],
@@ -12,9 +12,9 @@ unit_hash = {"Week 1: M" => ["Procedural Programming", "Control Flow", "Variable
   "Week 2: W" => ["Ruby", "Regex", "Blocks", "Enumerable", "Testing", "Assertions"],
   "Week 2: Th" => ["Ruby", "Gems", "Testing", "TDD"],
   "Week 3: M" => ["Databases", "DB Design", "Migrations"],
-  "Week 3: T" => [],
-  "Week 3: W" => [],
-  "Week 3: Th" => [],
+  "Week 3: T" => ["Databases", "Migrations", "Unit Testing", "ActiveRecord"],
+  "Week 3: W" => ["Databases", "Associations", "Validations", "Git", "Branch", "Merge"],
+  "Week 3: Th" => ["APIs", "Consuming", "Token Security", "Web Technologies", "HTTP", "JSON"],
   "Week 4: M" => [],
   "Week 4: T" => [],
   "Week 4: W" => [],
@@ -85,7 +85,16 @@ assignment_hashes = [
     concepts: ["Composition", "TDD", "Enumerable", "Regex", "Blocks"]},
   { name: "Time Entry Data Structure",
     uri: "https://github.com/tiyd-rails-2015-05/time_entry_data_structure",
-    concepts: ["Databases", "DB Design", "Migrations"]}
+    concepts: ["DB Design", "Migrations"]},
+  { name: "Employee Reviews w/ DB",
+    uri: "https://github.com/tiyd-rails-2015-05/employee_reviews_with_db",
+    concepts: ["Migrations", "Unit Testing", "ActiveRecord"]},
+  { name: "Legacy Associations",
+    uri: "https://github.com/tiyd-rails-2015-05/legacy_associations_and_validations",
+    concepts: ["Associations", "Validations", "Branch", "Merge"]},
+  { name: "Weather Report",
+    uri: "https://github.com/tiyd-rails-2015-05/weather_report",
+    concepts: ["Consuming", "Token Security", "HTTP", "JSON"]}
 ]
 
 assignment_hashes.each do |hash|

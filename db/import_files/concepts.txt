@@ -11,11 +11,12 @@ Procedural Programming
  Hashes
 
 Git
- Add and Commit
- Push
+ Add, Commit, Push
  Commit Messages
  Clone
  Forking
+ Branch
+ Merge
 
 Ruby
  Enumerable // Explore the enumerable methods such as `.each`, `.map`, `.reduce`, `.any`, and `.select`.  Discuss what blocks are and how they work, then attempt to write a `.map` method using `.each`.
@@ -27,15 +28,16 @@ Ruby
 
 Databases
  DB Design
- Migrations
+ Validations
+ Associations
  SQL
  Indices
 
 Web Technologies
+ HTTP
  HTML
  CSS
  JSON
- XML/CSV/etc
  HTML Verbs
  HTML Forms
  REST
@@ -43,14 +45,15 @@ Web Technologies
 
 Testing
  Assertions
- Unit Testing
- Fixtures
  TDD
+ Unit Testing
  Controller Testing
  Integration Testing
+ Fixtures
 
 Rails
  MVC
+ Controllers
  The Router
  Scaffold
  Environments
