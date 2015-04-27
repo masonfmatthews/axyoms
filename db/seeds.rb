@@ -14,11 +14,11 @@ unit_hash = {"Week 1: M" => ["Procedural Programming", "Control Flow", "Variable
   "Week 3: M" => ["Databases", "DB Design", "Migrations"],
   "Week 3: T" => ["Databases", "Migrations", "Unit Testing", "ActiveRecord"],
   "Week 3: W" => ["Databases", "Associations", "Validations", "Git", "Branch", "Merge"],
-  "Week 3: Th" => ["APIs", "Consuming", "Token Security", "Web Technologies", "HTTP", "JSON"],
-  "Week 4: M" => [],
-  "Week 4: T" => [],
-  "Week 4: W" => [],
-  "Week 4: Th" => [],
+  "Week 3: Th" => ["APIs", "Consuming APIs", "Token Security", "Web Technologies", "HTTP", "JSON"],
+  "Week 4: T" => ["APIs", "Producing APIs", "Web Technologies", "HTML Verbs", "Rails", "MVC"],
+  "Week 4: W" => ["Rails", "Controllers", "The Router", "Testing", "Controller Testing", "HTML Verbs"],
+  "Week 4: Th" => ["APIs", "Models", "Seeds", "Testing", "Fixtures"],
+  "Week 4: F" => ["Rails", "Environments", "Deployment"],
   "Week 5: M" => [],
   "Week 5: T" => [],
   "Week 5: W" => [],
@@ -94,7 +94,13 @@ assignment_hashes = [
     concepts: ["Associations", "Validations", "Branch", "Merge"]},
   { name: "Weather Report",
     uri: "https://github.com/tiyd-rails-2015-05/weather_report",
-    concepts: ["Consuming", "Token Security", "HTTP", "JSON"]}
+    concepts: ["Consuming APIs", "Token Security", "HTTP", "JSON"]},
+  { name: "Voting API",
+    uri: "https://github.com/tiyd-rails-2015-05/voting_api",
+    concepts: ["Producing APIs", "HTML Verbs", "MVC", "Controllers", "The Router", "Controller Testing"]},
+  { name: "Build Your Own API",
+    uri: "https://github.com/tiyd-rails-2015-05/novel_api",
+    concepts: ["Producing APIs", "Consuming APIs", "JSON", "HTML Verbs", "Seeds", "Fixtures", "Environments", "Deployment"]}
 ]
 
 assignment_hashes.each do |hash|

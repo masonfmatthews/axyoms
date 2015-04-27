@@ -17,6 +17,7 @@ Git
  Forking
  Branch
  Merge
+ Gitflow
 
 Ruby
  Enumerable // Explore the enumerable methods such as `.each`, `.map`, `.reduce`, `.any`, and `.select`.  Discuss what blocks are and how they work, then attempt to write a `.map` method using `.each`.
@@ -35,10 +36,10 @@ Databases
 
 Web Technologies
  HTTP
- HTML
- CSS
  JSON
  HTML Verbs
+ HTML
+ CSS
  HTML Forms
  REST
 
@@ -62,8 +63,8 @@ Rails
  Session
 
 APIs
- Consuming // HTTParty and Nokogiri
- Producing // ActiveModel Serializers
+ Consuming APIs // HTTParty and Nokogiri
+ Producing APIs // ActiveModel Serializers
  Token Security
  OAuth
 
