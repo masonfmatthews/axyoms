@@ -75,6 +75,7 @@ Models
  Validations
  Seeds
  Scope
+ Nested Attributes
 
 Views
  ERB

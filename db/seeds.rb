@@ -23,10 +23,10 @@ unit_hash = {"Week 1: M" => ["Procedural Programming", "Control Flow", "Variable
   "Week 5: T" => ["Views", "ERB", "Web Technologies", "HTML Forms", "Git", "reset", "filter-branch"],
   "Week 5: W" => ["Web Technologies", "REST", "Rails", "Scaffold", "Testing", "Integration Testing"],
   "Week 5: Th" => ["Views", "Helpers", "Partials"],
-  "Week 6: M" => [],
-  "Week 6: T" => [],
-  "Week 6: W" => [],
-  "Week 6: Th" => [],
+  "Week 6: M" => ["Rails", "Asset Pipeline", "Views", "SCSS/Bootstrap"],
+  "Week 6: T" => ["Rails", "Session", "Web App Patterns", "Authentication"],
+  "Week 6: W" => ["Rails", "Session", "Models", "Scope", "Web App Patterns", "Authentication"],
+  "Week 6: Th" => ["Models", "Nested Attributes"],
   "Week 7: M" => [],
   "Week 7: T" => [],
   "Week 7: W" => [],
@@ -112,10 +112,19 @@ assignment_hashes = [
     concepts: ["REST", "Scaffold", "Integration Testing"]},
   { name: "Health Tracker",
     uri: "https://github.com/tiyd-rails-2015-05/health_tracker",
-    concepts: ["MVC", "REST", "The Router", "ERB", "Testing", "Deployments", "HTML", "CSS"]},
-  { name: "Health Tracker",
-    uri: "https://github.com/tiyd-rails-2015-05/health_tracker",
-    concepts: ["MVC", "REST", "Scaffold", "Integration Testing", "HTML Forms"]}
+    concepts: ["MVC", "REST", "The Router", "ERB", "Testing", "HTML", "CSS"]},
+  { name: "Restaurant Menu",
+    uri: "https://github.com/tiyd-rails-2015-05/restaurant_menu",
+    concepts: ["Asset Pipeline", "Deployments", "SCSS/Bootstrap"]},
+  { name: "Teacherbook",
+    uri: "https://github.com/tiyd-rails-2015-05/teacherbook",
+    concepts: ["Authentication", "Session"]},
+  { name: "Gradebook",
+    uri: "https://github.com/tiyd-rails-2015-05/gradebook",
+    concepts: ["Session", "Authorization", "Scope"]},
+  { name: "Survey Opossum",
+    uri: "https://github.com/tiyd-rails-2015-05/survey_opossum",
+    concepts: ["ERB", "Nested Attributes", "Authentication", "REST", "Deployment", "Testing"]}
 ]
 
 assignment_hashes.each do |hash|
