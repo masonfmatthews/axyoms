@@ -11,12 +11,12 @@ Procedural Programming
  Hashes
 
 Git
- Add, Commit, Push
  Commit Messages
- Clone
- Forking
- Branch
- Merge
+ add, commit, push
+ branch
+ merge
+ reset
+ filter-branch
  Gitflow
 
 Ruby
@@ -37,7 +37,7 @@ Databases
 Web Technologies
  HTTP
  JSON
- HTML Verbs
+ HTTP Verbs
  HTML
  CSS
  HTML Forms
@@ -77,6 +77,7 @@ Models
  Scope
 
 Views
+ ERB
  Helpers
  Partials
  SCSS/Bootstrap
