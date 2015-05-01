@@ -10,7 +10,7 @@ var greyscale = d3.scale.linear()
 
 var redToGreen = d3.scale.linear()
     .domain([1, 6])
-    .range(["hsl(20, 100%, 90%)", "hsl(140, 100%, 90%)"])
+    .range(["hsl(20, 100%, 75%)", "hsl(140, 100%, 75%)"])
     .interpolate(d3.interpolateHcl);
 
 var darkRedToGreen = d3.scale.linear()
