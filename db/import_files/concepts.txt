@@ -1,7 +1,7 @@
 Object Oriented Programming
  Classes
  Inheritance
- Composition // As an alternative to Inheritance, Composition is a way to wrap other objects and encapsulate their behavior.  Review examples which we've already done in class, and attempt to build a set of objects with simple composition based on a test suite.
+ Composition
  Modules
 
 Procedural Programming
@@ -41,12 +41,12 @@ Web Technologies
 
 
 Testing
- Assertions
  TDD
  Unit Testing
  Controller Testing
  Integration Testing
  Fixtures
+ Mocking and Stubbing
 
 Rails
  MVC
@@ -59,8 +59,8 @@ Rails
  Session
 
 APIs
- Consuming APIs // HTTParty and Nokogiri
- Producing APIs // ActiveModel Serializers
+ Consuming APIs
+ Producing APIs
  Token Security
  oAuth
 
