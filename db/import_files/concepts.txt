@@ -19,11 +19,11 @@ Git
  Workflows
 
 Ruby
- Enumerable // Explore the enumerable methods such as `.each`, `.map`, `.reduce`, `.any`, and `.select`.  Discuss what blocks are and how they work, then attempt to write a `.map` method using `.each`.
- Exceptions
+ Enumerable
  Blocks
+ Exceptions
  Gems
- Regex
+ Regular Expressions
 
 Databases
  DB Design
@@ -54,15 +54,14 @@ Rails
  The Router
  Scaffold
  Environments
- Deployment // Heroku
+ Deployment
  Asset Pipeline
  Session
 
 APIs
  Consuming APIs
  Producing APIs
- Token Security
- oAuth
+ API Security
 
 Models
  Migrations
@@ -81,7 +80,7 @@ Views
 
 
 JavaScript
- JS Basics
+ DOM Manipulation
  jQuery
  AJAX
 
@@ -89,10 +88,10 @@ Efficiency
  Runtime
  Memory
 
-
 Web App Patterns
  Authentication
  Authorization
+ oAuth
  Mailers
  Background Processing
  File Uploads
