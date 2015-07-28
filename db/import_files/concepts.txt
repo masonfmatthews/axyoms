@@ -1,15 +1,16 @@
-Object Oriented Programming
- Classes
- Inheritance
- Composition
- Modules
-
 Procedural Programming
  Control Flow
  Variables
  Methods
  Arrays
  Hashes
+ Regular Expressions
+
+Object Oriented Programming
+ Classes
+ Inheritance
+ Composition
+ Modules
 
 Git
  Commit Messages
@@ -23,20 +24,21 @@ Ruby
  Blocks
  Exceptions
  Gems
- Regular Expressions
 
 Databases
  DB Design
+ Many-to-many
  SQL
  Indices
 
 Web Technologies
  HTTP
- JSON
+ Parameters
  HTTP Verbs
+ JSON
  HTML
- CSS
  HTML Forms
+ CSS
  REST
 
 
@@ -50,12 +52,10 @@ Testing
 
 Rails
  MVC
+ Routing
  Controllers
- The Router
  Scaffold
- Environments
  Deployment
- Asset Pipeline
  Session
 
 APIs
@@ -63,30 +63,34 @@ APIs
  Producing APIs
  API Security
 
-Models
+ActiveRecord
  Migrations
- ActiveRecord
+ Models
  Associations
  Validations
  Seeds
- Scope
+ Nested Attributes
  AREL
 
 Views
  ERB
  Helpers
  Partials
- SCSS/Bootstrap
+ SCSS
+ Asset Pipeline
 
 
 JavaScript
  DOM Manipulation
  jQuery
+ Unobtrusive JavaScript
  AJAX
+ d3.js
 
 Efficiency
- Runtime
- Memory
+ Query Optimizations
+ Runtime Optimizations
+ Memory Optimizations
 
 Web App Patterns
  Authentication
@@ -95,4 +99,4 @@ Web App Patterns
  Mailers
  Background Processing
  File Uploads
- Nested Attributes
+ DevOps
