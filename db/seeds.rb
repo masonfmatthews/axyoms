@@ -41,7 +41,7 @@ unit_hash = {"Week 1: Day 1" => ["Procedural Programming", "Control Flow", "Vari
   "Week 9: Day 4" => []
 }
 
-first_day = "2015-05-04".to_date
+first_day = "2015-08-31".to_date
 first_week = (0..3).to_a.map {|i| first_day + i.days}
 all_days = (0..8).to_a.map {|j| first_week.map {|day| day + j.weeks}}
 all_days.flatten!
@@ -55,99 +55,96 @@ unit_hash.each do |k, v|
   u.save!
 end
 
-# Reference.create!(description: "Enumerable on APIdock", uri: "http://apidock.com/ruby/Enumerable", concept_uuid: Concept.where(name: "Enumerable").first.uuid)
-# Reference.create!(description: 'Composition in "Ruby the Hard Way"', uri: "http://learnrubythehardway.org/book/ex44.html", concept_uuid: Concept.where(name: "Composition").first.uuid)
-
 assignment_hashes = [
   { name: "User Input Statistics",
-    uri: "https://github.com/tiyd-rails-2015-05/input_statistics",
+    uri: "https://github.com/tiyd-rails-2015-08/input_statistics",
     concepts: ["Control Flow", "Variables"]},
   { name: "Number Guessing Game",
-    uri: "https://github.com/tiyd-rails-2015-05/number_guessing",
+    uri: "https://github.com/tiyd-rails-2015-08/number_guessing",
     concepts: ["Methods", "Arrays", "add, commit, push"]},
   { name: "Blackjack Advisor",
-    uri: "https://github.com/tiyd-rails-2015-05/blackjack_advisor",
+    uri: "https://github.com/tiyd-rails-2015-08/blackjack_advisor",
     concepts: ["Methods", "Arrays", "Hashes"]},
   { name: "Currency Converter",
-    uri: "https://github.com/tiyd-rails-2015-05/currency_converter_project",
+    uri: "https://github.com/tiyd-rails-2015-08/currency_converter_project",
     concepts: ["Methods", "Arrays", "Hashes", "Exceptions"]},
   { name: "Battleship Day 1",
-    uri: "https://github.com/tiyd-rails-2015-05/battleship",
+    uri: "https://github.com/tiyd-rails-2015-08/battleship",
     concepts: ["Classes", "Assertions", "Inheritance"]},
   { name: "Battleship Day 2",
-    uri: "https://github.com/tiyd-rails-2015-05/battleship",
+    uri: "https://github.com/tiyd-rails-2015-08/battleship",
     concepts: ["Classes", "Assertions", "Composition"]},
   { name: "Battleship Day 3",
-    uri: "https://github.com/tiyd-rails-2015-05/battleship",
+    uri: "https://github.com/tiyd-rails-2015-08/battleship",
     concepts: ["Classes", "Assertions", "Enumerable", "Regex"]},
   { name: "Employee Reviews",
-    uri: "https://github.com/tiyd-rails-2015-05/employee_reviews_project",
+    uri: "https://github.com/tiyd-rails-2015-08/employee_reviews_project",
     concepts: ["Composition", "TDD", "Enumerable", "Regex", "Blocks"]},
   { name: "Time Entry Data Structure",
-    uri: "https://github.com/tiyd-rails-2015-05/time_entry_data_structure",
+    uri: "https://github.com/tiyd-rails-2015-08/time_entry_data_structure",
     concepts: ["DB Design", "Migrations"]},
   { name: "Employee Reviews w/ DB",
-    uri: "https://github.com/tiyd-rails-2015-05/employee_reviews_with_db",
+    uri: "https://github.com/tiyd-rails-2015-08/employee_reviews_with_db",
     concepts: ["Migrations", "Unit Testing", "ActiveRecord"]},
   { name: "Legacy Associations",
-    uri: "https://github.com/tiyd-rails-2015-05/legacy_associations_and_validations",
+    uri: "https://github.com/tiyd-rails-2015-08/legacy_associations_and_validations",
     concepts: ["Associations", "Validations", "branch", "merge"]},
   { name: "Weather Report",
-    uri: "https://github.com/tiyd-rails-2015-05/weather_report",
+    uri: "https://github.com/tiyd-rails-2015-08/weather_report",
     concepts: ["Consuming APIs", "Token Security", "HTTP", "JSON"]},
   { name: "Voting API",
-    uri: "https://github.com/tiyd-rails-2015-05/voting_api",
+    uri: "https://github.com/tiyd-rails-2015-08/voting_api",
     concepts: ["Producing APIs", "HTTP Verbs", "MVC", "Controllers", "The Router", "Controller Testing"]},
   { name: "Build Your Own API",
-    uri: "https://github.com/tiyd-rails-2015-05/novel_api",
+    uri: "https://github.com/tiyd-rails-2015-08/novel_api",
     concepts: ["Producing APIs", "Consuming APIs", "JSON", "HTTP Verbs", "Seeds", "Fixtures", "Environments", "Deployment"]},
   { name: "CSS Reverse Engineering",
-    uri: "https://github.com/tiyd-rails-2015-05/css_reverse_engineering",
+    uri: "https://github.com/tiyd-rails-2015-08/css_reverse_engineering",
     concepts: ["HTML", "CSS"]},
   { name: "Recreate GitHub Profile",
-    uri: "https://github.com/tiyd-rails-2015-05/github_profile",
+    uri: "https://github.com/tiyd-rails-2015-08/github_profile",
     concepts: ["ERB", "HTML Forms", "Git", "reset", "filter-branch"]},
   { name: "Wallet",
-    uri: "https://github.com/tiyd-rails-2015-05/wallet",
+    uri: "https://github.com/tiyd-rails-2015-08/wallet",
     concepts: ["REST", "Scaffold", "Integration Testing"]},
   { name: "Health Tracker",
-    uri: "https://github.com/tiyd-rails-2015-05/health_tracker",
+    uri: "https://github.com/tiyd-rails-2015-08/health_tracker",
     concepts: ["MVC", "REST", "The Router", "ERB", "Testing", "HTML", "CSS", "Helpers", "Partials"]},
   { name: "Restaurant Menu",
-    uri: "https://github.com/tiyd-rails-2015-05/restaurant_menu",
+    uri: "https://github.com/tiyd-rails-2015-08/restaurant_menu",
     concepts: ["Asset Pipeline", "Deployment", "SCSS/Bootstrap"]},
   { name: "Teacherbook",
-    uri: "https://github.com/tiyd-rails-2015-05/teacherbook",
+    uri: "https://github.com/tiyd-rails-2015-08/teacherbook",
     concepts: ["Authentication", "Session"]},
   { name: "Gradebook",
-    uri: "https://github.com/tiyd-rails-2015-05/gradebook",
+    uri: "https://github.com/tiyd-rails-2015-08/gradebook",
     concepts: ["Session", "Authorization", "Scope"]},
   { name: "Survey Opossum",
-    uri: "https://github.com/tiyd-rails-2015-05/survey_opossum",
+    uri: "https://github.com/tiyd-rails-2015-08/survey_opossum",
     concepts: ["ERB", "Nested Attributes", "Authentication", "REST", "Deployment", "Testing"]},
   { name: "Add JavaScript",
-    uri: "https://github.com/tiyd-rails-2015-05/add_javascript",
+    uri: "https://github.com/tiyd-rails-2015-08/add_javascript",
     concepts: ["JS Basics"]},
   { name: "Add jQuery",
-    uri: "https://github.com/tiyd-rails-2015-05/add_jquery",
+    uri: "https://github.com/tiyd-rails-2015-08/add_jquery",
     concepts: ["JS Basics", "jQuery"]},
   { name: "Auction Site",
-    uri: "https://github.com/tiyd-rails-2015-05/auction_ajax",
+    uri: "https://github.com/tiyd-rails-2015-08/auction_ajax",
     concepts: ["JS Basics", "jQuery", "AJAX"]},
   { name: "Todo List",
-    uri: "https://github.com/tiyd-rails-2015-05/todo_app",
+    uri: "https://github.com/tiyd-rails-2015-08/todo_app",
     concepts: ["JS Basics", "jQuery", "AJAX", "Asset Pipeline"]},
   { name: "Survey Opossum Plus SQL",
-    uri: "https://github.com/tiyd-rails-2015-05/survey_opossum_plus_sql",
+    uri: "https://github.com/tiyd-rails-2015-08/survey_opossum_plus_sql",
     concepts: ["SQL", "Indices", "AREL"]},
   { name: "Delayed Mailer",
-    uri: "https://github.com/tiyd-rails-2015-05/delayed_mailer",
+    uri: "https://github.com/tiyd-rails-2015-08/delayed_mailer",
     concepts: ["Mailers", "Background Processing"]},
   { name: "Reports on S3",
-    uri: "https://github.com/tiyd-rails-2015-05/reports_on_s3",
+    uri: "https://github.com/tiyd-rails-2015-08/reports_on_s3",
     concepts: ["File Uploads"]},
   { name: "Take a Ticket",
-    uri: "https://github.com/tiyd-rails-2015-05/take_a_ticket",
+    uri: "https://github.com/tiyd-rails-2015-08/take_a_ticket",
     concepts: ["Rails", "Web App Patterns"]}
 ]
 
@@ -161,20 +158,4 @@ assignment_hashes.each do |hash|
   a.save!
 end
 
-student_names = ["JohnB", "Peter", "Scott", "Anna", "Danai", "Daisy", "Zack",
-    "Aaron", "JohnG", "Cruz", "Turner", "Tamika", "Nathaniel", "Jennifer", "Joe"]
-
-student_names.sort!
-
-coverage_count = AssignmentCoverage.count
-student_count = student_names.length
-student_names.each do |n|
-  s = Student.create!(name: n, email: "#{n.downcase}@#{n.downcase}.com")
-  # AssignmentCoverage.all.each do |ac|
-  #   score = 1 + 3*(s.id.to_f/student_count) + 2*(ac.id.to_f/coverage_count)
-  #   Score.create!(student: s,
-  #       assignment_id: ac.assignment_id,
-  #       concept_uuid: ac.concept_uuid,
-  #       score: score)
-  # end
-end
+s = Student.create!(name: "Student 1", email: "student@dev.null")
