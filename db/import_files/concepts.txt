@@ -13,8 +13,10 @@ Object Oriented Programming
  Modules
 
 Git
+ init, add, commit, push
  Commit Messages
- add, commit, push
+ fork, clone, pull
+ .git, .gitignore
  branch, merge
  reset, filter-branch
  Workflows
@@ -95,8 +97,8 @@ Efficiency
 Web App Patterns
  Authentication
  Authorization
- oAuth
  Mailers
  Background Processing
  File Uploads
+ oAuth
  DevOps
