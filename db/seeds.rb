@@ -27,7 +27,7 @@ unit_hash = {"Week 1: Day 1" => ["Procedural Programming", "Control Flow", "Vari
   "Week 6: Day 2" => ["Session", "Web App Patterns", "Authentication"],
   "Week 6: Day 3" => ["Integration Testing", "Authorization"],
   "Week 6: Day 4" => ["Nested Attributes"],
-  "Week 7: Day 1" => ["JavaScript", "DOM Manipulataion"],
+  "Week 7: Day 1" => ["JavaScript", "DOM Manipulation"],
   "Week 7: Day 2" => ["jQuery", "Unobtrusive JavaScript"],
   "Week 7: Day 3" => ["AJAX"],
   "Week 7: Day 4" => [],
@@ -50,6 +50,7 @@ unit_hash.each do |k, v|
   u = Unit.create!(name: k,
              delivered_at: all_days.shift)
   v.each do |concept_name|
+    puts concept_name
     u.coverages.build(concept_uuid: Concept.where(name: concept_name).first.uuid)
   end
   u.save!
@@ -91,7 +92,7 @@ assignment_hashes = [
     concepts: ["Consuming APIs", "HTTP", "JSON"]},
   { name: "Voting API",
     uri: "https://github.com/tiyd-rails-2015-08/voting_api",
-    concepts: ["Producing APIs", "HTTP Verbs", "MVC", "Controllers", "The Router", "Controller Testing"]},
+    concepts: ["Producing APIs", "HTTP Verbs", "MVC", "Controllers", "Routing", "Controller Testing"]},
   { name: "Build Your Own API",
     uri: "https://github.com/tiyd-rails-2015-08/build_your_own_api",
     concepts: ["Producing APIs", "Consuming APIs", "JSON", "HTTP Verbs", "Seeds", "Fixtures"]},
@@ -112,7 +113,7 @@ assignment_hashes = [
     concepts: ["Asset Pipeline", "Deployment", "SCSS"]},
   { name: "Gradebook",
     uri: "https://github.com/tiyd-rails-2015-08/gradebook",
-    concepts: ["Session", "Authentication", "Authorization", "Scope"]},
+    concepts: ["Session", "Authentication", "Authorization"]},
   { name: "Survey Opossum",
     uri: "https://github.com/tiyd-rails-2015-08/survey_opossum",
     concepts: ["ERB", "Nested Attributes", "Authentication", "REST", "Deployment", "Testing"]},
@@ -197,7 +198,7 @@ assignment_hashes = [
     concepts: ["Session"]},
   { name: "Challenge: Discuss Git Messes",
     uri: "https://github.com/rails_assignments/tree/master/challenges/discuss_git_messes.md",
-    concepts: ["Git" "reset, filter-branch"]},
+    concepts: ["Git", "reset, filter-branch"]},
   { name: "Challenge: Primes",
     uri: "https://github.com/rails_assignments/tree/master/challenges/hard_primes_challenge.rb",
     concepts: ["Procedural Programming"]},

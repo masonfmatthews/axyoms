@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20150412022639) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "assignment_coverages", force: true do |t|
+  create_table "assignment_coverages", force: :cascade do |t|
     t.integer  "assignment_id"
     t.uuid     "concept_uuid"
     t.datetime "created_at"
@@ -25,14 +25,14 @@ ActiveRecord::Schema.define(version: 20150412022639) do
 
   add_index "assignment_coverages", ["assignment_id"], name: "index_assignment_coverages_on_assignment_id", using: :btree
 
-  create_table "assignments", force: true do |t|
+  create_table "assignments", force: :cascade do |t|
     t.string   "name"
     t.string   "uri"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "graph_caches", force: true do |t|
+  create_table "graph_caches", force: :cascade do |t|
     t.text     "parentage_depth_cache"
     t.text     "precedence_depth_cache"
     t.text     "parentage_structure_cache"
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20150412022639) do
     t.datetime "updated_at"
   end
 
-  create_table "references", force: true do |t|
+  create_table "references", force: :cascade do |t|
     t.uuid     "concept_uuid"
     t.string   "uri"
     t.string   "description"
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20150412022639) do
     t.datetime "updated_at"
   end
 
-  create_table "scores", force: true do |t|
+  create_table "scores", force: :cascade do |t|
     t.integer  "student_id"
     t.integer  "assignment_id"
     t.uuid     "concept_uuid"
@@ -62,14 +62,14 @@ ActiveRecord::Schema.define(version: 20150412022639) do
   add_index "scores", ["assignment_id"], name: "index_scores_on_assignment_id", using: :btree
   add_index "scores", ["student_id"], name: "index_scores_on_student_id", using: :btree
 
-  create_table "students", force: true do |t|
+  create_table "students", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "unit_coverages", force: true do |t|
+  create_table "unit_coverages", force: :cascade do |t|
     t.integer  "unit_id"
     t.uuid     "concept_uuid"
     t.datetime "created_at"
@@ -78,14 +78,14 @@ ActiveRecord::Schema.define(version: 20150412022639) do
 
   add_index "unit_coverages", ["unit_id"], name: "index_unit_coverages_on_unit_id", using: :btree
 
-  create_table "units", force: true do |t|
+  create_table "units", force: :cascade do |t|
     t.string   "name"
     t.datetime "delivered_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"

@@ -9,11 +9,11 @@ Databases -> Rails
 Ruby -> Testing
 Ruby -> Rails
 
-Rails -> Models
+Rails -> ActiveRecord
 Rails -> Views
 Rails -> JavaScript
 Rails -> Efficiency
 
-Models -> Web App Patterns
+ActiveRecord -> Web App Patterns
 Views -> Web App Patterns
 JavaScript -> Web App Patterns
