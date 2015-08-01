@@ -87,12 +87,6 @@ class AssignmentsController < ApplicationController
     end
 
     def set_badge_scores
-      @concept_scores = {}
-      @assignment.concepts.each do |c|
-        @concept_scores[c.name] = c.average_score(assignment_id: @assignment.id)
-      end
-      @concept_scores = @concept_scores.sort_by{|k,v| -(v.to_f)}
-
       @student_scores = {}
       Student.all.each do |s|
         @student_scores[s.name] = s.average_score(assignment_id: @assignment.id)

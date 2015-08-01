@@ -43,12 +43,6 @@
     <% if @assignment.persisted? %>
       <div class="col-md-1"></div>
       <div class="col-md-3">
-        <h3>Concept Scores</h3>
-        <% @concept_scores.each do |name, score| %>
-          <div>
-            <%= render partial: "scores/badge", locals: {score: score} %> <%= name %>
-          </div>
-        <% end %>
 
         <h3>Student Scores</h3>
         <% @student_scores.each do |name, score| %>

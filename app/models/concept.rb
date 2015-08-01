@@ -18,8 +18,9 @@ class Concept
 
   include IsScored
   def scores
-    Score.joins(assignment: :coverages)
-        .where(assignment: {coverages: {concept_uuid: uuid}})
+    Score.joins("INNER JOIN assignments ON scores.assignment_id=assignments.id " +
+        "INNER JOIN assignment_coverages ON assignments.id=assignment_coverages.assignment_id")
+        .where("assignment_coverages.concept_uuid='#{uuid}'")
   end
 
   def create_relationship_with(other_node, association="subsequents")
