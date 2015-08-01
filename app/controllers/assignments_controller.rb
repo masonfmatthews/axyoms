@@ -5,29 +5,23 @@ class AssignmentsController < ApplicationController
   before_action :set_badge_scores, only: [:edit, :update]
 
   def edit_scores
+    @students = Student.all
     @score_hash = {}
-    Student.all.each do |s|
-      @score_hash[s] = {}
-      @assignment.concepts.each do |c|
-        @score_hash[s][c] = Score.where(student: s,
-            concept_uuid: c.uuid, assignment: @assignment).first
-      end
+    @students.each do |student|
+      score = Score.where(assignment_id: @assignment.id,
+          student_id: student.id).first
+      @score_hash[student.id] = {score: score && score.score,
+          comments: score && score.comments}
     end
   end
 
   def update_scores
-    params[:scores].each do |student_id, concepts_hash|
-      concepts_hash.each do |concept_uuid, score_value|
-        if score_value.to_i > 0
-          score = Score.find_or_create_by(student_id: student_id,
-              concept_uuid: concept_uuid, assignment: @assignment)
-          score.score = score_value.to_i
-          score.save!
-        else
-          Score.where(student_id: student_id,
-              concept_uuid: concept_uuid, assignment: @assignment).destroy_all
-        end
-      end
+    params[:students].each do |student_id, score_hash|
+      score = Score.find_or_create_by(assignment_id: @assignment.id,
+          student_id: student_id)
+      score.score = score_hash[:score]
+      score.comments = score_hash[:comments]
+      score.save!
     end
     redirect_to assignments_url, notice: 'Scores were successfully saved.'
   end

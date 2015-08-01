@@ -3,10 +3,13 @@ table.edit-scores {
   margin-bottom: 20px;
 
   input {
-    width: 100px;
+    margin-right: 5px;
   }
 
-  th, td {
-    width: 110px;
+  textarea {
+    border-radius: 4px;
+    border-color: lightgrey;
+    height: 6em;
+    width: 18em;
   }
 }

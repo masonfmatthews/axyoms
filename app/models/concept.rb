@@ -18,7 +18,8 @@ class Concept
 
   include IsScored
   def scores
-    Score.where(concept_uuid: uuid)
+    Score.joins(assignment: :coverages)
+        .where(assignment: {coverages: {concept_uuid: uuid}})
   end
 
   def create_relationship_with(other_node, association="subsequents")

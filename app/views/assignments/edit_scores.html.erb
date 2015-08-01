@@ -7,20 +7,27 @@
     <thead>
       <tr>
         <th></th>
-        <% @assignment.concepts.each do |c| %>
-          <th><%= c.name %></th>
-        <% end %>
+        <th>Score</th>
+        <th>Comments</th>
       </tr>
     </thead>
     <tbody>
-      <% @score_hash.each do |student, sub_hash| %>
+      <% @students.each do |student| %>
         <tr>
           <td><%= student.name %></td>
-          <% @assignment.concepts.each do |concept| %>
-            <% score = sub_hash[concept] %>
-            <td><%= text_field_tag "scores[#{student.id}][#{concept.uuid}]",
-                  score && score.score, class: "form-control" %></td>
-          <% end %>
+          <td>
+            <%= radio_button_tag "students[#{student.id}][score]", 0,
+                @score_hash[student.id][:score] == 0 %> Did not submit <br />
+            <%= radio_button_tag "students[#{student.id}][score]", 1,
+                @score_hash[student.id][:score] == 1 %> Incomplete <br />
+            <%= radio_button_tag "students[#{student.id}][score]", 2,
+                @score_hash[student.id][:score] == 2 %> Complete <br />
+            <%= radio_button_tag "students[#{student.id}][score]", 3, 
+                @score_hash[student.id][:score] == 3 %> Exceptional <br />
+          </td>
+          <td>
+            <%= text_area_tag "students[#{student.id}][comments]", @score_hash[student.id][:comments] %>
+          </td>
         </tr>
       <% end %>
     </tbody>
