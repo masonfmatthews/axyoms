@@ -8,4 +8,6 @@ class Assignment < ActiveRecord::Base
 
   validates :name, presence: true
   validates :uri, presence: true, format: {with: /\Ahttps?:\/\//, message: "must start with http:// or https://"}
+
+  default_scope { order(:created_at) }
 end

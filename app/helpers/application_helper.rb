@@ -12,4 +12,8 @@ module ApplicationHelper
     "<span class='glyphicon glyphicon-plus'></span>
         #{show_text ? " Add #{class_name.titleize}" : ''}".html_safe
   end
+
+  def shortener(string, length)
+    string.length > length ? string.first(length) + "..." : string
+  end
 end
