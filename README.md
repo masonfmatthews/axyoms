@@ -30,13 +30,17 @@ Next Steps for Mental Mapper
 
 Fixes/Improvements:
 
+* Choose better color scales for 0-4 grading scale.
+* Allow instructors to enter comments for every assignment grade.
+* Modify grading to automatically distribute a single score on an assignment across its covered concepts.
+* Allow instructors to give a +1 or -1 to any concept on any assignment.
 * Better name!
 * Validation at grading time is not tight.  Malicious or sloppy users could potentially introduce problematic data that does not fall between 1 and 6.
-* Redirection after adding or editing assignments or references is not natural.  You always go to the respective list page, but it would be nicer to go to the concept map with the referring concept selected.
+* Redirection after adding or editing assignments or references is not intuitive.  You always go to the respective list page, but it would be nicer to go to the concept map with the referring concept selected.
 
 Feature Roadmap:
 
-* Allow users to edit the concept graph via the UI.  This is currently tricky due to graph caching.
 * Allow students to log in and see their scores.
 * Allow student feedback scores for units.
+* Allow users to edit the concept graph via the UI.  This is currently tricky due to graph caching.
 * Multi-tenancy.
