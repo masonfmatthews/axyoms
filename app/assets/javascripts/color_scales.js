@@ -8,23 +8,47 @@ var greyscale = d3.scale.linear()
     .range(["hsl(0, 0%, 90%)", "hsl(0, 0%, 28%)"])
     .interpolate(d3.interpolateHcl);
 
-var redToGreen = d3.scale.linear()
-    .domain([1, 6])
-    .range(["hsl(20, 100%, 75%)", "hsl(140, 100%, 75%)"])
-    .interpolate(d3.interpolateHcl);
+// var paleColor = d3.scale.linear()
+//     .domain([0, 3])
+//     .range(["hsl(20, 100%, 75%)", "hsl(140, 100%, 75%)"])
+//     .interpolate(d3.interpolateHcl);
 
-var darkRedToGreen = d3.scale.linear()
-    .domain([1, 6])
-    .range(["hsl(20, 70%, 50%)", "hsl(140, 70%, 50%)"])
-    .interpolate(d3.interpolateHcl);
+// var darkColor = d3.scale.linear()
+//     .domain([0, 3])
+//     .range(["hsl(20, 70%, 50%)", "hsl(140, 70%, 50%)"])
+//     .interpolate(d3.interpolateHcl);
+
+function paleColor(value) {
+  if (value > 2.5) {
+    return "hsl(150, 50%, 70%)";
+  } else if (value > 1.5) {
+    return "hsl(150, 50%, 80%)";
+  } else if (value > 0.5) {
+    return "hsl(0, 50%, 90%)";
+  } else {
+    return "hsl(0, 50%, 80%)";
+  }
+}
+
+function darkColor(value) {
+  if (value > 2.5) {
+    return "hsl(150, 50%, 50%)";
+  } else if (value > 1.5) {
+    return "hsl(150, 50%, 70%)";
+  } else if (value > 0.5) {
+    return "hsl(0, 50%, 80%)";
+  } else {
+    return "hsl(0, 50%, 70%)";
+  }
+}
 
 function colorBadges() {
   var badges = $(".score-badge-color");
   badges.css("background-color", function() {
-    return redToGreen(parseFloat($(this).data("score")));
+    return paleColor(parseFloat($(this).data("score")));
   });
   badges.css("color", function() {
-    return darkRedToGreen(parseFloat($(this).data("score")));
+    return darkColor(parseFloat($(this).data("score")));
   });
 }
 
