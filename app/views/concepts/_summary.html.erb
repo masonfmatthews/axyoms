@@ -47,14 +47,14 @@
               <tr>
                 <% if current_user %>
                   <td><%= render partial: "scores/badge",
-                      locals: {score: a.average_score(concept_uuid: @concept.uuid)} %></td>
+                      locals: {score: a.average_score} %></td>
                 <% end %>
                 <td><%= link_to a.name, a.uri, target: "_blank" %></td>
                 <% if current_user %>
-                  <td><%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe,
-                        edit_assignment_path(a), class: "colorless" %></td>
                   <td><%= link_to '<i class="glyphicon glyphicon-book"></i>'.html_safe,
                         edit_scores_assignment_path(a), class: "colorless" %></td>
+                  <td><%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe,
+                        edit_assignment_path(a), class: "colorless" %></td>
                 <% end %>
               </tr>
             <% end %>
