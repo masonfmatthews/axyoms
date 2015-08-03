@@ -9,6 +9,8 @@
         <th></th>
         <th>Score</th>
         <th>Comments</th>
+        <th>+1 Concepts</th>
+        <th>-1 Concepts</th>
       </tr>
     </thead>
     <tbody>
@@ -34,6 +36,12 @@
           </td>
           <td>
             <%= text_area_tag "students[#{student.id}][comments]", @score_hash[student.id][:comments] %>
+          </td>
+          <td>
+            <%= select_tag "students[#{student.id}][positives]", options_for_select(Concept.all.map &:name) %>
+          </td>
+          <td>
+            <%= select_tag "students[#{student.id}][negatives]", options_for_select(Concept.all.map &:name) %>
           </td>
         </tr>
       <% end %>
