@@ -30,9 +30,6 @@ Next Steps for Mental Mapper
 
 Fixes/Improvements:
 
-* Choose better color scales for 0-4 grading scale.
-* Allow instructors to enter comments for every assignment grade.
-* Modify grading to automatically distribute a single score on an assignment across its covered concepts.
 * Allow instructors to give a +1 or -1 to any concept on any assignment.
 * Better name!
 * Validation at grading time is not tight.  Malicious or sloppy users could potentially introduce problematic data that does not fall between 1 and 6.
