@@ -52,4 +52,12 @@ function colorBadges() {
   });
 }
 
+function colorSpans() {
+  var spans = $(".score-span-color");
+  spans.css("color", function() {
+    return darkColor(parseFloat($(this).data("score")));
+  });
+}
+
 $(colorBadges);
+$(colorSpans);

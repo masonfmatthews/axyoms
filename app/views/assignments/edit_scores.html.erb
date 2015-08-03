@@ -17,13 +17,20 @@
           <td><%= student.name %></td>
           <td>
             <%= radio_button_tag "students[#{student.id}][score]", 0,
-                @score_hash[student.id][:score] == 0 %> Did not submit <br />
+                @score_hash[student.id][:score] == 0 %>
+            <span class="score-span-color" data-score=0>Did not submit</span>
+            <br />
             <%= radio_button_tag "students[#{student.id}][score]", 1,
-                @score_hash[student.id][:score] == 1 %> Incomplete <br />
+                @score_hash[student.id][:score] == 1 %>
+            <span class="score-span-color" data-score=1>Incomplete</span>
+            <br />
             <%= radio_button_tag "students[#{student.id}][score]", 2,
-                @score_hash[student.id][:score] == 2 %> Complete <br />
-            <%= radio_button_tag "students[#{student.id}][score]", 3, 
-                @score_hash[student.id][:score] == 3 %> Exceptional <br />
+                @score_hash[student.id][:score] == 2 %>
+            <span class="score-span-color" data-score=2>Complete</span>
+            <br />
+            <%= radio_button_tag "students[#{student.id}][score]", 3,
+                @score_hash[student.id][:score] == 3 %>
+            <span class="score-span-color" data-score=3>Exceptional</span>
           </td>
           <td>
             <%= text_area_tag "students[#{student.id}][comments]", @score_hash[student.id][:comments] %>
