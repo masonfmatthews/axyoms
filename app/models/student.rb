@@ -1,6 +1,7 @@
 class Student < ActiveRecord::Base
   include IsScored
   has_many :scores, dependent: :destroy
+  has_many :impressions, dependent: :destroy
 
   validates :name, presence: true
   validates :email, presence: true,
