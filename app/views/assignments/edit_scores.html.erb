@@ -38,10 +38,12 @@
             <%= text_area_tag "students[#{student.id}][comments]", @score_hash[student.id][:comments] %>
           </td>
           <td>
-            <%= select_tag "students[#{student.id}][positives]", options_for_select(Concept.all.map &:name) %>
+            <%= select_tag "students[#{student.id}][positives]",
+                options_for_select([["(None)", ""]] + @concepts.map {|c| [c.name, c.uuid]}) %>
           </td>
           <td>
-            <%= select_tag "students[#{student.id}][negatives]", options_for_select(Concept.all.map &:name) %>
+            <%= select_tag "students[#{student.id}][negatives]",
+                options_for_select([["(None)", ""]] + @concepts.map {|c| [c.name, c.uuid]}) %>
           </td>
         </tr>
       <% end %>
