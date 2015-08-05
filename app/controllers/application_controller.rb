@@ -9,4 +9,8 @@ class ApplicationController < ActionController::Base
       redirect_to login_url
     end
   end
+
+  private def clear_highlighted_student
+    session[:highlighted_student_id] = nil
+  end
 end

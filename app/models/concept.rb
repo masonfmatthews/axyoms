@@ -23,7 +23,7 @@ class Concept
   end
 
   def average_score(student_id)
-    pertinent_scores = student_id ? scores.where(student_id: student_id) : scores
+    pertinent_scores = (student_id ? scores.where(student_id: student_id) : scores)
     return nil if pertinent_scores.blank?
     impression_total_for(student_id) + (pertinent_scores.reduce(0.0) {|sum, s| sum + s.score})/(pertinent_scores.count)
   end

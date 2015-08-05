@@ -1,6 +1,7 @@
 class GraphController < ApplicationController
   before_action :set_graph
   before_action :set_students
+  before_action :clear_highlighted_student
 
   def packed_graph
   end
