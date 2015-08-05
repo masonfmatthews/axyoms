@@ -28,7 +28,7 @@
                 <% end %></li>
                 <li class="divider"></li>
                 <% @students.each do |s| %>
-                  <li><%= link_to concepts_color_by_comprehension_path(filters: {student_id: s.id}), remote: true do %>
+                  <li><%= link_to concepts_color_by_comprehension_path(student_id: s.id), remote: true do %>
                     <i class="glyphicon glyphicon-user"></i> <%= s.name %>
                   <% end %></li>
                 <% end %>
