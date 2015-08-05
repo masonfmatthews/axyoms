@@ -23,6 +23,12 @@ class AssignmentsController < ApplicationController
       score.score = score_hash[:score]
       score.comments = score_hash[:comments]
       score.save!
+      unless score_hash[:positives].blank?
+        Impression.find_or_create_by(assignment_id: @assignment.id,
+            student_id: student_id,
+            concept_uuid: score_hash[:positives],
+            positive: true)
+      end
     end
     redirect_to assignments_url, notice: 'Scores were successfully saved.'
   end
