@@ -13,4 +13,8 @@ class Impression < ActiveRecord::Base
   def description
     (positive ? "+" : "-") + "1 for " + concept.name + " on " + assignment.name
   end
+
+  def description_with_student
+    (positive ? "+" : "-") + "1 for " + concept.name + " by " + student.name
+  end
 end

@@ -50,6 +50,24 @@
             <%= render partial: "scores/badge", locals: {score: score} %> <%= name %>
           </div>
         <% end %>
+
+        <h3>Assignment +1s</h3>
+        <% if @assignment.positive_impressions.blank? %>
+          <div class="text-muted">None</div>
+        <% else %>
+          <% @assignment.positive_impressions.each do |i| %>
+            <div class="score-span-color" data-score=3><%= i.description_with_student %></div>
+          <% end %>
+        <% end %>
+
+        <h3>Assignment -1s</h3>
+        <% if @assignment.negative_impressions.blank? %>
+          <div class="text-muted">None</div>
+        <% else %>
+          <% @assignment.negative_impressions.each do |i| %>
+            <div class="score-span-color" data-score=0><%= i.description_with_student %></div>
+          <% end %>
+        <% end %>
       </div>
     <% end %>
 

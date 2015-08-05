@@ -22,6 +22,10 @@
         <%= f.label :email %>
         <%= f.text_field :email, class: "form-control" %>
       </div>
+      <div class="form-group">
+        Overall Score:
+        <%= render partial: "scores/badge", locals: {score: @student.average_score} %>
+      </div>
       <div class="actions">
         <%= f.submit class: "btn btn-primary" %>
       </div>
