@@ -11,4 +11,12 @@ module IsScored
     pertinent_impressions = student ? impressions.where(student_id: student.id) : impressions
     IMPRESSION_FACTOR * impressions.reduce(0.0) {|sum, i| sum + (i.positive ? 1 : -1)}
   end
+
+  def positive_impressions
+    impressions.where(positive: true)
+  end
+
+  def negative_impressions
+    impressions.where(positive: false)
+  end
 end

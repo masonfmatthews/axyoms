@@ -31,6 +31,25 @@
                 confirm: "Are you sure you want to delete this student?" %>
         </div>
       <% end %>
+
+      <h3>Student +1s</h3>
+      <% if @student.positive_impressions.blank? %>
+        <div class="text-muted">None</div>
+      <% else %>
+        <% @student.positive_impressions.each do |i| %>
+          <div class="score-span-color" data-score=3><%= i.description %></div>
+        <% end %>
+      <% end %>
+
+      <h3>Student -1s</h3>
+      <% if @student.negative_impressions.blank? %>
+        <div class="text-muted">None</div>
+      <% else %>
+        <% @student.negative_impressions.each do |i| %>
+          <div class="score-span-color" data-score=0><%= i.description %></div>
+        <% end %>
+      <% end %>
+
     </div>
     <% if @student.persisted? %>
       <div class="col-md-2"></div>
