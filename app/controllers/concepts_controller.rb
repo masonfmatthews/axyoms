@@ -22,9 +22,10 @@ class ConceptsController < ApplicationController
 
   def color_by_comprehension
     session[:highlighted_student_id] = params[:student_id]
+    @student = Student.find_by_id(params[:student_id])
     @color_hash = {}
     Concept.all.each do |c|
-      if score = c.average_score(session[:highlighted_student_id])
+      if score = c.average_score(@student)
         @color_hash[c.uuid] = score
       end
     end

@@ -16,25 +16,14 @@ class Concept
   has_many :out, :child_concepts, model_class: self, type: 'contains'
   has_one  :in, :parent_concept, model_class: self, origin: :child_concepts
 
+  include IsScored
   def scores
     Score.joins("INNER JOIN assignments ON scores.assignment_id=assignments.id " +
         "INNER JOIN assignment_coverages ON assignments.id=assignment_coverages.assignment_id")
         .where("assignment_coverages.concept_uuid='#{uuid}'")
   end
-
-  def average_score(student_id = nil)
-    pertinent_scores = (student_id ? scores.where(student_id: student_id) : scores)
-    return nil if pertinent_scores.blank?
-    impression_score(student_id) + (pertinent_scores.reduce(0.0) {|sum, s| sum + s.score})/(pertinent_scores.count)
-  end
-
-  def impression_score(student_id)
-    if student_id
-      impressions = Impression.where(student_id: student_id, concept_uuid: uuid)
-    else
-      impressions = Impression.where(concept_uuid: uuid)
-    end
-    0.5 * impressions.reduce(0.0) {|sum, i| sum + (i.positive ? 1 : -1)}
+  def impressions
+    Impression.where(concept_uuid: uuid)
   end
 
   def create_relationship_with(other_node, association="subsequents")
