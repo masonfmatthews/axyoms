@@ -12,6 +12,10 @@ module CoversConcepts
     @cached_concepts ||= Concept.find(concept_uuids)
   end
 
+  def concept_names
+    concepts.map(&:name).join(", ")
+  end
+
   def set_coverage(uuids)
     self.coverages = []
     unless uuids.blank?

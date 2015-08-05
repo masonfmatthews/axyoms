@@ -1,6 +1,9 @@
 <%= link_to '<< Back to Assignment List'.html_safe, assignments_path %>
 
 <h1>Grade Assignment: <%= @assignment.name %></h1>
+
+<h3 class="text-muted">Concepts: <%= @assignment.concept_names %></h3>
+
 <%= form_tag update_scores_assignment_path(@assignment) do %>
   <%= hidden_field_tag :id, @assignment.id %>
   <table class="table edit-scores">
