@@ -67,12 +67,22 @@
         <p class="text-muted none-found">None found.</p>
       <% else %>
         <table class="concept-assignments">
+          <% if @student %>
+            <thead>
+              <th>All</th>
+              <th>St</th>
+            </thead>
+          <% end %>
           <tbody>
             <% @concept.assignments.each do |a| %>
               <tr>
                 <% if current_user %>
                   <td><%= render partial: "scores/badge",
                       locals: {score: a.average_score} %></td>
+                  <% if @student %>
+                    <td><%= render partial: "scores/badge",
+                        locals: {score: a.average_score(@student)} %></td>
+                  <% end %>
                 <% end %>
                 <td><%= link_to a.name, a.uri, target: "_blank" %></td>
                 <% if current_user %>

@@ -6,7 +6,11 @@
 
   margin-bottom: 13px;
 
-  td {
+  th {
+    text-align: center;
+    color: lightgrey;
+  }
+  td, th {
     padding-left: 10px;
   }
 }

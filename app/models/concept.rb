@@ -22,13 +22,13 @@ class Concept
         .where("assignment_coverages.concept_uuid='#{uuid}'")
   end
 
-  def average_score(student_id)
+  def average_score(student_id = nil)
     pertinent_scores = (student_id ? scores.where(student_id: student_id) : scores)
     return nil if pertinent_scores.blank?
-    impression_total_for(student_id) + (pertinent_scores.reduce(0.0) {|sum, s| sum + s.score})/(pertinent_scores.count)
+    impression_score(student_id) + (pertinent_scores.reduce(0.0) {|sum, s| sum + s.score})/(pertinent_scores.count)
   end
 
-  def impression_total_for(student_id)
+  def impression_score(student_id)
     if student_id
       impressions = Impression.where(student_id: student_id, concept_uuid: uuid)
     else
