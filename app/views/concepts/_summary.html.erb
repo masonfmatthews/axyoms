@@ -95,11 +95,32 @@
             <% end %>
           </tbody>
         </table>
-      <% end %>
 
-      <% if current_user %>
-        <%= link_to add_link_text("Assignment"), new_assignment_path(concept_uuid: @concept.uuid),
-          class: "btn btn-default btn-xs" %>
+        <% if current_user %>
+          <%= link_to add_link_text("Assignment"), new_assignment_path(concept_uuid: @concept.uuid),
+            class: "btn btn-default btn-xs" %>
+
+          <% if @student %>
+            <h3>Student +1s</h3>
+            <% if @student.positive_impressions(@concept).blank? %>
+              <div class="text-muted">None</div>
+            <% else %>
+              <% @student.positive_impressions(@concept).each do |i| %>
+                <div class="score-span-color" data-score=3><%= i.description %></div>
+              <% end %>
+            <% end %>
+
+            <h3>Student -1s</h3>
+            <% if @student.negative_impressions(@concept).blank? %>
+              <div class="text-muted">None</div>
+            <% else %>
+              <% @student.negative_impressions(@concept).each do |i| %>
+                <div class="score-span-color" data-score=0><%= i.description %></div>
+              <% end %>
+            <% end %>
+          <% end %>
+
+        <% end %>
       <% end %>
 
     </div>
@@ -110,5 +131,6 @@
 
   <script>
     colorBadges();
+    colorSpans();
   </script>
 <% end %>
