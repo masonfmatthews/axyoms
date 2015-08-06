@@ -2,8 +2,6 @@ var actives = <%= @color_hash.to_json.html_safe %>
 
 var all_circles = d3.selectAll(".node")
 
-all_circles.style("stroke", function(d) {return greyscale(d.depth);});
-
 all_circles.filter(function(d) {return actives.hasOwnProperty(d.uuid);})
     .classed("node-color", true)
     .transition()
@@ -14,7 +12,8 @@ all_circles.filter(function(d) {return actives.hasOwnProperty(d.uuid);})
 all_circles.filter(function(d) {return !(actives.hasOwnProperty(d.uuid));})
     .transition()
     .duration(500)
-    .style("fill", function(d) {return greyscale(d.depth);});
+    .style("fill", function(d) {return greyscale(d.depth);})
+    .style("stroke", function(d) {return greyscale(d.depth+2);});
 
 d3.selectAll(".link")
     .transition()
