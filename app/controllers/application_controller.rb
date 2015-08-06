@@ -15,9 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   private def save_highlighted_student
-    if params[:student_id]
-      session[:highlighted_student_id] = params[:student_id]
-      @student = Student.find_by_id(params[:student_id])
-    end
+    session[:highlighted_student_id] = params[:student_id]
+    @student = Student.find_by_id(params[:student_id])
   end
 end
