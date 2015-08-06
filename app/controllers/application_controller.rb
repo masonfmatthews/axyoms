@@ -13,4 +13,11 @@ class ApplicationController < ActionController::Base
   private def clear_highlighted_student
     session[:highlighted_student_id] = nil
   end
+
+  private def save_highlighted_student
+    if params[:student_id]
+      session[:highlighted_student_id] = params[:student_id]
+      @student = Student.find_by_id(params[:student_id])
+    end
+  end
 end

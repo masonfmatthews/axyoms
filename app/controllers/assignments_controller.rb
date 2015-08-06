@@ -20,7 +20,7 @@ class AssignmentsController < ApplicationController
     params[:students].each do |student_id, score_hash|
       score = Score.find_or_create_by(assignment_id: @assignment.id,
           student_id: student_id)
-      score.score = score_hash[:score]
+      score.score = score_hash[:score].to_i
       score.comments = score_hash[:comments]
       score.save!
       unless score_hash[:positives].blank?
