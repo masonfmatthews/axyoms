@@ -20,7 +20,7 @@ function duplicateImpression() {
   var hiddenWrapper = impressionGroup.find(".impression-wrapper").last();
   impressionGroup.append(hiddenWrapper.clone());
   hiddenWrapper.show();
-  bindRemoveImpression
+  bindRemoveImpression();
 }
 
 function bindDuplicateImpression() {

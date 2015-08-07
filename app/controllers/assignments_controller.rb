@@ -30,12 +30,12 @@ class AssignmentsController < ApplicationController
             concept_uuid: p,
             positive: true)
       end
-      # score_hash[:negatives] && score_hash[:negatives].each do |p|
-      #   Impression.create(assignment_id: @assignment.id,
-      #       student_id: student_id,
-      #       concept_uuid: p,
-      #       positive: false)
-      # end
+      score_hash[:negatives] && score_hash[:negatives].each do |p|
+        Impression.create(assignment_id: @assignment.id,
+            student_id: student_id,
+            concept_uuid: p,
+            positive: false)
+      end
     end
     redirect_to assignments_url, notice: 'Scores were successfully saved.'
   end

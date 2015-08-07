@@ -1,0 +1,7 @@
+<div class="impression-wrapper">
+  <%= select_tag "students[#{student.id}][#{parity}][]",
+    options_for_select([["(None)", ""]] +
+    @concepts.map {|c| [c.name, c.uuid]}, imp && imp.concept_uuid) %>
+  <%= link_to '<i class="glyphicon glyphicon-trash"></i>'.html_safe,
+        "javascript:void(0);", class: "delete-impression" %>
+</div>

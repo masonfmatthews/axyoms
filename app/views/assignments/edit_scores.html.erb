@@ -43,21 +43,25 @@
           </td>
           <td>
             <div class="impression-group">
-              <div class="impression-wrapper">
-                <%= select_tag "students[#{student.id}][positives][]",
-                  options_for_select([["(None)", ""]] + @concepts.map {|c| [c.name, c.uuid]}) %>
-                <a class="delete-impression" href="javascript:void(0);">
-                  <i class="glyphicon glyphicon-trash"></i>
-                </a>
-              </div>
+              <% student.positive_impressions(assignment: @assignment).each do |imp| %>
+                <%= render partial: "impression_select",
+                      locals: {imp: imp, student: student, parity: "positives"} %>
+              <% end %>
+              <%= render partial: "impression_select",
+                    locals: {imp: nil, student: student, parity: "positives"} %>
             </div>
-            <a class="add-impression" href="javascript:void(0);">
-              Add Another +1
-            </a>
+            <%= link_to "Add Another +1", "javascript:void(0);", class: "add-impression" %>
           </td>
           <td>
-            <%= select_tag "students[#{student.id}][negatives]",
-                options_for_select([["(None)", ""]] + @concepts.map {|c| [c.name, c.uuid]}) %>
+            <div class="impression-group">
+              <% student.negative_impressions(assignment: @assignment).each do |imp| %>
+                <%= render partial: "impression_select",
+                      locals: {imp: imp, student: student, parity: "negatives"} %>
+              <% end %>
+              <%= render partial: "impression_select",
+                    locals: {imp: nil, student: student, parity: "negatives"} %>
+            </div>
+            <%= link_to "Subtract Another -1", "javascript:void(0);", class: "add-impression" %>
           </td>
         </tr>
       <% end %>

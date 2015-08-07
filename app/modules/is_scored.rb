@@ -12,11 +12,17 @@ module IsScored
     IMPRESSION_FACTOR * pertinent_impressions.reduce(0.0) {|sum, i| sum + (i.positive ? 1 : -1)}
   end
 
-  def positive_impressions(concept = nil)
-    concept ? impressions.where(positive: true, concept_uuid: concept.uuid) : impressions.where(positive: true)
+  def positive_impressions(concept: nil, assignment: nil)
+    results = impressions.where(positive: true)
+    results = results.where(concept_uuid: concept.uuid) if concept
+    results = results.where(assignment_id: assignment.id) if assignment
+    results
   end
 
-  def negative_impressions(concept = nil)
-    concept ? impressions.where(positive: false, concept_uuid: concept.uuid) : impressions.where(positive: false)
+  def negative_impressions(concept: nil, assignment: nil)
+    results = impressions.where(positive: false)
+    results = results.where(concept_uuid: concept.uuid) if concept
+    results = results.where(assignment_id: assignment.id) if assignment
+    results
   end
 end
