@@ -102,19 +102,19 @@
 
           <% if @student %>
             <h3>Student +1s</h3>
-            <% if @student.positive_impressions(@concept).blank? %>
+            <% if @student.positive_impressions(concept: @concept).blank? %>
               <div class="text-muted">None</div>
             <% else %>
-              <% @student.positive_impressions(@concept).each do |i| %>
+              <% @student.positive_impressions(concept: @concept).each do |i| %>
                 <div class="score-span-color" data-score=3><%= i.description %></div>
               <% end %>
             <% end %>
 
             <h3>Student -1s</h3>
-            <% if @student.negative_impressions(@concept).blank? %>
+            <% if @student.negative_impressions(concept: @concept).blank? %>
               <div class="text-muted">None</div>
             <% else %>
-              <% @student.negative_impressions(@concept).each do |i| %>
+              <% @student.negative_impressions(concept: @concept).each do |i| %>
                 <div class="score-span-color" data-score=0><%= i.description %></div>
               <% end %>
             <% end %>
