@@ -5,7 +5,7 @@ class AssignmentsController < ApplicationController
   before_action :set_badge_scores, only: [:edit, :update]
 
   def edit_scores
-    @concepts = Concept.already_scored
+    @concepts = Concept.already_covered
     @students = Student.all
     @score_hash = {}
     @students.each do |student|

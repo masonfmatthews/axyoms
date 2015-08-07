@@ -10,8 +10,8 @@
         <th></th>
         <th>Score</th>
         <th>Comments</th>
-        <th>+1 Concepts</th>
-        <th>-1 Concepts</th>
+        <th class="score-span-color" data-score=3>+1 Concepts</th>
+        <th class="score-span-color" data-score=0>-1 Concepts</th>
       </tr>
     </thead>
     <tbody>
@@ -39,8 +39,16 @@
             <%= text_area_tag "students[#{student.id}][comments]", @score_hash[student.id][:comments] %>
           </td>
           <td>
-            <%= select_tag "students[#{student.id}][positives]",
+            <div class="impression-wrapper">
+              <%= select_tag "students[#{student.id}][positives]",
                 options_for_select([["(None)", ""]] + @concepts.map {|c| [c.name, c.uuid]}) %>
+              <a class="delete-impression">
+                X
+              </a>
+            </div>
+            <a class="add-impression">
+              Add Another +1
+            </a>
           </td>
           <td>
             <%= select_tag "students[#{student.id}][negatives]",

@@ -26,9 +26,9 @@ class Concept
     Impression.where(concept_uuid: uuid)
   end
 
-  def self.already_scored
-    uuids = AssignmentCoverage.joins("INNER JOIN assignments ON assignments.id=assignment_coverages.assignment_id " +
-        "INNER JOIN scores ON scores.assignment_id=assignments.id")
+  def self.already_covered
+    uuids = UnitCoverage.joins("INNER JOIN units ON units.id=unit_coverages.unit_id")
+        .where("units.delivered_at < '#{Time.now}'")
         .select("DISTINCT concept_uuid")
         .map &:concept_uuid
     Concept.where(uuid: uuids).order(:name)
