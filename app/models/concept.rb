@@ -26,6 +26,14 @@ class Concept
     Impression.where(concept_uuid: uuid)
   end
 
+  def self.already_scored
+    uuids = AssignmentCoverage.joins("INNER JOIN assignments ON assignments.id=assignment_coverages.assignment_id " +
+        "INNER JOIN scores ON scores.assignment_id=assignments.id")
+        .select("DISTINCT concept_uuid")
+        .map &:concept_uuid
+    Concept.where(uuid: uuids).order(:name)
+  end
+
   def create_relationship_with(other_node, association="subsequents")
     send(association) << other_node
   end
