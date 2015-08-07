@@ -40,13 +40,13 @@
           </td>
           <td>
             <div class="impression-wrapper">
-              <%= select_tag "students[#{student.id}][positives]",
+              <%= select_tag "students[#{student.id}][positives][]",
                 options_for_select([["(None)", ""]] + @concepts.map {|c| [c.name, c.uuid]}) %>
               <a class="delete-impression">
-                X
+                <i class="glyphicon glyphicon-trash"></i>
               </a>
             </div>
-            <a class="add-impression">
+            <a class="add-impression" href="javascript:void(0);">
               Add Another +1
             </a>
           </td>
