@@ -17,18 +17,25 @@ class AssignmentsController < ApplicationController
   end
 
   def update_scores
+    Impression.destroy_all(assignment_id: @assignment.id)
     params[:students].each do |student_id, score_hash|
       score = Score.find_or_create_by(assignment_id: @assignment.id,
           student_id: student_id)
       score.score = score_hash[:score].to_i
       score.comments = score_hash[:comments]
       score.save!
-      unless score_hash[:positives].blank?
-        Impression.find_or_create_by(assignment_id: @assignment.id,
+      score_hash[:positives] && score_hash[:positives].each do |p|
+        Impression.create(assignment_id: @assignment.id,
             student_id: student_id,
-            concept_uuid: score_hash[:positives],
+            concept_uuid: p,
             positive: true)
       end
+      # score_hash[:negatives] && score_hash[:negatives].each do |p|
+      #   Impression.create(assignment_id: @assignment.id,
+      #       student_id: student_id,
+      #       concept_uuid: p,
+      #       positive: false)
+      # end
     end
     redirect_to assignments_url, notice: 'Scores were successfully saved.'
   end

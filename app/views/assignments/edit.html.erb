@@ -1,5 +1,6 @@
-<%= link_to '<< Back to Assignment List'.html_safe, assignments_path %>
-
+<div class="alternate-links">
+  <%= link_to 'Grade this Assignment'.html_safe, edit_scores_assignment_path(@assignment) %>
+</div>
 <h1>Editing Assignment</h1>
 
 <%= render 'form' %>
