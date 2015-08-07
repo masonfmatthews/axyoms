@@ -103,7 +103,7 @@ class AssignmentsController < ApplicationController
     def set_badge_scores
       @student_scores = {}
       Student.all.each do |s|
-        @student_scores[s.name] = @assignment.average_score(s)
+        @student_scores[s.name] = @assignment.average_score(student: s)
       end
     end
 

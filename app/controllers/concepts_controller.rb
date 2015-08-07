@@ -24,7 +24,7 @@ class ConceptsController < ApplicationController
     save_highlighted_student
     @color_hash = {}
     Concept.all.each do |c|
-      if score = c.average_score(@student)
+      if score = c.average_score(student: @student)
         @color_hash[c.uuid] = score
       end
     end

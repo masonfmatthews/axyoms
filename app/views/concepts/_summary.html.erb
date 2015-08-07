@@ -81,7 +81,7 @@
                       locals: {score: a.average_score} %></td>
                   <% if @student %>
                     <td><%= render partial: "scores/badge",
-                        locals: {score: a.average_score(@student)} %></td>
+                        locals: {score: a.average_score(student: @student)} %></td>
                   <% end %>
                 <% end %>
                 <td><%= link_to a.name, a.uri, target: "_blank" %></td>

@@ -30,8 +30,11 @@ Next Steps for Mental Mapper
 
 Fixes/Improvements:
 
-* Allow instructors to give a +1 or -1 to any concept on any assignment.
 * Better name!
+* Assignment creation page loses checkboxes if uri validation fails.
+* Giving a +1 to an assignment for a non-covered concept still gives the student extra credit on all covered concepts.  This may or may not be okay.
+* Concept edit feature does not remove modal background, nor update graph caches.
+* Changing student on graph pages does not refresh summary partial.
 * Validation at grading time is not tight.  Malicious or sloppy users could potentially introduce problematic data that does not fall between 1 and 6.
 * Redirection after adding or editing assignments or references is not intuitive.  You always go to the respective list page, but it would be nicer to go to the concept map with the referring concept selected.
 
