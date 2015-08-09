@@ -1,5 +1,5 @@
-User.create!(name: "Mason",
-             email: "mason@example.com",
+User.create!(name: "User",
+             email: "user@example.com",
              password: "password",
              password_confirmation: "password")
 
@@ -232,4 +232,4 @@ assignment_hashes.each do |hash|
   a.save!
 end
 
-s = Student.create!(name: "Student 1", email: "student@dev.null")
+s = Student.create!(name: "Student", email: "student@example.com")
