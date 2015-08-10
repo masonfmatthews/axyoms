@@ -1,20 +1,20 @@
-Mental Mapper
+Axyoms
 ======
 
-Mental Mapper is a Rails app with a long-term goal of serving as a digital
-representation of mental maps.  Currently, it is acting as a repository
+Axyoms is a Rails app which acts as a repository
 for one body of knowledge, and assists in the teaching and evaluation of
-students of that body of knowledge.
+students on that body of knowledge.
 
 Technologies used:
 
 * Ruby
 * Rails
 * PostgreSQL
+* Neo4J
 * Bootstrap
 * d3.js
 
-Contributing to Mental Mapper
+Contributing to Axyoms
 -------
 
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
@@ -25,12 +25,11 @@ Contributing to Mental Mapper
 * Make sure to add tests. This is important so I don't break it in a future version unintentionally.
 * Please try not to mess with the Rakefile, version, or history. If you want to have your own version, that is fine, but please isolate to its own commit so I can cherry-pick around it.
 
-Next Steps for Mental Mapper
+Next Steps for Axyoms
 -------
 
 Fixes/Improvements:
 
-* Better name!
 * Assignment creation page loses checkboxes if uri validation fails.
 * Giving a +1 to an assignment for a non-covered concept still gives the student extra credit on all covered concepts.  This may or may not be okay.
 * Concept edit feature does not remove modal background, nor update graph caches.

@@ -3,7 +3,7 @@ require 'test_helper'
 class GraphControllerTest < ActionController::TestCase
 
   def setup
-    @base_title = "Mental Mapper"
+    @base_title = "Axyoms"
     set_up_user
   end
 
