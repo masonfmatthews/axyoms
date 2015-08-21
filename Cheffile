@@ -1,0 +1,10 @@
+site "https://supermarket.getchef.com/api/v1"
+
+cookbook 'apt'
+cookbook 'build-essential'
+cookbook 'postgresql', '~> 3.4.10'
+cookbook 'ruby_build'
+cookbook 'java'
+cookbook 'nodejs', git: 'https://github.com/mdxp/nodejs-cookbook'
+cookbook 'rbenv', git: 'https://github.com/fnichol/chef-rbenv'
+cookbook 'neo4j-server', :git => 'http://github.com/michaelklishin/neo4j-server-chef-cookbook'
