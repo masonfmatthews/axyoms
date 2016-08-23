@@ -43,3 +43,4 @@ Feature Roadmap:
 * Allow student feedback scores for units.
 * Allow users to edit the concept graph via the UI.  This is currently tricky due to graph caching.
 * Multi-tenancy.
+* Docker.
